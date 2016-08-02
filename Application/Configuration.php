@@ -18,7 +18,7 @@ class Configuration
     const sectionRequest = 'p';
     const subsectionSeparator = '/';
 
-    const rootDir = '/var/www/phpframework/Application/';
+    const rootDir = '/var/www/php-framework/Application/';
     const coreDir = self::rootDir . 'Core/';
     const modulesDir = self::rootDir . 'Modules/';
     const resourcesDir = self::rootDir . 'Resources/';
