@@ -1,0 +1,7 @@
+<?php /** @var DynamicViewModel $model */ ?>
+<h1>Bienvenido señor <?= $model->nombre ?></h1>
+<p>Holaaa  jaja    XD         awdawd</p>
+
+<?php foreach ($model->regions as $region): ?>
+    <?= $region->name ?><br />
+<?php endforeach; ?>
