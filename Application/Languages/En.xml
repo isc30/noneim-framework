@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<language>
+    
+    <top>
+        <home><![CDATA[Index]]></home>
+        <demo><![CDATA[Demo Page]]></demo>
+    </top>
+    
+    <index>
+        <title><![CDATA[Demo webpage]]></title>
+        <wellcomeMessage><![CDATA[Wellcome to my new webpage!]]></wellcomeMessage>
+    </index>
+
+</language>
