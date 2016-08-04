@@ -12,7 +12,7 @@ class SqlQueryBuilder extends QueryBuilder
     public function orderBy(array $columns, OrderType $orderType)
     {
         $this->orderBy = $columns;
-        switch ($orderType->value)
+        switch ($orderType)
         {
             case OrderType::ascendent:
             {

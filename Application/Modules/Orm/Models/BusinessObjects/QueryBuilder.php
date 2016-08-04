@@ -12,7 +12,7 @@ abstract class QueryBuilder
     public $table = '';
     public $where = array();
     public $orderBy = array();
-    public $orderType = 'ASC';
+    public $orderType = OrderType::ascendent;
 
     public $input = array();
 
@@ -38,7 +38,7 @@ abstract class QueryBuilder
     public function orderBy(array $columns, OrderType $orderType)
     {
         $this->orderBy = $columns;
-        $this->orderType = $orderType;
+        $this->orderType = $orderType->value;
 
         return $this;
     }

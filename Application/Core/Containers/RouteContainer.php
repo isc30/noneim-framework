@@ -44,12 +44,15 @@ class RouteContainer implements IRouteContainer, ICacheable {
      */
     public function register(array $route, $controller, $method = 'index') {
 
-        $this->searchForInvalidCharacters($route);
-        $this->testControllerType($controller);
+        if (Configuration::debug)
+        {
+            $this->searchForInvalidCharacters($route);
+            $this->testControllerType($controller);
+        }
 
-        $currentRoute = preg_quote(implode($this->getSeparator(), $route), '/');
+        $currentRoute = preg_quote(implode(Configuration::subsectionSeparator, $route), '/');
         $originalRoute = preg_replace('(\\\{([^\}]+)\\\})', '{$1}', $currentRoute);
-        $regexRoute = preg_replace('(\\\{([^\}]+)\\\})', '([^' . $this->getScapedSeparator(). ']+)', $currentRoute);
+        $regexRoute = preg_replace('(\\\{([^\}]+)\\\})', '([^' . preg_quote(Configuration::subsectionSeparator, '/'). ']+)', $currentRoute);
 
         // Generate Indices
         preg_match_all('/\{([^\}]+)\}/i', $originalRoute, $arguments);
@@ -73,7 +76,10 @@ class RouteContainer implements IRouteContainer, ICacheable {
      */
     public function registerDefault($controller, $method = 'index') {
 
-        $this->testControllerType($controller);
+        if (Configuration::debug)
+        {
+            $this->testControllerType($controller);
+        }
 
         $newRoute = new Route();
         $newRoute->controller = $controller;
@@ -90,7 +96,10 @@ class RouteContainer implements IRouteContainer, ICacheable {
      */
     public function registerException($controller, $method = 'index') {
 
-        $this->testControllerType($controller);
+        if (Configuration::debug)
+        {
+            $this->testControllerType($controller);
+        }
 
         $newRoute = new Route();
         $newRoute->controller = $controller;
@@ -101,14 +110,13 @@ class RouteContainer implements IRouteContainer, ICacheable {
     
     /**
      * Resolve request and follow rute
-     * @param string[] $request
+     * @param string $request
      * @return IActionResult
      */
-    public function resolve(array $request) {
+    public function resolve($request) {
 
-        $requestString = implode($this->getSeparator(), $request);
-        $route = $this->getCurrentRoute($requestString);
-        $arguments = $this->getArguments($requestString, $route);
+        $route = $this->getCurrentRoute($request);
+        $arguments = $this->getArguments($request, $route);
         
         try {
             $actionResult = $this->_classFactory->call($route->controller, $route->method, $arguments);
@@ -162,6 +170,7 @@ class RouteContainer implements IRouteContainer, ICacheable {
 
         foreach ($this->routes as $route) {
 
+            // TODO: Case-Sensitive Route
             if (preg_match("/^{$route->regexRoute}$/i", $requestString)) {
 
                 $possibleRoutes[] = $route;
@@ -181,11 +190,9 @@ class RouteContainer implements IRouteContainer, ICacheable {
      */
     private function searchForInvalidCharacters(array $route) {
         
-        $separator = self::getSeparator();
-        
         foreach ($route as $section) {
             
-            if (strpos($section, $separator) !== false) {
+            if (strpos($section, Configuration::subsectionSeparator) !== false) {
                 throw new InvalidOperationException('Invalid characters found');
             }
             
@@ -194,26 +201,6 @@ class RouteContainer implements IRouteContainer, ICacheable {
             }
             
         }
-        
-    }
-    
-    /**
-     * Return section separator
-     * @return string
-     */
-    private function getSeparator() {
-        
-        return Configuration::subsectionSeparator;
-        
-    }
-    
-    /**
-     * Return scaped section separator
-     * @return string
-     */
-    private function getScapedSeparator() {
-        
-        return preg_quote(self::getSeparator(), '/');
         
     }
     
@@ -229,7 +216,12 @@ class RouteContainer implements IRouteContainer, ICacheable {
         
         preg_match("/^{$route->regexRoute}$/i", $request, $values);
         array_shift($values);
-        
+
+        // TODO: IFrameworkRequest
+        /*$params['IFrameworkRequest'] = new IFrameworkRequest();
+        $params['IFrameworkRequest']->section = $request;
+        $params['IFrameworkRequest']->parameters = new IFrameworkRequestParameters($_GET, $_POST);*/
+
         foreach ($values as $i => $value) {
             $params[$route->arguments[$i]] = $value;
         }
@@ -245,7 +237,7 @@ class RouteContainer implements IRouteContainer, ICacheable {
      */
     private function testControllerType($controller) {
 
-        if (Configuration::debug && !is_subclass_of($controller, 'IController')) {
+        if (!is_subclass_of($controller, 'IController')) {
             throw new InvalidOperationException("Class {$controller} doesn't implement IController");
         }
 

@@ -3,7 +3,6 @@
 /**
  * Language Module Configuration
  * @package Modules\Language
- * @subpackage Configuration
  */
 class LanguageModuleConfiguration
 {

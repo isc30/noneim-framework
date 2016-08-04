@@ -30,6 +30,7 @@ class CoreInstaller implements IInstaller
         $this->_installerContainer->register('INavigationService', 'NavigationService');
         $this->_installerContainer->register('IOutputBufferService', 'OutputBufferService');
         $this->_installerContainer->register('ISessionService', 'SessionService');
+        $this->_installerContainer->register('ICookieService', 'CookieService');
         $this->_installerContainer->register('IHeaderService', 'HeaderService');
         $this->_installerContainer->register('IRequestService', 'RequestService');
         $this->_installerContainer->register('ITimeService', 'TimeService');

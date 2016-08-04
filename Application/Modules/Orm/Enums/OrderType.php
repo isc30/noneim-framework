@@ -2,11 +2,11 @@
 
 /**
  * OrderType
- * @package Core
+ * @package Modules\Orm
  * @subpackage Enums
  */
 class OrderType extends Enum
 {
-    const ascendent = 1;
-    const descendent = 2;
+    const ascendent = 0;
+    const descendent = 1;
 }

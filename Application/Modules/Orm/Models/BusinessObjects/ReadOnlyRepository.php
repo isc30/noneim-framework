@@ -5,7 +5,7 @@
  * @package Modules\Orm
  * @subpackage Models\BusinessObjects
  */
-abstract class ReadonlyRepository
+abstract class ReadOnlyRepository
 {
     /** @var IConnectionContainer */
     private $_connectionContainer;

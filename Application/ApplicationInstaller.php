@@ -3,7 +3,6 @@
 /**
  * Application Installer
  * @package Application
- * @subpackage Installers
  */
 class ApplicationInstaller implements IInstaller
 {
@@ -24,6 +23,6 @@ class ApplicationInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('IRegionRepository', 'RegionRepository');
+        $this->_installerContainer->register('RegionRepository', 'RegionRepository');
     }
 }

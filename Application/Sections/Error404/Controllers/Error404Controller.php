@@ -5,10 +5,8 @@
  * @package Application
  * @subpackage Controllers
  */
-class Error404Controller implements IController {
-
-    /** @var IClassFactory */
-    private $_classFactory;
+class Error404Controller implements IController
+{
     /** @var INavigationService */
     private $_navigationService;
     /** @var IHeaderService */
@@ -16,36 +14,32 @@ class Error404Controller implements IController {
 
     /**
      * Error404Controller Constructor
-     * @param IClassFactory $classFactory
      * @param INavigationService $navigationService
      * @param IHeaderService $headerService
      */
     public function __construct(
-        IClassFactory $classFactory,
         INavigationService $navigationService,
         IHeaderService $headerService
     ) {
-        $this->_classFactory = $classFactory;
         $this->_navigationService = $navigationService;
         $this->_headerService = $headerService;
     }
 
     /**
      * Main Action
-     * @return IActionResult
+     * @return IPartialActionResult
      */
-    public function index() {
-        
+    public function index(IFrameworkRequest $request)
+    {
         $this->_headerService->setResponseCode(404);
 
         $viewModel = new Error404ViewModel();
-        $viewModel->request = $this->_navigationService->getSectionRequest();
+        $viewModel->request = $request->section;
 
-        return $this->_classFactory->call('BaseController', 'index', array(
-            'title' => '404 wtf',
-            'content' => new ViewActionResult('Error404', $viewModel, __FILE__)
-        ));
+        $actionResult = new BasePartialActionResult();
+        $actionResult->title = 'Error 404';
+        $actionResult->actionResult = new ViewActionResult('Error404', $viewModel, __FILE__);
 
+        return $actionResult;
     }
-
 }

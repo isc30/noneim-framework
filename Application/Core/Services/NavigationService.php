@@ -7,53 +7,25 @@
  */
 class NavigationService implements INavigationService {
 
-    /** @var IRequestService */
-    private $_requestService;
     /** @var IHeaderService */
     private $_headerService;
 
     /**
      * NavigationService Contructor
-     * @param IRequestService $requestService
      * @param IHeaderService $headerService
      */
-    public function __construct(
-        IRequestService $requestService,
-        IHeaderService $headerService
-    ) {
-        $this->_requestService = $requestService;
+    public function __construct(IHeaderService $headerService)
+    {
         $this->_headerService = $headerService;
     }
-
-    /**
-     * Return current section request
-     * @return string
-     */
-    public function getSectionRequest() {
-
-        $request = strtolower($this->_requestService->get(Configuration::sectionRequest));
-        return $request !== '' && $request !== null ? $request : 'index';
-        
-    }
-
-    /**
-     * Return current section request (as string array with element for each subsection)
-     * @return string[]
-     */
-    public function getSectionRequestArray() {
-        
-        return NavigationHelper::getSectionArray(self::getSectionRequest());
-        
-    }
-
     /**
      * Redirect to url
      * @param string $url
      */
-    public function redirect($url) {
-
+    public function redirect($url)
+    {
+        // TODO: $this->_headerService->setResponseCode TEMPORALLY REDIRECTED
         $this->_headerService->set('Location', $url);
-
     }
 
     /**

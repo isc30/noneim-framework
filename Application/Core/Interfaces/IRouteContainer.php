@@ -34,9 +34,9 @@ interface IRouteContainer extends IContainer {
 
     /**
      * Resolve request and follow rute
-     * @param string[] $request
+     * @param string $request
      * @return IActionResult
      */
-    public function resolve(array $request);
+    public function resolve($request);
     
 }

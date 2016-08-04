@@ -3,7 +3,6 @@
 /**
  * Database Module Configuration
  * @package Modules\Database
- * @subpackage Configuration
  */
 class DatabaseModuleConfiguration
 {

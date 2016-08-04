@@ -12,8 +12,8 @@ class HeaderService implements IHeaderService {
      */
     public function __construct() {
 
-        $this->set('X-Created-With', 'IFramework v' . Configuration::version);
-        $this->set('X-Core-Loaded-In', IFramework::$coreLoadTime . 'ms');
+        $this->set('Imasi-Created-With', 'IFramework v' . CoreConfiguration::version);
+        $this->set('Imasi-Core-Loaded-In', IFramework::$coreLoadTime . 'ms');
 
     }
 

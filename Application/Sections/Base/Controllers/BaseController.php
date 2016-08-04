@@ -17,17 +17,16 @@ class BaseController implements IController
 
     /**
      * Main Page
-     * @param string $title
-     * @param ViewActionResult $content
+     * @param BasePartialActionResult $partialActionResult
      * @return IActionResult
      */
-    public function index($title, $content)
+    public function index(BasePartialActionResult $partialActionResult)
     {
         $viewModel = new BaseViewModel();
-        $viewModel->title = !ValidationHelper::isNullOrEmpty($title) ? "$title - Tienda Igara" : 'Tienda Igara';
+        $viewModel->title = !ValidationHelper::isNullOrEmpty($partialActionResult->title) ? "{$partialActionResult->title} - Demo WebPage" : 'Demo WebPage';
         $viewModel->head = new ViewActionResult('Head', null, __FILE__);
         $viewModel->topMenu = $this->topMenu();
-        $viewModel->content = $content;
+        $viewModel->content = $partialActionResult->actionResult;
         $viewModel->footer = new ViewActionResult('Footer', null, __FILE__);
         
         return new ViewActionResult('Base', $viewModel, __FILE__);
@@ -41,8 +40,8 @@ class BaseController implements IController
     {
         $viewModel = new TopMenuViewModel();
         $viewModel->links = array(
-            'Home' => NavigationHelper::getLink(array('')),
-            'Demo' => NavigationHelper::getLink(array('Demo'))
+            'Index' => NavigationHelper::getLink(array('')),
+            'Cookie Demo' => NavigationHelper::getLink(array('CookieDemo'))
         );
 
         return new ViewActionResult('TopMenu', $viewModel, __FILE__);

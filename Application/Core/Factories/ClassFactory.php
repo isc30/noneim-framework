@@ -85,15 +85,24 @@ class ClassFactory implements IClassFactory {
                 $parameters = $reflectionMethod->getParameters();
                 foreach ($parameters as &$param) {
 
-                    $name = $param->getName();
-                    if (array_key_exists($name, $arguments) || $param->isOptional()) {
+                    $name = (string)$param->getName();
+                    $type = (string)$param->getType();
 
-                        $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
+                    if ($type == 'IFrameworkRequest')
+                    {
+                        $param = $arguments['IFrameworkRequest'];
+                    }
+                    else
+                    {
+                        if (array_key_exists($name, $arguments) || $param->isOptional()) {
 
-                    } else {
+                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
 
-                        throw new InvalidParametersException("Parameter '{$name}' not found");
+                        } else {
 
+                            throw new InvalidParametersException("Parameter '{$name}' not found");
+
+                        }
                     }
 
                 }

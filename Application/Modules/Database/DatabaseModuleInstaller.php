@@ -3,7 +3,6 @@
 /**
  * Database Module Installer
  * @package Modules\Database
- * @subpackage Installers
  */
 class DatabaseModuleInstaller implements IInstaller
 {
