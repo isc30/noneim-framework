@@ -30,5 +30,16 @@ interface IClassFactory extends IFactory {
      * @throws InvalidParametersException
      */
     public function call($class, $method, array $arguments = array());
+
+    /**
+     * Instantiate class from name and call one method of it
+     * @param IFrameworkRequest $request
+     * @param string $controller
+     * @param string $action
+     * @param array $arguments
+     * @return mixed Method return data
+     * @throws InvalidParametersException
+     */
+    public function callControllerAction(IFrameworkRequest $request, $controller, $action, array $arguments = array());
     
 }

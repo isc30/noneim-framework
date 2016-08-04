@@ -7,23 +7,23 @@
  */
 class BaseController implements IController
 {
-    /**
-     * BaseController Constructor
-     */
+    private $title;
+
     public function __construct()
     {
-
+        $this->title = 'IFramework';
     }
 
     /**
-     * Main Page
+     * Default Page
+     * @param IFrameworkRequest $request
      * @param BasePartialActionResult $partialActionResult
      * @return IActionResult
      */
-    public function index(BasePartialActionResult $partialActionResult)
+    public function index(IFrameworkRequest $request, BasePartialActionResult $partialActionResult)
     {
         $viewModel = new BaseViewModel();
-        $viewModel->title = !ValidationHelper::isNullOrEmpty($partialActionResult->title) ? "{$partialActionResult->title} - Demo WebPage" : 'Demo WebPage';
+        $viewModel->title = !ValidationHelper::isNullOrEmpty($partialActionResult->title) ? "{$partialActionResult->title} - {$this->title}" : $this->title;
         $viewModel->head = new ViewActionResult('Head', null, __FILE__);
         $viewModel->topMenu = $this->topMenu();
         $viewModel->content = $partialActionResult->actionResult;
@@ -33,13 +33,13 @@ class BaseController implements IController
     }
 
     /**
-     * Top menu
      * @return IActionResult
      */
     private function topMenu()
     {
         $viewModel = new TopMenuViewModel();
-        $viewModel->links = array(
+        $viewModel->links = array
+        (
             'Index' => NavigationHelper::getLink(array('')),
             'Cookie Demo' => NavigationHelper::getLink(array('CookieDemo'))
         );

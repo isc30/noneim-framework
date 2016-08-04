@@ -8,7 +8,7 @@ class Configuration
 {
     const version = '1.0.0';
 
-    const debug = false;
+    const debug = true;
     const caching = !self::debug && true;
     const prettyUrl = true;
 

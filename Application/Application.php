@@ -35,8 +35,8 @@ class Application
      */
     public function run()
     {
-        $section = $this->getSection();
-        $actionResult = $this->_routeContainer->resolve($section);
+        $request = new IFrameworkRequest();
+        $actionResult = $this->_routeContainer->resolve($request);
 
         if ($actionResult !== null)
         {
@@ -47,29 +47,12 @@ class Application
 
             while ($actionResult instanceof PartialActionResult)
             {
-                $actionResult = $this->_classFactory->call($actionResult->getControllerName(), 'index', array($actionResult));
+                $actionResult = $this->_classFactory->callControllerAction($request, $actionResult->getControllerName(), 'index', array($actionResult));
             }
 
             $this->_outputBufferService->start('FormatHelper::minimizeHtml');
             $actionResult->render();
             $this->_outputBufferService->flushContent();
         }
-    }
-
-    /**
-     * @return string
-     */
-    private function getSection()
-    {
-        if (isset($_GET[Configuration::sectionRequest]))
-        {
-            $section = $_GET[Configuration::sectionRequest];
-            if ($section !== '')
-            {
-                return $section;
-            }
-        }
-
-        return Configuration::defaultSection;
     }
 }

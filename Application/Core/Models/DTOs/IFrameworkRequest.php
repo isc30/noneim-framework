@@ -10,6 +10,26 @@ class IFrameworkRequest
 {
     public $section;
     public $parameters;
+
+    public function __construct()
+    {
+        $this->section = $this->getSection();
+        $this->parameters = new IFrameworkRequestParameters($_GET, $_POST);
+    }
+
+    private function getSection()
+    {
+        if (isset($_GET[Configuration::sectionRequest]))
+        {
+            $section = $_GET[Configuration::sectionRequest];
+            if ($section !== '')
+            {
+                return $section;
+            }
+        }
+
+        return Configuration::defaultSection;
+    }
 }
 
 class IFrameworkRequestParameters

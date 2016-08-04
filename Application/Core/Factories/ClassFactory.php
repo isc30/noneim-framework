@@ -74,47 +74,110 @@ class ClassFactory implements IClassFactory {
 
         $instance = $this->instantiateReflectionClass($refectionClass);
 
-        if (count($arguments) >= $reflectionMethod->getNumberOfRequiredParameters()) {
+        if (count($arguments) + 1 >= $reflectionMethod->getNumberOfRequiredParameters()) {
 
-            if (!ArrayHelper::isAssociative($arguments)) {
+            $isAssociative = ArrayHelper::isAssociative($arguments);
 
-                return $reflectionMethod->invokeArgs($instance, $arguments);
+            $index = 0;
+            $parameters = $reflectionMethod->getParameters();
+            foreach ($parameters as &$param)
+            {
+                $name = (string)$param->getName();
+                $type = (string)$param->getClass()->getName();
 
-            } else {
-
-                $parameters = $reflectionMethod->getParameters();
-                foreach ($parameters as &$param) {
-
-                    $name = (string)$param->getName();
-                    $type = (string)$param->getType();
-
-                    if ($type == 'IFrameworkRequest')
+                if ($type === 'IFrameworkRequest')
+                {
+                    $param = null;
+                }
+                else
+                {
+                    if ($isAssociative)
                     {
-                        $param = $arguments['IFrameworkRequest'];
+                        if (array_key_exists($name, $arguments) || $param->isOptional())
+                        {
+                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
+                        }
+                        else
+                        {
+                            throw new InvalidParametersException("Parameter '{$name}' not found");
+                        }
                     }
                     else
                     {
-                        if (array_key_exists($name, $arguments) || $param->isOptional()) {
-
-                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
-
-                        } else {
-
-                            throw new InvalidParametersException("Parameter '{$name}' not found");
-
-                        }
+                        $param = $arguments[$index++];
                     }
-
                 }
-
-                return $reflectionMethod->invokeArgs($instance, $parameters);
-
             }
+
+            return $reflectionMethod->invokeArgs($instance, $parameters);
 
         } else {
 
             $count = count($arguments);
             throw new InvalidParametersException("Missing parameters in call (got {$count} of {$reflectionMethod->getNumberOfRequiredParameters()})");
+
+        }
+
+    }
+
+    /**
+     * Instantiate class from name and call one method of it
+     * @param IFrameworkRequest $request
+     * @param string $controller
+     * @param string $action
+     * @param array $arguments
+     * @return mixed Method return data
+     * @throws InvalidParametersException
+     */
+    public function callControllerAction(IFrameworkRequest $request, $controller, $action, array $arguments = array()) {
+
+        $refectionClass = new ReflectionClass($controller);
+        $reflectionMethod = $refectionClass->getMethod($action);
+
+        $instance = $this->instantiateReflectionClass($refectionClass);
+
+        $argumentCount = count($arguments);
+        $requiredParameterCount = $reflectionMethod->getNumberOfRequiredParameters() - 1;
+        if ($argumentCount >= $requiredParameterCount) {
+
+            $isAssociative = ArrayHelper::isAssociative($arguments);
+
+            $index = 0;
+            $parameters = $reflectionMethod->getParameters();
+            foreach ($parameters as &$param)
+            {
+                $name = (string)$param->getName();
+                $type = (string)(($class = $param->getClass()) !== null ? $class->getName() : null);
+
+                if ($type === 'IFrameworkRequest')
+                {
+                    $param = $request;
+                }
+                else
+                {
+                    if ($isAssociative)
+                    {
+                        if (array_key_exists($name, $arguments) || $param->isOptional())
+                        {
+                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
+                        }
+                        else
+                        {
+                            throw new InvalidParametersException("Parameter '{$name}' not found");
+                        }
+                    }
+                    else
+                    {
+                        $param = $arguments[$index++];
+                    }
+                }
+            }
+
+            return $reflectionMethod->invokeArgs($instance, $parameters);
+
+        } else {
+
+            throw new InvalidParametersException("Missing parameters in call (got {$argumentCount} of {$requiredParameterCount})");
 
         }
 

@@ -110,19 +110,19 @@ class RouteContainer implements IRouteContainer, ICacheable {
     
     /**
      * Resolve request and follow rute
-     * @param string $request
+     * @param IFrameworkRequest $request
      * @return IActionResult
      */
-    public function resolve($request) {
+    public function resolve(IFrameworkRequest $request) {
 
-        $route = $this->getCurrentRoute($request);
-        $arguments = $this->getArguments($request, $route);
+        $route = $this->getCurrentRoute($request->section);
+        $arguments = $this->getArguments($request->section, $route);
         
         try {
-            $actionResult = $this->_classFactory->call($route->controller, $route->method, $arguments);
+            $actionResult = $this->_classFactory->callControllerAction($request, $route->controller, $route->method, $arguments);
         } catch (Exception $ex) {
             if ($this->exceptionRoute !== null) {
-                $actionResult = $this->_classFactory->call($this->exceptionRoute->controller, $this->exceptionRoute->method, array($ex));
+                $actionResult = $this->_classFactory->callControllerAction($request, $this->exceptionRoute->controller, $this->exceptionRoute->method, array($ex));
             } else {
                 $actionResult = new StringActionResult($ex->getMessage());
             }
@@ -216,11 +216,6 @@ class RouteContainer implements IRouteContainer, ICacheable {
         
         preg_match("/^{$route->regexRoute}$/i", $request, $values);
         array_shift($values);
-
-        // TODO: IFrameworkRequest
-        /*$params['IFrameworkRequest'] = new IFrameworkRequest();
-        $params['IFrameworkRequest']->section = $request;
-        $params['IFrameworkRequest']->parameters = new IFrameworkRequestParameters($_GET, $_POST);*/
 
         foreach ($values as $i => $value) {
             $params[$route->arguments[$i]] = $value;
