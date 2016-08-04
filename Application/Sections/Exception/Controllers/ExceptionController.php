@@ -32,15 +32,16 @@ class ExceptionController implements IController {
 
     /**
      * Main Action
+     * @param IFrameworkRequest $request
      * @param Exception $ex
      * @return IActionResult
      */
-    public function index(Exception $ex) {
+    public function index(IFrameworkRequest $request, Exception $ex) {
 
         $this->_headerService->setResponseCode(500);
 
         $viewModel = new ExceptionViewModel();
-        $viewModel->request = '';
+        $viewModel->request = $request->section;
         $viewModel->exception = $ex;
 
         $actionResult = new BasePartialActionResult();

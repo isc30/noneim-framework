@@ -7,9 +7,7 @@
  */
 class Error404Controller implements IController
 {
-    /** @var INavigationService */
     private $_navigationService;
-    /** @var IHeaderService */
     private $_headerService;
 
     /**
@@ -27,6 +25,7 @@ class Error404Controller implements IController
 
     /**
      * Main Action
+     * @param IFrameworkRequest $request
      * @return IPartialActionResult
      */
     public function index(IFrameworkRequest $request)

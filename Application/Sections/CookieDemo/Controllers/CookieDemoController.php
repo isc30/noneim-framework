@@ -1,37 +1,33 @@
 <?php
 
 /**
- * Index Controller
  * @package Application
  * @subpackage Controllers
  */
 class CookieDemoController implements IController
 {
-    private $_requestService;
     private $_cookieService;
     private $_navigationService;
 
     /**
      * IndexController Constructor
-     * @param IRequestService $requestService
      * @param ICookieService $cookieService
      * @param INavigationService $navigationService
      */
     public function __construct(
-        IRequestService $requestService,
         ICookieService $cookieService,
         INavigationService $navigationService)
     {
-        $this->_requestService = $requestService;
         $this->_cookieService = $cookieService;
         $this->_navigationService = $navigationService;
     }
 
     /**
      * Default Action
-     * @return IActionResult|null
+     * @param IFrameworkRequest $request
+     * @return null|IActionResult
      */
-    public function index()
+    public function index(IFrameworkRequest $request)
     {
         if (!$this->_cookieService->exists('name'))
         {
@@ -49,11 +45,12 @@ class CookieDemoController implements IController
     }
 
     /**
-     * @return IActionResult|null
+     * @param IFrameworkRequest $request
+     * @return null|IActionResult
      */
-    public function changeName()
+    public function changeName(IFrameworkRequest $request)
     {
-        $name = $this->_requestService->post('txtName');
+        $name = $request->parameters->post('txtName');
         $this->_cookieService->set('name', $name, null, '/CookieDemo/');
         $this->_navigationService->redirectSection(array('CookieDemo'));
 
@@ -61,9 +58,10 @@ class CookieDemoController implements IController
     }
 
     /**
+     * @param IFrameworkRequest $request
      * @return null|IActionResult
      */
-    public function deleteName()
+    public function deleteName(IFrameworkRequest $request)
     {
         $this->_cookieService->delete('name', '/CookieDemo/');
         $this->_navigationService->redirectSection(array('CookieDemo'));

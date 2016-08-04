@@ -67,9 +67,12 @@ class CacheService implements ICacheService {
         
             $cacheFile = "{$this->baseDir}{$name}.cache";
             
-            if ($object instanceof ICacheable) {
+            if ($object instanceof ICacheable)
+            {
                 $cache = $object->getCache();
-            } else {
+            }
+            else
+            {
                 $cache = serialize($object);
             }
             
