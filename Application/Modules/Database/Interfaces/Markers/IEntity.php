@@ -2,7 +2,7 @@
 
 /**
  * Entity Interface
- * @package Core
+ * @package Modules\Database
  * @subpackage Interfaces\Markers
  */
 interface IEntity extends IModel {}

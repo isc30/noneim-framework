@@ -40,13 +40,14 @@ class ExceptionController implements IController {
         $this->_headerService->setResponseCode(500);
 
         $viewModel = new ExceptionViewModel();
-        $viewModel->request = $this->_navigationService->getSectionRequest();
+        $viewModel->request = '';
         $viewModel->exception = $ex;
 
-        return $this->_classFactory->call('BaseController', 'index', array(
-            'title' => 'Exception',
-            'content' => new ViewActionResult('Exception', $viewModel, __FILE__)
-        ));
+        $actionResult = new BasePartialActionResult();
+        $actionResult->title = 'WOOPS';
+        $actionResult->actionResult = new ViewActionResult('Exception', $viewModel, __FILE__);
+
+        return $actionResult;
 
     }
 

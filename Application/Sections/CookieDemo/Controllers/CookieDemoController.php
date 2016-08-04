@@ -5,7 +5,7 @@
  * @package Application
  * @subpackage Controllers
  */
-class IndexController implements IController
+class CookieDemoController implements IController
 {
     private $_requestService;
     private $_cookieService;
@@ -29,37 +29,34 @@ class IndexController implements IController
 
     /**
      * Default Action
-     * @return IActionResult
+     * @return IActionResult|null
      */
     public function index()
     {
         if (!$this->_cookieService->exists('name'))
         {
-            $this->_cookieService->set('name', 'Default-Name', null, '/');
+            $this->_cookieService->set('name', 'Default-Name', null, '/CookieDemo/');
         }
 
-        $viewModel = new IndexViewModel();
+        $viewModel = new CookieDemoViewModel();
         $viewModel->name = $this->_cookieService->get('name');
 
         $actionResult = new BasePartialActionResult();
-        $actionResult->title = "Indeex!";
+        $actionResult->title = "Cookie Demo";
         $actionResult->actionResult = new ViewActionResult('Index', $viewModel, __FILE__);
 
         return $actionResult;
     }
 
     /**
-     * @return null|IActionResult
+     * @return IActionResult|null
      */
     public function changeName()
     {
-        // $request->parameters->get, post, any
-        // $request->session->get, getAll
-        // $request->cookies->get, getAll
-        // $request->headers->get, getAll
-        $newName = $this->_requestService->post('txtName');
-        $this->_cookieService->set('name', $newName, null, '/');
-        $this->_navigationService->redirectSection(array('Index'));
+        $name = $this->_requestService->post('txtName');
+        $this->_cookieService->set('name', $name, null, '/CookieDemo/');
+        $this->_navigationService->redirectSection(array('CookieDemo'));
+
         return null;
     }
 
@@ -68,8 +65,9 @@ class IndexController implements IController
      */
     public function deleteName()
     {
-        $this->_cookieService->delete('name', '/');
-        $this->_navigationService->redirectSection(array('Index'));
+        $this->_cookieService->delete('name', '/CookieDemo/');
+        $this->_navigationService->redirectSection(array('CookieDemo'));
+
         return null;
     }
 }

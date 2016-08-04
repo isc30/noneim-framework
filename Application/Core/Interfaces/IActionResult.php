@@ -5,11 +5,10 @@
  * @package Core
  * @subpackage Interfaces
  */
-interface IActionResult {
-
+interface IActionResult
+{
     /**
      * Render content
      */
     public function render();
-
 }

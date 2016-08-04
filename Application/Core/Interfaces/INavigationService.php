@@ -8,18 +8,6 @@
 interface INavigationService extends IService {
 
     /**
-     * Return current section request
-     * @return string
-     */
-    public function getSectionRequest();
-
-    /**
-     * Return current section request (as string array with element for each subsection)
-     * @return string[]
-     */
-    public function getSectionRequestArray();
-
-    /**
      * Redirect to url
      * @param string $url
      */

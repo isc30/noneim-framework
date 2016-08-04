@@ -1,7 +1,10 @@
-<?php /** @var DynamicViewModel $model */ ?>
-<h1>Bienvenido señor <?= $model->nombre ?></h1>
-<p>Holaaa  jaja    XD         awdawd</p>
+<?php /** @var IndexViewModel $model */ ?>
+<h1>Wellcome, <?= FormatHelper::cleanOutput($model->name) ?>!</h1>
 
-<?php foreach ($model->regions as $region): ?>
-    <?= $region->name ?><br />
-<?php endforeach; ?>
+<form method="post" action="<?= NavigationHelper::getLink(array('Index', 'ChangeName')) ?>">
+    <input name="frmChangeName" type="hidden" value="1"/>
+    <input name="txtName" type="text" />
+    <input name="btChange" type="submit" value="Change the Cookie!" />
+</form>
+
+<a href="<?= NavigationHelper::getLink(array('Index', 'DeleteName')) ?>">Delete the cookie</a>

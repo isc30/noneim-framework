@@ -7,28 +7,33 @@
 class Configuration
 {
     const version = '1.0.0';
-    const debug = true;
+
+    const debug = false;
     const caching = !self::debug && true;
     const prettyUrl = true;
 
-    const locale = 'es_ES'; // nullable
-    const timezone = 'Europe/Madrid'; // nullable
-
     const webUrl = 'http://phpframework.local/';
+    const defaultSection = 'index';
     const sectionRequest = 'p';
     const subsectionSeparator = '/';
 
     const rootDir = '/var/www/php-framework/Application/';
     const coreDir = self::rootDir . 'Core/';
     const modulesDir = self::rootDir . 'Modules/';
+    const staticDir = self::rootDir . 'Static/';
     const resourcesDir = self::rootDir . 'Resources/';
     const applicationCachesDir = self::rootDir . 'Caches/';
     const coreCachesDir = self::applicationCachesDir . 'Core/';
     const moduleCachesDir = self::applicationCachesDir . 'Modules/';
 
+    const defaultCookieExpiration = 5 * 60; // Optional
+
+    const locale = 'es_ES'; // Optional
+    const timezone = 'Europe/Madrid'; // Optional
+
     public static function load()
     {
-        // Display errors
+        // Display errors in debug mode
         if (self::debug)
         {
             ini_set('display_errors', true);
@@ -42,13 +47,13 @@ class Configuration
             error_reporting(false);
         }
 
-        // Locale & TimeZone
-        if (self::locale !== null)
+        // Set locale & timezone
+        if (defined('self::locale'))
         {
             setlocale(LC_ALL, self::locale);
         }
 
-        if (self::timezone !== null)
+        if (defined('self::timezone'))
         {
             date_default_timezone_set(self::timezone);
         }

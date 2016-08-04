@@ -54,9 +54,10 @@ class FormatHelper implements IHelper {
     }
     
     
-    public static function minimizeHtml($buffer) {
-        
-        if (!ValidationHelper::isHTML($buffer)) {
+    public static function minimizeHtml($buffer)
+    {
+        if (!ValidationHelper::isHtml($buffer))
+        {
             return $buffer;
         }
         
@@ -67,16 +68,20 @@ class FormatHelper implements IHelper {
         $xpath = new DOMXPath($doc);
         
         // Remove comments
-        foreach ($xpath->query('//comment()') as $comment) {
+        foreach ($xpath->query('//comment()') as $comment)
+        {
             $comment->parentNode->removeChild($comment);
 		}
 		
 		// Remove extra whitespaces
 		$skip = array('style', 'pre', 'code', 'script', 'textarea');
-		foreach ($xpath->query('//text()') as $node) {
-		    if (!in_array($node->parentNode->nodeName, $skip)) {
+		foreach ($xpath->query('//text()') as $node)
+		{
+		    if (!in_array($node->parentNode->nodeName, $skip))
+		    {
 		        $node->nodeValue = preg_replace('/[\n\s\r]{2,}/', ' ', $node->nodeValue);
-		        if ($node->nodeValue === ' ') {
+		        if ($node->nodeValue === ' ')
+		        {
 		            $node->nodeValue = null;
 		        }
 		    }
@@ -86,7 +91,5 @@ class FormatHelper implements IHelper {
 		$html = $doc->saveHTML();
 		
 		return trim($html);
-        
     }
-
 }

@@ -3,7 +3,6 @@
 /**
  * Language Module Installer
  * @package Modules\Language
- * @subpackage Installers
  */
 class LanguageModuleInstaller implements IInstaller
 {
