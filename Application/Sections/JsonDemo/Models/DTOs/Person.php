@@ -10,4 +10,5 @@ class Person implements IModel
     public $surname;
     public $city;
     public $hobbies;
+    public $friends;
 }

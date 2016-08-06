@@ -44,6 +44,16 @@ class SessionService implements ISessionService {
     }
 
     /**
+     * @param string $key
+     * @return bool
+     */
+    public function exists($key)
+    {
+        $this->start();
+        return isset($_SESSION[$key]);
+    }
+
+    /**
      * Return session id
      * @return string
      */
@@ -131,5 +141,4 @@ class SessionService implements ISessionService {
         $_SESSION[$key] = $value;
         
     }
-    
 }

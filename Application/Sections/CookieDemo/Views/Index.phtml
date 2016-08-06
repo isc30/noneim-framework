@@ -1,10 +1,11 @@
 <?php /** @var CookieDemoViewModel $model */ ?>
-<h1>Hi <?= FormatHelper::cleanOutput($model->name) ?>!</h1>
+<h1>Cookie Demo</h1>
+<p>Hi <strong><?= FormatHelper::cleanOutput($model->name) ?></strong>!</p>
 
 <form method="post" action="<?= NavigationHelper::getLink(array('CookieDemo', 'ChangeName')) ?>">
     <input name="frmChangeName" type="hidden" value="1"/>
     <input name="txtName" type="text" />
-    <input name="btChange" type="submit" value="Change the Cookie!" />
+    <input name="btChange" type="submit" value="Change my name!" />
 </form>
 
-<a href="<?= NavigationHelper::getLink(array('CookieDemo', 'DeleteName')) ?>">Delete the cookie</a>
+<a href="<?= NavigationHelper::getLink(array('CookieDemo', 'DeleteName')) ?>">Delete my name</a>

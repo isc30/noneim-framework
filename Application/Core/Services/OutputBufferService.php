@@ -59,7 +59,7 @@ class OutputBufferService implements IOutputBufferService {
      * End buffering
      */
     public function end() {
-        
+
         ob_end_clean();
         
     }

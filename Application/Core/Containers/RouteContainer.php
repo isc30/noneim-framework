@@ -110,10 +110,10 @@ class RouteContainer implements IRouteContainer, ICacheable {
     
     /**
      * Resolve request and follow rute
-     * @param IFrameworkRequest $request
+     * @param IFrameworkRequest &$request
      * @return IActionResult
      */
-    public function resolve(IFrameworkRequest $request) {
+    public function resolve(IFrameworkRequest &$request) {
 
         $route = $this->getCurrentRoute($request->section);
         $arguments = $this->getArguments($request->section, $route);
