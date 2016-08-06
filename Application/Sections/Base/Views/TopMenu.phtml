@@ -1,13 +1,5 @@
 <?php /** @var TopMenuViewModel $model */ ?>
-<div class="topMenu">
-    <ul class="links">
-        <?php foreach ($model->links as $name => $link): ?>
-            <li><a href='<?= $link ?>'><?= $name ?></a></li>
-        <?php endforeach; ?>
-    </ul>
-</div>
-
-<style>
+<style type="text/css">
 
     .topMenu {
 
@@ -50,3 +42,11 @@
     }
 
 </style>
+
+<div class="topMenu">
+    <ul class="links">
+        <?php foreach ($model->links as $name => $link): ?>
+            <li><a href='<?= $link ?>'><?= $name ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</div>

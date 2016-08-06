@@ -40,6 +40,6 @@ interface IClassFactory extends IFactory {
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function callControllerAction(IFrameworkRequest $request, $controller, $action, array $arguments = array());
+    public function callControllerAction(IFrameworkRequest &$request, $controller, $action, array $arguments = array());
     
 }

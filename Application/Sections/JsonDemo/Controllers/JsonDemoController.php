@@ -8,10 +8,9 @@ class JsonDemoController implements IController
 {
     /**
      * Default Action
-     * @param IFrameworkRequest $request
      * @return null|IActionResult
      */
-    public function index(IFrameworkRequest $request)
+    public function index()
     {
         $actionResult = new BasePartialActionResult();
         $actionResult->title = "JSON Demo";
@@ -21,14 +20,22 @@ class JsonDemoController implements IController
     }
 
     /**
-     * @param IFrameworkRequest $request
      * @return null|IActionResult
      */
-    public function getRandomPerson(IFrameworkRequest $request)
+    public function getRandomPerson()
     {
-        return new JsonActionResult($this->generateRandomPerson());
+        $person = $this->generateRandomPerson();
+        $person->friends = array();
+        for ($i = 0, $end = rand(0, 2); $i < $end; $i++)
+        {
+            $person->friends[] = $this->generateRandomPerson();
+        }
+        return new JsonActionResult($person);
     }
 
+    /**
+     * @return Person
+     */
     private function generateRandomPerson()
     {
         $names = array('Ivan', 'John', 'Dimitri', 'Mike', 'Anna', 'Marie', 'Bob', 'Rose');

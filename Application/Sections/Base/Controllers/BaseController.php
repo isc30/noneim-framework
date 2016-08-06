@@ -16,11 +16,10 @@ class BaseController implements IController
 
     /**
      * Default Page
-     * @param IFrameworkRequest $request
      * @param BasePartialActionResult $partialActionResult
      * @return IActionResult
      */
-    public function index(IFrameworkRequest $request, BasePartialActionResult $partialActionResult)
+    public function index(BasePartialActionResult $partialActionResult)
     {
         $viewModel = new BaseViewModel();
         $viewModel->title = !ValidationHelper::isNullOrEmpty($partialActionResult->title) ? "{$partialActionResult->title} - {$this->title}" : $this->title;
@@ -29,7 +28,7 @@ class BaseController implements IController
         $viewModel->content = $partialActionResult->actionResult;
         $viewModel->footer = new ViewActionResult('Footer', null, __FILE__);
         
-        return new ViewActionResult('Base', $viewModel, __FILE__);
+        return new ViewActionResult('Index', $viewModel, __FILE__);
     }
 
     /**
@@ -41,7 +40,9 @@ class BaseController implements IController
         $viewModel->links = array
         (
             'Index' => NavigationHelper::getLink(array('')),
-            'Cookie Demo' => NavigationHelper::getLink(array('CookieDemo'))
+            'Cookie Demo' => NavigationHelper::getLink(array('CookieDemo')),
+            'Session Demo' => NavigationHelper::getLink(array('SessionDemo')),
+            'JSON Demo' => NavigationHelper::getLink(array('JsonDemo'))
         );
 
         return new ViewActionResult('TopMenu', $viewModel, __FILE__);

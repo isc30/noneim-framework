@@ -18,6 +18,12 @@ interface ISessionService extends IService {
     public function destroy();
 
     /**
+     * @param string $key
+     * @return bool
+     */
+    public function exists($key);
+
+    /**
      * Return session id
      * @return string
      */

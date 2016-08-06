@@ -1,7 +1,6 @@
 <?php
 
 /**
- * Error404 Controller
  * @package Application
  * @subpackage Controllers
  */
@@ -25,10 +24,10 @@ class Error404Controller implements IController
 
     /**
      * Main Action
-     * @param IFrameworkRequest $request
+     * @param IFrameworkRequest &$request
      * @return IPartialActionResult
      */
-    public function index(IFrameworkRequest $request)
+    public function index(IFrameworkRequest &$request)
     {
         $this->_headerService->setResponseCode(404);
 
