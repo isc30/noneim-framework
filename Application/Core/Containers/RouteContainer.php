@@ -138,25 +138,47 @@ class RouteContainer implements IRouteContainer, ICacheable {
      * @return Route
      * @throws InvalidOperationException If there are too many possible routes
      */
-    private function getCurrentRoute($requestString) {
-
+    private function getCurrentRoute($requestString)
+    {
         $possibleRoutes = $this->getPossibleRoutes($requestString);
         $possibleRoutesCount = count($possibleRoutes);
 
-        if ($possibleRoutesCount === 1) {
-
+        if ($possibleRoutesCount === 1)
+        {
             return $possibleRoutes[0];
-
-        } else if ($possibleRoutesCount == 0) {
-
-            return $this->defaultRoute;
-
-        } else {
-
-            throw new InvalidOperationException("Too Many Possible Routes: {$possibleRoutesCount}");
-
         }
+        elseif ($possibleRoutesCount == 0)
+        {
+            return $this->defaultRoute;
+        }
+        else
+        {
+            $repetitions = 0;
+            $finalRoute = $possibleRoutes[0];
+            for ($i = 1; $i < $possibleRoutesCount; $i++)
+            {
+                $route = $possibleRoutes[$i];
+                $routeArgumentCount = count($route->arguments);
+                if ($routeArgumentCount > count($finalRoute->arguments))
+                {
+                    $repetitions = 0;
+                    $finalRoute = $route;
+                }
+                elseif ($routeArgumentCount === count($finalRoute->arguments))
+                {
+                    $repetitions++;
+                }
+            }
 
+            if ($repetitions === 0)
+            {
+                return $finalRoute;
+            }
+            else
+            {
+                throw new InvalidOperationException("Too Many Possible Routes: {$possibleRoutesCount}");
+            }
+        }
     }
 
     /**

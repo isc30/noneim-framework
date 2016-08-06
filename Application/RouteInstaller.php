@@ -42,5 +42,10 @@ class RouteInstaller implements IInstaller {
         $this->_routeContainer->register(array('JsonDemo', 'GetRandomPerson'), 'JsonDemoController', 'getRandomPerson');
         
         $this->_routeContainer->register(array('OutputBufferDemo'), 'OutputBufferDemoController');
+
+        $this->_routeContainer->register(array('RouteDemo'), 'RouteDemoController', 'topics');
+        $this->_routeContainer->register(array('RouteDemo', '{topicId}'), 'RouteDemoController', 'subTopics');
+        $this->_routeContainer->register(array('RouteDemo', '{topicId}-{subtopicId}'), 'RouteDemoController', 'subTopicMessages');
+        $this->_routeContainer->register(array('RouteDemo', '{topicId}-{subtopicId}-{messageId}'), 'RouteDemoController', 'subTopicMessages');
     }
 }
