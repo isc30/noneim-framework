@@ -77,6 +77,7 @@ class CacheService implements ICacheService {
             }
             
             file_put_contents($cacheFile, $cache);
+            chmod($cacheFile, 0664);
             
         }
         

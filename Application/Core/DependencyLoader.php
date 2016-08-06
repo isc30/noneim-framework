@@ -33,6 +33,7 @@ class DependencyLoader {
             if (Configuration::caching) {
                 $cache = serialize($this->applicationFiles);
                 file_put_contents($applicationFilesCacheFile, $cache);
+                chmod($applicationFilesCacheFile, 0664);
             }
         }
 
