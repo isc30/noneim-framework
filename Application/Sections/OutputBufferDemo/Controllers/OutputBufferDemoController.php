@@ -31,7 +31,7 @@ class OutputBufferDemoController implements IController
         $content = $this->_outputBufferService->getContent(); // Get all the content
         $this->_outputBufferService->end(); // End getting the output
 
-        $viewModel = new DynamicViewModel();
+        $viewModel = new OutputBufferDemoViewModel();
         $viewModel->content = $content;
 
         $actionResult = new BasePartialActionResult();

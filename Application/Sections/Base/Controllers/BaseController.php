@@ -42,7 +42,8 @@ class BaseController implements IController
             'Index' => NavigationHelper::getLink(array('')),
             'Cookie Demo' => NavigationHelper::getLink(array('CookieDemo')),
             'Session Demo' => NavigationHelper::getLink(array('SessionDemo')),
-            'JSON Demo' => NavigationHelper::getLink(array('JsonDemo'))
+            'JSON Demo' => NavigationHelper::getLink(array('JsonDemo')),
+            'OutputBuffer Demo' => NavigationHelper::getLink(array('OutputBufferDemo'))
         );
 
         return new ViewActionResult('TopMenu', $viewModel, __FILE__);
