@@ -74,7 +74,7 @@ class FormatHelper implements IHelper {
 		}
 		
 		// Remove extra whitespaces
-		$skip = array('style', 'pre', 'code', 'script', 'textarea');
+		$skip = array('pre', 'code', 'script', 'textarea');
 		foreach ($xpath->query('//text()') as $node)
 		{
 		    if (!in_array($node->parentNode->nodeName, $skip))
