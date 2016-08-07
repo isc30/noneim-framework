@@ -45,14 +45,17 @@ class IFramework {
 
         if (!$cacheService->load('InstallerContainer', $installerContainer) || !$cacheService->load('RouteContainer', $routeContainer))
         {
-            // TODO: Make this cleaner, reading filenames isn't the correct way!
             $applicationFiles = $dependencyLoader->getApplicationFiles();
             foreach ($applicationFiles as $fileName => $paths)
             {
                 $fileName = substr($fileName, 0, strlen($fileName) - 4);
                 if (ValidationHelper::endsWith($fileName, 'Installer') && $fileName !== 'IInstaller')
                 {
-                    $classFactory->call($fileName, 'install');
+                    $reflectionClass = new ReflectionClass($fileName);
+                    if ($reflectionClass->implementsInterface('IInstaller'))
+                    {
+                        $classFactory->callFromReflectionClass($reflectionClass, 'install');
+                    }
                 }
             }
 

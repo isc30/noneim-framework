@@ -70,6 +70,20 @@ class ClassFactory implements IClassFactory {
     public function call($class, $method, array $arguments = array()) {
 
         $refectionClass = new ReflectionClass($class);
+        return $this->callFromReflectionClass($refectionClass, $method, $arguments);
+
+    }
+
+    /**
+     * Instantiate class from name and call one method of it
+     * @param ReflectionClass $refectionClass
+     * @param string $method Method to call
+     * @param array $arguments
+     * @return mixed Method return data
+     * @throws InvalidParametersException
+     */
+    public function callFromReflectionClass(ReflectionClass $refectionClass, $method, array $arguments = array()) {
+
         $reflectionMethod = $refectionClass->getMethod($method);
 
         $instance = $this->instantiateReflectionClass($refectionClass);

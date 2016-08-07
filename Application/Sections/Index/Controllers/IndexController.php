@@ -14,7 +14,7 @@ class IndexController implements IController
     public function index()
     {
         $actionResult = new BasePartialActionResult();
-        $actionResult->title = "Wellcome!";
+        $actionResult->title = "Welcome!";
         $actionResult->actionResult = new ViewActionResult('Index', null, __FILE__);
 
         return $actionResult;
