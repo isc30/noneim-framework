@@ -24,10 +24,9 @@ class CookieDemoController implements IController
 
     /**
      * Default Action
-     * @param IFrameworkRequest $request
      * @return null|IActionResult
      */
-    public function index(IFrameworkRequest $request)
+    public function index()
     {
         if (!$this->_cookieService->exists('name'))
         {
@@ -45,10 +44,10 @@ class CookieDemoController implements IController
     }
 
     /**
-     * @param IFrameworkRequest $request
+     * @param IFrameworkRequest &$request
      * @return null|IActionResult
      */
-    public function changeName(IFrameworkRequest $request)
+    public function changeName(IFrameworkRequest &$request)
     {
         $name = $request->parameters->post('txtName');
         $this->_cookieService->set('name', $name, null, '/CookieDemo/');
@@ -58,10 +57,9 @@ class CookieDemoController implements IController
     }
 
     /**
-     * @param IFrameworkRequest $request
      * @return null|IActionResult
      */
-    public function deleteName(IFrameworkRequest $request)
+    public function deleteName()
     {
         $this->_cookieService->delete('name', '/CookieDemo/');
         $this->_navigationService->redirectSection(array('CookieDemo'));

@@ -16,10 +16,10 @@ class BaseController implements IController
 
     /**
      * Default Page
-     * @param BasePartialActionResult $partialActionResult
+     * @param BasePartialActionResult &$partialActionResult
      * @return IActionResult
      */
-    public function index(BasePartialActionResult $partialActionResult)
+    public function index(BasePartialActionResult &$partialActionResult)
     {
         $viewModel = new BaseViewModel();
         $viewModel->title = !ValidationHelper::isNullOrEmpty($partialActionResult->title) ? "{$partialActionResult->title} - {$this->title}" : $this->title;

@@ -37,6 +37,11 @@ class RouteDemoController implements IController
         return $actionResult;
     }
 
+
+    /**
+     * @param int $topicId
+     * @return null|IActionResult
+     */
     public function subTopics($topicId)
     {
         $forum = $this->getForum();
@@ -70,6 +75,12 @@ class RouteDemoController implements IController
         }
     }
 
+    /**
+     * @param int $topicId
+     * @param int $subtopicId
+     * @param null|int $messageId
+     * @return null|IActionResult
+     */
     public function subTopicMessages($topicId, $subtopicId, $messageId = null)
     {
         $forum = $this->getForum();
