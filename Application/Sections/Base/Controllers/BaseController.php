@@ -7,6 +7,7 @@
  */
 class BaseController implements IController
 {
+    /** @var string */
     private $title;
 
     public function __construct()
@@ -40,11 +41,6 @@ class BaseController implements IController
         $viewModel->links = array
         (
             'Index' => UrlHelper::getLink(array('')),
-            'Route Demo' => UrlHelper::getLink(array('RouteDemo')),
-            'Cookie Demo' => UrlHelper::getLink(array('CookieDemo')),
-            'Session Demo' => UrlHelper::getLink(array('SessionDemo')),
-            'JSON Demo' => UrlHelper::getLink(array('JsonDemo')),
-            'OutputBuffer Demo' => UrlHelper::getLink(array('OutputBufferDemo')),
         );
 
         return new ViewActionResult('TopMenu', $viewModel, __FILE__);
