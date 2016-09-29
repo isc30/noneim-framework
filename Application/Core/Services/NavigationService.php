@@ -5,8 +5,8 @@
  * @package Core
  * @subpackage Services
  */
-class NavigationService implements INavigationService {
-
+class NavigationService implements INavigationService
+{
     /** @var IHeaderService */
     private $_headerService;
 
@@ -24,21 +24,20 @@ class NavigationService implements INavigationService {
      */
     public function redirect($url)
     {
-        // TODO: $this->_headerService->setResponseCode TEMPORALLY REDIRECTED
         $this->_headerService->set('Location', $url);
     }
 
     /**
      * Redirect to previous page
      */
-    public function redirectBack() {
-    
+    public function redirectBack()
+    {
         $referer = $this->_headerService->get('Referer');
         
-        if (!ValidationHelper::isNullOrEmpty($referer)) {
+        if (!ValidationHelper::isNullOrEmpty($referer))
+        {
             $this->redirect($referer);
         }
-    
     }
 
     /**
@@ -46,20 +45,18 @@ class NavigationService implements INavigationService {
      * @param string $url
      * @param number $seconds
      */
-    public function redirectIn($url, $seconds) {
-
+    public function redirectIn($url, $seconds)
+    {
         $this->_headerService->set('Refresh', "{$seconds}; url={$url}");
-
     }
 
     /**
      * Redirect to section
      * @param string[] $sections
      */
-    public function redirectSection(array $sections) {
-
-        $this->redirect(NavigationHelper::getLink($sections));
-
+    public function redirectSection(array $sections)
+    {
+        $this->redirect(UrlHelper::getLink($sections));
     }
 
     /**
@@ -67,10 +64,8 @@ class NavigationService implements INavigationService {
      * @param string[] $sections
      * @param number $seconds
      */
-    public function redirectSectionIn(array $sections, $seconds) {
-
-        $this->redirectIn(NavigationHelper::getLink($sections), $seconds);
-
+    public function redirectSectionIn(array $sections, $seconds)
+    {
+        $this->redirectIn(UrlHelper::getLink($sections), $seconds);
     }
-    
 }
