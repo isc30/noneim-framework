@@ -5,7 +5,7 @@
  * @package Core
  * @subpackage Helpers
  */
-class NavigationHelper implements IHelper {
+class UrlHelper implements IHelper {
 
     /**
      * No instanciable

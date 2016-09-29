@@ -19,7 +19,7 @@
 
     function getRandomPerson()
     {
-        $.getJSON("<?= NavigationHelper::getLink(array('JsonDemo', 'GetRandomPerson')) ?>", function(result)
+        $.getJSON("<?= UrlHelper::getLink(array('JsonDemo', 'GetRandomPerson')) ?>", function(result)
         {
             var html = "";
             html += "<p>Name: <strong>" + result.name + " " + result.surname + "<\/strong><\/p>";

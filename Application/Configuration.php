@@ -17,7 +17,7 @@ class Configuration
     const sectionRequest = 'p';
     const subsectionSeparator = '/';
 
-    const rootDir = '/var/www/php-framework/Application/';
+    const rootDir = '//Vboxsvr/php/php-framework/Application/';
     const coreDir = self::rootDir . 'Core/';
     const modulesDir = self::rootDir . 'Modules/';
     const staticDir = self::rootDir . 'Static/';

@@ -39,12 +39,12 @@ class BaseController implements IController
         $viewModel = new TopMenuViewModel();
         $viewModel->links = array
         (
-            'Index' => NavigationHelper::getLink(array('')),
-            'Route Demo' => NavigationHelper::getLink(array('RouteDemo')),
-            'Cookie Demo' => NavigationHelper::getLink(array('CookieDemo')),
-            'Session Demo' => NavigationHelper::getLink(array('SessionDemo')),
-            'JSON Demo' => NavigationHelper::getLink(array('JsonDemo')),
-            'OutputBuffer Demo' => NavigationHelper::getLink(array('OutputBufferDemo')),
+            'Index' => UrlHelper::getLink(array('')),
+            'Route Demo' => UrlHelper::getLink(array('RouteDemo')),
+            'Cookie Demo' => UrlHelper::getLink(array('CookieDemo')),
+            'Session Demo' => UrlHelper::getLink(array('SessionDemo')),
+            'JSON Demo' => UrlHelper::getLink(array('JsonDemo')),
+            'OutputBuffer Demo' => UrlHelper::getLink(array('OutputBufferDemo')),
         );
 
         return new ViewActionResult('TopMenu', $viewModel, __FILE__);
