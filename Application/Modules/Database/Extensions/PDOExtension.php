@@ -80,8 +80,6 @@ class PDOExtension extends PDO {
 
     public function callFunction($fuName, $params) {
 
-        $result = array();
-
         // Generate the function parameters :S
         $funcParams = array();
         foreach ($params as $param) {

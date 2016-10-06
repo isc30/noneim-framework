@@ -8,15 +8,14 @@
 abstract class ReadOnlyRepository
 {
     /** @var IConnectionContainer */
-    private $_connectionContainer;
+    protected $_connectionContainer;
 
     /**
      * Repository Constructor
      * @param IConnectionContainer $connectionContainer
      */
-    public function __construct(
-        IConnectionContainer $connectionContainer
-    ) {
+    public function __construct(IConnectionContainer $connectionContainer)
+    {
         $this->_connectionContainer = $connectionContainer;
     }
 
@@ -30,73 +29,70 @@ abstract class ReadOnlyRepository
      * Fetch by id
      * TODO: return parent::_getById($id);
      * @param int $id
-     * @return IEntity TODO: Change 'IEntity' to native type
+     * @return Entity TODO: Change 'Entity' to native type
      */
     public abstract function getById($id);
 
     /**
      * Fetch results to array
      * TODO: return parent::_toArray($queryBuilder);
-     * @param SqlQueryBuilder $queryBuilder
-     * @return IEntity TODO: Change 'IEntity' to native type
+     * @param QueryBuilder $queryBuilder
+     * @return Entity TODO: Change 'Entity' to native type
      */
-    public abstract function toArray(SqlQueryBuilder $queryBuilder);
+    public abstract function toArray(QueryBuilder $queryBuilder);
 
     /**
      * Fetch first result
      * TODO: return parent::_first($queryBuilder);
-     * @param SqlQueryBuilder $queryBuilder
-     * @return IEntity TODO: Change 'IEntity' to native type
+     * @param QueryBuilder $queryBuilder
+     * @return Entity TODO: Change 'Entity' to native type
      */
-    public abstract function first(SqlQueryBuilder $queryBuilder);
+    public abstract function first(QueryBuilder $queryBuilder);
 
     /**
      * Fetch first result or null if not exists
      * TODO: return parent::_firstOrDefault($queryBuilder);
-     * @param SqlQueryBuilder $queryBuilder
-     * @return IEntity TODO: Change 'IEntity' to native type
+     * @param QueryBuilder $queryBuilder
+     * @return Entity TODO: Change 'Entity' to native type
      */
-    public abstract function firstOrDefault(SqlQueryBuilder $queryBuilder);
+    public abstract function firstOrDefault(QueryBuilder $queryBuilder);
 
     /**
      * Fetch single result
      * TODO: return parent::_single($queryBuilder);
-     * @param SqlQueryBuilder $queryBuilder
-     * @return IEntity TODO: Change 'IEntity' to native type
+     * @param QueryBuilder $queryBuilder
+     * @return Entity TODO: Change 'Entity' to native type
      */
-    public abstract function single(SqlQueryBuilder $queryBuilder);
+    public abstract function single(QueryBuilder $queryBuilder);
 
     /**
      * Fetch single result or null if entity is null or there are more than 1 results
      * TODO: return parent::_singleOrDefault($queryBuilder);
-     * @param SqlQueryBuilder $queryBuilder
-     * @return IEntity TODO: Change 'IEntity' to native type
+     * @param QueryBuilder $queryBuilder
+     * @return Entity TODO: Change 'Entity' to native type
      */
-    public abstract function singleOrDefault(SqlQueryBuilder $queryBuilder);
+    public abstract function singleOrDefault(QueryBuilder $queryBuilder);
 
     /**
      * Fetch by id
      * @param int $id
-     * @return IEntity
+     * @return Entity
      */
     protected function _getById($id)
     {
-        $queryBuilder = new SqlQueryBuilder();
-        $queryBuilder->get()->where('id = :id', array('id' => $id));
-        return $this->_single($queryBuilder);
+        return $this->_single(QueryBuilder::get()->where('id = :id', array('id' => $id)));
     }
 
     /**
      * Fetch results to array
-     * @param SqlQueryBuilder $sqlQueryBuilder
-     * @return IEntity[]
+     * @param QueryBuilder $sqlQueryBuilder
+     * @return Entity[]
      */
-    protected function _toArray(SqlQueryBuilder $sqlQueryBuilder)
+    protected function _toArray(QueryBuilder $sqlQueryBuilder)
     {
-        $sqlQueryBuilder->type = 'SELECT';
-        $sqlQueryBuilder->table = $this->getTable();
+        $sqlQueryBuilder->setTable($this->getTable());
         $statement = $this->_connectionContainer->PDO()->prepare($sqlQueryBuilder->getQuery());
-        $statement->execute($sqlQueryBuilder->input);
+        $statement->execute($sqlQueryBuilder->getParameters());
 
         $result = $statement->fetchAll(PDO::FETCH_CLASS, $this->getType());
         $statement->closeCursor();
@@ -106,18 +102,17 @@ abstract class ReadOnlyRepository
 
     /**
      * Fetch first result
-     * @param SqlQueryBuilder $sqlQueryBuilder
-     * @return IEntity
+     * @param QueryBuilder $sqlQueryBuilder
+     * @return Entity
      * @throws InvalidOperationException If entity is null
      */
-    protected function _first(SqlQueryBuilder $sqlQueryBuilder)
+    protected function _first(QueryBuilder $sqlQueryBuilder)
     {
-        $sqlQueryBuilder->type = 'SELECT';
-        $sqlQueryBuilder->table = $this->getTable();
+        $sqlQueryBuilder->setTable($this->getTable());
         $statement = $this->_connectionContainer->PDO()->prepare($sqlQueryBuilder->getQuery());
-        $statement->execute($sqlQueryBuilder->input);
+        $statement->execute($sqlQueryBuilder->getParameters());
 
-        $result = $statement->fetchObject($this->classType);
+        $result = $statement->fetchObject($this->getType());
         $statement->closeCursor();
 
         if ($result !== false)
@@ -132,15 +127,14 @@ abstract class ReadOnlyRepository
 
     /**
      * Fetch first result or null if not exists
-     * @param SqlQueryBuilder $sqlQueryBuilder
-     * @return null|IEntity
+     * @param QueryBuilder $sqlQueryBuilder
+     * @return null|Entity
      */
-    protected function _firstOrDefault(SqlQueryBuilder $sqlQueryBuilder)
+    protected function _firstOrDefault(QueryBuilder $sqlQueryBuilder)
     {
-        $sqlQueryBuilder->type = 'SELECT';
-        $sqlQueryBuilder->table = $this->getTable();
+        $sqlQueryBuilder->setTable($this->getTable());
         $statement = $this->_connectionContainer->PDO()->prepare($sqlQueryBuilder->getQuery());
-        $statement->execute($sqlQueryBuilder->input);
+        $statement->execute($sqlQueryBuilder->getParameters());
 
         $result = $statement->fetchObject($this->getType());
         $statement->closeCursor();
@@ -157,16 +151,15 @@ abstract class ReadOnlyRepository
 
     /**
      * Fetch single result
-     * @param SqlQueryBuilder $sqlQueryBuilder
-     * @return IEntity
+     * @param QueryBuilder $sqlQueryBuilder
+     * @return Entity
      * @throws InvalidOperationException If entity is null or there are more than 1 results
      */
-    protected function _single(SqlQueryBuilder $sqlQueryBuilder)
+    protected function _single(QueryBuilder $sqlQueryBuilder)
     {
-        $sqlQueryBuilder->type = 'SELECT';
-        $sqlQueryBuilder->table = $this->getTable();
+        $sqlQueryBuilder->setTable($this->getTable());
         $statement = $this->_connectionContainer->PDO()->prepare($sqlQueryBuilder->getQuery());
-        $statement->execute($sqlQueryBuilder->input);
+        $statement->execute($sqlQueryBuilder->getParameters());
 
         $result = $statement->fetchObject($this->getType());
         $isSingle = $statement->fetch() === false;
@@ -191,15 +184,14 @@ abstract class ReadOnlyRepository
 
     /**
      * Fetch single result or null if entity is null or there are more than 1 results
-     * @param SqlQueryBuilder $sqlQueryBuilder
-     * @return null|IEntity
+     * @param QueryBuilder $sqlQueryBuilder
+     * @return null|Entity
      */
-    protected function _singleOrDefault(SqlQueryBuilder $sqlQueryBuilder)
+    protected function _singleOrDefault(QueryBuilder $sqlQueryBuilder)
     {
-        $sqlQueryBuilder->type = 'SELECT';
-        $sqlQueryBuilder->table = $this->getTable();
+        $sqlQueryBuilder->setTable($this->getTable());
         $statement = $this->_connectionContainer->PDO()->prepare($sqlQueryBuilder->getQuery());
-        $statement->execute($sqlQueryBuilder->input);
+        $statement->execute($sqlQueryBuilder->getParameters());
 
         $result = $statement->fetchObject($this->getType());
         $isSingle = $statement->fetch() === false;
