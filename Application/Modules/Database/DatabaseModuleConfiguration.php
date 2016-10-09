@@ -8,6 +8,7 @@ class DatabaseModuleConfiguration
 {
     const type = 'mysql';
     const host = 'localhost';
+    const customPort = null;
     const database = 'prueba';
     const username = 'root';
     const password = '';
