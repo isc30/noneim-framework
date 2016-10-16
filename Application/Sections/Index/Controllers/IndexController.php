@@ -27,7 +27,7 @@ class IndexController implements IController
         $noticia = $this->_noticiaRepository->getById(1);
         $noticia->titulo = rand(2, 999999);
 
-        $this->_noticiaRepository->edit($noticia);
+        $this->_noticiaRepository->delete($noticia);
 
         var_dump($this->_noticiaRepository->toArray(QueryBuilder::get()));
 
