@@ -178,7 +178,7 @@ abstract class ReadOnlyRepository
         }
         else
         {
-            throw new InvalidOperationException('More than 1 row found');
+            throw new InvalidOperationException('More than 1 entity found');
         }
     }
 
