@@ -141,7 +141,22 @@ abstract class Repository extends ReadOnlyRepository
     {
         if (!Configuration::debug || (is_object($entity) && get_class($entity) === $this->getType()))
         {
-            echo '<p>Deleting</p>';
+            if ($entity->id !== null)
+            {
+                // Query
+                $insertQuery = array();
+                $insertQuery[] = 'DELETE FROM';
+                $insertQuery[] = "`{$this->getTable()}`";
+                $insertQuery[] = 'WHERE';
+                $insertQuery[] = '`id`=:id';
+
+                $statement = $this->_connectionContainer->PDO()->prepare(implode(' ', $insertQuery));
+                $statement->execute(array('id' => $entity->id));
+            }
+            else
+            {
+                throw new Exception('Entity error. Id can\'t be null');
+            }
         }
         else
         {
