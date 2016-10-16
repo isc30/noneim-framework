@@ -73,6 +73,17 @@ class ValidationHelper implements IHelper {
     }
 
     /**
+     * Test if $string starts with $start
+     * @param string $string
+     * @param string $start
+     * @return bool
+     */
+    public static function startsWith($string, $start)
+    {
+        return substr($string, 0, strlen($start)) === $start;
+    }
+
+    /**
      * Test if all values in $inputArray are not null or empty
      * @param mixed[] $inputArray Input array
      * @return bool
