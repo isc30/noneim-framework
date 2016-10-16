@@ -121,7 +121,7 @@ abstract class ReadOnlyRepository
         }
         else
         {
-            throw new InvalidOperationException('Entity is null');
+            throw new InvalidOperationException('Entity not found');
         }
     }
 
@@ -173,7 +173,7 @@ abstract class ReadOnlyRepository
             }
             else
             {
-                throw new InvalidOperationException('Entity is null');
+                throw new InvalidOperationException('Entity not found');
             }
         }
         else
