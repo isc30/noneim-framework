@@ -25,8 +25,7 @@ class IndexController implements IController
     public function index()
     {
         $noticia = $this->_noticiaRepository->getById(1);
-        $noticia->id = 444;
-        $noticia->titulo = rand(2, 10);
+        $noticia->titulo = rand(2, 999999);
 
         $this->_noticiaRepository->edit($noticia);
 
