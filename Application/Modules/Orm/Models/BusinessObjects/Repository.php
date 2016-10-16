@@ -43,8 +43,8 @@ abstract class Repository extends ReadOnlyRepository
 
             foreach ($entityProperties as $property)
             {
-                $propertyName = $property->getName();
-                if ($entity->id !== null || ($entity->id === null && strtolower($propertyName) !== 'id'))
+                $propertyName = strtolower($property->getName());
+                if ($entity->id !== null || ($entity->id === null && $propertyName !== 'id'))
                 {
                     $values[$propertyName] = $entity->{$propertyName};
                 }
@@ -65,7 +65,7 @@ abstract class Repository extends ReadOnlyRepository
             {
                 $insertQuery[] = '(`id`,`' . implode('`,`', array_keys($values)) . '`)';
                 $insertQuery[] = "SELECT";
-                $insertQuery[] = "MAX(`id`) + 1,:" . implode(',:', array_keys($values)); // Auto increment id
+                $insertQuery[] = "MAX(`id`)+1,:" . implode(',:', array_keys($values)); // Auto increment id
                 $insertQuery[] = "FROM `{$this->getTable()}`";
             }
 
@@ -86,7 +86,46 @@ abstract class Repository extends ReadOnlyRepository
     {
         if (!Configuration::debug || (is_object($entity) && get_class($entity) === $this->getType()))
         {
-            echo '<p>Editing</p>';
+            if ($entity->id !== null)
+            {
+                // Get values
+                $reflectionClass = new ReflectionClass($this->getType());
+                $entityProperties = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC);
+                $values = array();
+
+                foreach ($entityProperties as $property)
+                {
+                    $propertyName = strtolower($property->getName());
+                    $values[$propertyName] = $entity->{$propertyName};
+                }
+
+                // Query
+                $insertQuery = array();
+                $insertQuery[] = 'UPDATE';
+                $insertQuery[] = "`{$this->getTable()}`";
+
+                $set = array();
+                foreach ($values as $key => $value)
+                {
+                    if ($key !== 'id')
+                    {
+                        $set[] = "`{$key}`=:{$key}";
+                    }
+                }
+
+                $insertQuery[] = 'SET';
+                $insertQuery[] = implode(',', $set);
+
+                $insertQuery[] = 'WHERE';
+                $insertQuery[] = '`id`=:id';
+
+                $statement = $this->_connectionContainer->PDO()->prepare(implode(' ', $insertQuery));
+                $statement->execute($values);
+            }
+            else
+            {
+                throw new Exception('Entity error. Id can\'t be null');
+            }
         }
         else
         {

@@ -24,14 +24,13 @@ class IndexController implements IController
      */
     public function index()
     {
-        $noticia = new Noticia();
-        $noticia->titulo = 'Nueva Noticia';
-        $noticia->contenido = 'Contenido de la nueva noticia';
+        $noticia = $this->_noticiaRepository->getById(1);
+        $noticia->id = 444;
+        $noticia->titulo = rand(2, 10);
 
-        $this->_noticiaRepository->add($noticia);
+        $this->_noticiaRepository->edit($noticia);
 
-        $noticias = $this->_noticiaRepository->toArray(QueryBuilder::get());
-        var_dump($noticias);
+        var_dump($this->_noticiaRepository->toArray(QueryBuilder::get()));
 
         $actionResult = new BasePartialActionResult();
         $actionResult->title = 'Welcome!';
