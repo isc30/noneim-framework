@@ -23,6 +23,6 @@ class ApplicationInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('RegionRepository', 'RegionRepository');
+        $this->_installerContainer->register('INoticiaRepository', 'NoticiaRepository');
     }
 }
