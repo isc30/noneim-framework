@@ -5,19 +5,14 @@
  * @package Application
  * @subpackage Models\ViewModels
  */
-class ExceptionViewModel implements IViewModel {
-    
+class ExceptionViewModel implements IViewModel
+{
     /**
      * Requested section
      * @var string
      */
     public $request;
-    
+
+    /** @var Exception */
     public $exception;
-    
-    /**
-     * Error404ViewModel Constructor
-     */
-    use TArrayPropertiesConstructor;
-    
 }

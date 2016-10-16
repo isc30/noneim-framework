@@ -3,22 +3,38 @@
 // Extend PDO functionality
 class PDOExtension extends PDO {
     
-    public function __construct() {
-
-        try {
-            
-            @parent::__construct(DatabaseModuleConfiguration::type . ':host=' . DatabaseModuleConfiguration::host . ';dbname=' . DatabaseModuleConfiguration::database . ';charset=' . DatabaseModuleConfiguration::charset, DatabaseModuleConfiguration::username, DatabaseModuleConfiguration::password, array(
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseModuleConfiguration::charset,
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_PERSISTENT => DatabaseModuleConfiguration::persistentConnection,
-            ));
-        
-        } catch (Exception $ex) {
-
-            throw new Exception('Error Connecting to Database');
-            
+    public function __construct()
+    {
+        try
+        {
+            if(DatabaseModuleConfiguration::customPort !== null)
+            {
+                @parent::__construct(DatabaseModuleConfiguration::type . ':host=' . DatabaseModuleConfiguration::host . ':port=' . DatabaseModuleConfiguration::customPort . ';dbname=' . DatabaseModuleConfiguration::database . ';charset=' . DatabaseModuleConfiguration::charset, DatabaseModuleConfiguration::username, DatabaseModuleConfiguration::password, array(
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseModuleConfiguration::charset,
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_PERSISTENT => DatabaseModuleConfiguration::persistentConnection,
+                ));
+            }
+            else
+            {
+                @parent::__construct(DatabaseModuleConfiguration::type . ':host=' . DatabaseModuleConfiguration::host . ';dbname=' . DatabaseModuleConfiguration::database . ';charset=' . DatabaseModuleConfiguration::charset, DatabaseModuleConfiguration::username, DatabaseModuleConfiguration::password, array(
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseModuleConfiguration::charset,
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_PERSISTENT => DatabaseModuleConfiguration::persistentConnection,
+                ));
+            }
         }
-
+        catch (Exception $ex)
+        {
+            if (Configuration::debug)
+            {
+                throw new DatabaseConnectionException($ex->getMessage());
+            }
+            else
+            {
+                throw new DatabaseConnectionException();
+            }
+        }
     }
     
     public function callProcedure($prName, $params) {
@@ -79,8 +95,6 @@ class PDOExtension extends PDO {
     }
 
     public function callFunction($fuName, $params) {
-
-        $result = array();
 
         // Generate the function parameters :S
         $funcParams = array();

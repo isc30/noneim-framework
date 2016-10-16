@@ -5,46 +5,157 @@
  * @package Modules\Orm
  * @subpackage Models\BusinessObjects
  */
-abstract class QueryBuilder
+class QueryBuilder
 {
-    public $type = '';
-    public $columns = array();
-    public $table = '';
-    public $where = array();
-    public $orderBy = array();
-    public $orderType = OrderType::ascendent;
+    /** @var string[] */
+    protected $columns = array('*');
+    /** @var string */
+    protected $table;
+    /** @var string[] */
+    protected $where = array();
+    /** @var string[] */
+    protected $orderByColumns = array();
+    /** @var OrderType */
+    protected $orderType = null;
+    /** @var int */
+    protected $limit = 0;
+    /** @var int */
+    protected $limitOffset = 0;
+    /** @var mixed[] */
+    protected $parameters = array();
 
-    public $input = array();
-
-    public function get(array $columns = array('*'))
+    /**
+     * QueryBuilder constructor.
+     */
+    private function __construct()
     {
-        $this->type = 'SELECT';
-        $this->columns = $columns;
-
-        return $this;
     }
 
-    public function where($where, array $input = null)
+    /**
+     * @param string $table
+     */
+    public function setTable($table)
+    {
+        $this->table = $table;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * @param string[] $columns
+     * @return QueryBuilder
+     */
+    public static function get(array $columns = null)
+    {
+        $queryBuilder = new QueryBuilder();
+
+        if ($columns !== null && $columns !== array())
+        {
+            $queryBuilder->columns = $columns;
+        }
+
+        return $queryBuilder;
+    }
+
+    /**
+     * @param string $where
+     * @param null|array $parameters
+     * @return QueryBuilder
+     */
+    public function where($where, array $parameters = null)
     {
         $this->where[] = $where;
-        if ($input !== null)
+
+        if ($parameters !== null && $parameters !== array())
         {
-            $this->input = array_merge($this->input, $input);
+            $this->parameters = array_merge($this->parameters, $parameters);
         }
 
         return $this;
     }
 
-    public function orderBy(array $columns, OrderType $orderType)
+    /**
+     * @param string[] $columns
+     * @param OrderType $orderType
+     * @return QueryBuilder
+     */
+    public function orderBy(array $columns, OrderType $orderType = null)
     {
-        $this->orderBy = $columns;
-        $this->orderType = $orderType->value;
+        $this->orderByColumns = $columns;
+
+        if ($orderType !== null)
+        {
+            $this->orderType = $orderType;
+        }
+        else
+        {
+            $this->orderType = new OrderType(OrderType::ascendent);
+        }
 
         return $this;
     }
 
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @return QueryBuilder
+     */
+    public function limit($limit, $offset = 0)
+    {
+        $this->limit = $limit;
+        $this->limitOffset = $offset;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getQuery()
     {
-        return 'NO QUERY';
+        $query = array();
+
+        $query[] = 'SELECT';
+        $query[] = implode(',', $this->columns);
+
+        $query[] = 'FROM';
+        $query[] = $this->table;
+
+        if (count($this->where) > 0)
+        {
+            $query[] = 'WHERE';
+            $query[] = implode(' AND ', $this->where);
+        }
+
+        if (count($this->orderByColumns) > 0)
+        {
+            $query[] = 'ORDER BY';
+            $query[] = implode(',', $this->orderByColumns);
+            if ($this->orderType->value === OrderType::descendent)
+            {
+                $query[] = 'DESC';
+            }
+        }
+
+        if ($this->limit > 0)
+        {
+            $query[] = 'LIMIT';
+            if ($this->limitOffset > 0)
+            {
+                $query[] = "{$this->limit}, {$this->limitOffset}";
+            }
+            else
+            {
+                $query[] = $this->limit;
+            }
+        }
+
+        return implode(' ', $query);
     }
 }

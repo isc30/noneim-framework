@@ -8,9 +8,10 @@ class DatabaseModuleConfiguration
 {
     const type = 'mysql';
     const host = 'localhost';
-    const database = 'TiendaIgara';
-    const username = 'TiendaIgara';
-    const password = 'TiendaIgara1234#';
+    const customPort = null;
+    const database = 'prueba';
+    const username = 'root';
+    const password = '';
 
     const persistentConnection = false;
     const charset = 'utf8';

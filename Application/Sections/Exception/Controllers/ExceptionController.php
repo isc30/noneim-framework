@@ -6,19 +6,16 @@
  */
 class ExceptionController implements IController
 {
-    private $_navigationService;
+    /** @var IHeaderService */
     private $_headerService;
 
     /**
      * ExceptionController Constructor
-     * @param INavigationService $navigationService
      * @param IHeaderService $headerService
      */
     public function __construct(
-        INavigationService $navigationService,
         IHeaderService $headerService
     ) {
-        $this->_navigationService = $navigationService;
         $this->_headerService = $headerService;
     }
 
@@ -28,8 +25,8 @@ class ExceptionController implements IController
      * @param Exception &$ex
      * @return IActionResult
      */
-    public function index(IFrameworkRequest &$request, Exception &$ex) {
-
+    public function index(IFrameworkRequest &$request, Exception &$ex)
+    {
         $this->_headerService->setResponseCode(500);
 
         $viewModel = new ExceptionViewModel();
@@ -41,7 +38,5 @@ class ExceptionController implements IController
         $actionResult->actionResult = new ViewActionResult('Exception', $viewModel, __FILE__);
 
         return $actionResult;
-
     }
-
 }

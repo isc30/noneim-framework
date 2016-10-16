@@ -5,8 +5,8 @@
  * @package Core
  * @subpackage Interfaces
  */
-interface IClassFactory extends IFactory {
-    
+interface IClassFactory extends IFactory
+{
     /**
      * Instantiate class from name
      * @param string $class Class name
@@ -33,6 +33,22 @@ interface IClassFactory extends IFactory {
 
     /**
      * Instantiate class from name and call one method of it
+     * @param ReflectionClass $refectionClass
+     * @param string $method Method to call
+     * @param array $arguments
+     * @return mixed Method return data
+     * @throws InvalidParametersException
+     */
+    public function callFromReflectionClass(ReflectionClass $refectionClass, $method, array $arguments = array());
+
+    /**
+     * Load Installer
+     * @param string $className
+     */
+    public function loadInstaller($className);
+
+    /**
+     * Instantiate class from name and call one method of it
      * @param IFrameworkRequest $request
      * @param string $controller
      * @param string $action
@@ -41,5 +57,4 @@ interface IClassFactory extends IFactory {
      * @throws InvalidParametersException
      */
     public function callControllerAction(IFrameworkRequest &$request, $controller, $action, array $arguments = array());
-    
 }
