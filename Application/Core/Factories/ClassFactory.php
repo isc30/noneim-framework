@@ -204,7 +204,7 @@ class ClassFactory implements IClassFactory
     public function loadInstaller($className)
     {
         $reflectionClass = new ReflectionClass($className);
-        if ($reflectionClass->implementsInterface('IInstaller'))
+        if (!Configuration::debug || $reflectionClass->implementsInterface('IInstaller'))
         {
             $this->callFromReflectionClass($reflectionClass, 'install');
         }
