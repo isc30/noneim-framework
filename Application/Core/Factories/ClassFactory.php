@@ -5,8 +5,8 @@
  * @package Core
  * @subpackage Factories
  */
-class ClassFactory implements IClassFactory {
-
+class ClassFactory implements IClassFactory
+{
     /** @var IInstallerContainer */
     private $_installerContainer;
         
@@ -197,4 +197,16 @@ class ClassFactory implements IClassFactory {
 
     }
 
+    /**
+     * Load Installer
+     * @param string $className
+     */
+    public function loadInstaller($className)
+    {
+        $reflectionClass = new ReflectionClass($className);
+        if ($reflectionClass->implementsInterface('IInstaller'))
+        {
+            $this->callFromReflectionClass($reflectionClass, 'install');
+        }
+    }
 }

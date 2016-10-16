@@ -43,24 +43,46 @@ class IFramework {
         $installerContainer->register('IClassFactory', $classFactory);
         $installerContainer->register('IRouteContainer', $routeContainer);
 
-        if (!$cacheService->load('InstallerContainer', $installerContainer) || !$cacheService->load('RouteContainer', $routeContainer))
+        // Load Routes
+        if (!$cacheService->load('RouteContainer', $routeContainer))
+        {
+            $classFactory->loadInstaller('RouteInstaller');
+
+            $cacheService->save('RouteContainer', $routeContainer);
+        }
+
+        // Load DependencyInstallers
+        if (!$cacheService->load('InstallerContainer', $installerContainer))
         {
             $applicationFiles = $dependencyLoader->getApplicationFiles();
+
+            // Core
+            $classFactory->loadInstaller('CoreInstaller');
+
+            // Modules
             foreach ($applicationFiles as $fileName => $paths)
             {
                 $fileName = substr($fileName, 0, strlen($fileName) - 4);
-                if (ValidationHelper::endsWith($fileName, 'Installer') && $fileName !== 'IInstaller')
+                if (ValidationHelper::endsWith($fileName, 'Installer'))
                 {
-                    $reflectionClass = new ReflectionClass($fileName);
-                    if ($reflectionClass->implementsInterface('IInstaller'))
+                    foreach ($paths as $path)
                     {
-                        $classFactory->callFromReflectionClass($reflectionClass, 'install');
+                        $path = str_replace('\\', '/', $path);
+                        if (ValidationHelper::startsWith($path, Configuration::modulesDir))
+                        {
+                            $classFactory->loadInstaller($fileName);
+                        }
                     }
                 }
             }
 
+            // Application
+            if (ArrayHelper::keyExists($applicationFiles, 'ApplicationInstaller.php'))
+            {
+                $classFactory->loadInstaller('ApplicationInstaller');
+            }
+
             $cacheService->save('InstallerContainer', $installerContainer);
-            $cacheService->save('RouteContainer', $routeContainer);
         }
         
         self::$coreLoadTime = round((microtime(true) - $startTime) * 1000, 2);
