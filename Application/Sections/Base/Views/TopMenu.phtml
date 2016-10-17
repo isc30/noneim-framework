@@ -1,0 +1,52 @@
+<?php /** @var TopMenuViewModel $model */ ?>
+<style type="text/css">
+
+    .topMenu {
+
+        display: block;
+        width: 100%;
+
+        background-color: gray;
+
+    }
+
+    .topMenu ul {
+
+        padding: 0;
+        margin: 0;
+
+    }
+
+    .topMenu ul li {
+
+        display: inline-block;
+        list-style-type: none;
+
+    }
+
+    .topMenu ul li a {
+
+        display: inline-block;
+
+        padding: 25px;
+        text-decoration: none;
+
+        color: white;
+
+    }
+
+    .topMenu ul li a:hover {
+
+        background-color: #888888;
+
+    }
+
+</style>
+
+<div class="topMenu">
+    <ul class="links">
+        <?php foreach ($model->links as $name => $link): ?>
+            <li><a href='<?= $link ?>'><?= $name ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</div>
