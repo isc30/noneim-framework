@@ -4,7 +4,7 @@
  * Database Module Installer
  * @package Modules\Database
  */
-class DatabaseModuleInstaller implements IInstaller
+class DatabaseInstaller implements IInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;

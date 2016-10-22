@@ -25,7 +25,7 @@ class RouteInstaller implements IInstaller {
     {
         $this->_routeContainer->registerDefault('Error404Controller');
         $this->_routeContainer->registerException('ExceptionController');
-        
+
         $this->_routeContainer->register(array('Index'), 'IndexController');
     }
 }

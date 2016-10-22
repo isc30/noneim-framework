@@ -4,7 +4,7 @@
  * Authentication Module Installer
  * @package Modules\Authentication
  */
-class AuthenticationModuleInstaller implements IInstaller
+class AuthenticationInstaller implements IInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;
@@ -23,6 +23,6 @@ class AuthenticationModuleInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('IAuthenticationService', 'AuthenticationService');
+        $this->_installerContainer->register('IAuthenticationServiceBase', 'AuthenticationService');
     }
 }

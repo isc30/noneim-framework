@@ -5,11 +5,10 @@
  * @package Core
  * @subpackage Traits
  */
-trait TNoInstanciable {
-    
+trait TNoInstanciable
+{
     /**
      * No instanciable
      */
     private function __construct() {}
-
 }

@@ -5,8 +5,8 @@
  * @package Core
  * @subpackage Models\DTOs
  */
-class Route implements IModel {
-
+class Route implements IModel
+{
     /** @var string */
     public $originalRoute;
     /** @var string */
@@ -17,5 +17,4 @@ class Route implements IModel {
     public $method;
     /** @var string[] */
     public $arguments;
-
 }
