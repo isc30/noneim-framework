@@ -23,6 +23,5 @@ class ApplicationInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('INoticiaRepository', 'NoticiaRepository');
     }
 }

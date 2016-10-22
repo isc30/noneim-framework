@@ -7,20 +7,20 @@ class PDOExtension extends PDO {
     {
         try
         {
-            if(DatabaseModuleConfiguration::customPort !== null)
+            if(DatabaseConfiguration::customPort !== null)
             {
-                @parent::__construct(DatabaseModuleConfiguration::type . ':host=' . DatabaseModuleConfiguration::host . ':port=' . DatabaseModuleConfiguration::customPort . ';dbname=' . DatabaseModuleConfiguration::database . ';charset=' . DatabaseModuleConfiguration::charset, DatabaseModuleConfiguration::username, DatabaseModuleConfiguration::password, array(
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseModuleConfiguration::charset,
+                @parent::__construct(DatabaseConfiguration::type . ':host=' . DatabaseConfiguration::host . ':port=' . DatabaseConfiguration::customPort . ';dbname=' . DatabaseConfiguration::database . ';charset=' . DatabaseConfiguration::charset, DatabaseConfiguration::username, DatabaseConfiguration::password, array(
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseConfiguration::charset,
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_PERSISTENT => DatabaseModuleConfiguration::persistentConnection,
+                    PDO::ATTR_PERSISTENT => DatabaseConfiguration::persistentConnection,
                 ));
             }
             else
             {
-                @parent::__construct(DatabaseModuleConfiguration::type . ':host=' . DatabaseModuleConfiguration::host . ';dbname=' . DatabaseModuleConfiguration::database . ';charset=' . DatabaseModuleConfiguration::charset, DatabaseModuleConfiguration::username, DatabaseModuleConfiguration::password, array(
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseModuleConfiguration::charset,
+                @parent::__construct(DatabaseConfiguration::type . ':host=' . DatabaseConfiguration::host . ';dbname=' . DatabaseConfiguration::database . ';charset=' . DatabaseConfiguration::charset, DatabaseConfiguration::username, DatabaseConfiguration::password, array(
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseConfiguration::charset,
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_PERSISTENT => DatabaseModuleConfiguration::persistentConnection,
+                    PDO::ATTR_PERSISTENT => DatabaseConfiguration::persistentConnection,
                 ));
             }
         }

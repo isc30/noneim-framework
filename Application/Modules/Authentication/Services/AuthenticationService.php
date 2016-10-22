@@ -5,12 +5,10 @@
  * @package Modules\Authentication
  * @subpackage Containers
  */
-class AuthenticationService implements IService
+abstract class AuthenticationService implements IAuthenticationServiceBase
 {
+    /** @var ISessionService */
     private $_sessionService;
-
-    /** @var null|IAuthentication */
-    private $authentication;
 
     /**
      * AuthenticationService Constructor
@@ -19,27 +17,40 @@ class AuthenticationService implements IService
     public function __construct(ISessionService $sessionService)
     {
         $this->_sessionService = $sessionService;
-
-        $this->authentication = null;
     }
 
-    public function getAuthentication()
+    /**
+     * return $this->_get();
+     * @return null|IModel // TODO: Change IModel to native type
+     */
+    public abstract function get();
+
+    /**
+     * return $this->_set($authentication);
+     * @param IModel $authentication // TODO: Change IModel to native type
+     */
+    public abstract function set($authentication);
+
+    /**
+     */
+    public function delete()
     {
-        return $this->authentication;
+        $this->_sessionService->delete(AuthenticationConfiguration::sessionKey);
     }
 
-    public function setAuthentication(IAuthentication $authentication)
+    /**
+     * @return null|IModel
+     */
+    protected function _get()
     {
-        $this->authentication = $authentication;
+        return $this->_sessionService->get(AuthenticationConfiguration::sessionKey);
     }
 
-    public function deleteAuthentication()
+    /**
+     * @param IModel $authentication
+     */
+    protected function _set($authentication)
     {
-        $this->authentication = null;
-    }
-
-    public function isAuthenticated()
-    {
-        return $this->authentication !== null;
+        $this->_sessionService->set(AuthenticationConfiguration::sessionKey, $authentication);
     }
 }

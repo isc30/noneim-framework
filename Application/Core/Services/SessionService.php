@@ -110,7 +110,7 @@ class SessionService implements ISessionService {
     /**
      * Return value from $key in session or null if not exists
      * @param string $key
-     * @return null|string
+     * @return null|mixed
      */
     public function get($key) {
         
