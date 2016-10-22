@@ -8,27 +8,31 @@
 class QueryBuilder
 {
     /** @var string[] */
-    protected $columns = array('*');
+    protected $columns;
     /** @var string */
     protected $table;
     /** @var string[] */
-    protected $where = array();
+    protected $where;
     /** @var string[] */
-    protected $orderByColumns = array();
+    protected $orderByColumns;
     /** @var OrderType */
-    protected $orderType = null;
+    protected $orderType;
     /** @var int */
-    protected $limit = 0;
+    protected $limit;
     /** @var int */
-    protected $limitOffset = 0;
+    protected $limitOffset;
     /** @var mixed[] */
-    protected $parameters = array();
+    protected $parameters;
 
     /**
      * QueryBuilder constructor.
      */
     private function __construct()
     {
+        $this->columns = array('*');
+        $this->where = array();
+        $this->orderByColumns = array();
+        $this->parameters = array();
     }
 
     /**
@@ -143,10 +147,10 @@ class QueryBuilder
             }
         }
 
-        if ($this->limit > 0)
+        if ($this->limit !== null && $this->limit > 0)
         {
             $query[] = 'LIMIT';
-            if ($this->limitOffset > 0)
+            if ($this->limitOffset !== null && $this->limitOffset > 0)
             {
                 $query[] = "{$this->limit}, {$this->limitOffset}";
             }
