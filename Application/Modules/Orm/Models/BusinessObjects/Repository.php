@@ -141,7 +141,7 @@ abstract class Repository extends ReadOnlyRepository
     {
         if (!Configuration::debug || (is_object($entity) && get_class($entity) === $this->getType()))
         {
-            _deleteById($entity->id);
+            deleteById($entity->id);
         }
         else
         {
