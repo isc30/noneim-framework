@@ -3,7 +3,7 @@
 /**
  * Repository
  * @package Modules\Orm
- * @subpackage Models\BusinessObjects
+ * @subpackage Repositories
  */
 abstract class Repository extends ReadOnlyRepository
 {
@@ -141,7 +141,7 @@ abstract class Repository extends ReadOnlyRepository
     {
         if (!Configuration::debug || (is_object($entity) && get_class($entity) === $this->getType()))
         {
-            deleteById($entity->id);
+            $this->deleteById($entity->id);
         }
         else
         {

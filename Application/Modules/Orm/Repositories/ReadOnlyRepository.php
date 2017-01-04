@@ -3,7 +3,7 @@
 /**
  * Repository
  * @package Modules\Orm
- * @subpackage Models\BusinessObjects
+ * @subpackage Repositories
  */
 abstract class ReadOnlyRepository
 {
