@@ -19,7 +19,7 @@ class ArrayHelper implements IHelper
      * @param array $array
      * @return bool
      */
-    public static function isAssociative(array &$array)
+    public static function isAssociative(array $array)
     {
         $keys = array_keys($array);
         sort($keys);
@@ -31,7 +31,7 @@ class ArrayHelper implements IHelper
      * @param array $array
      * @return mixed
      */
-    public static function getRandomKey(array &$array)
+    public static function getRandomKey(array $array)
     {
         return array_rand($array);
     }
@@ -41,13 +41,15 @@ class ArrayHelper implements IHelper
      * @param $count
      * @return mixed[]
      */
-    public static function getRandomKeys(array &$array, $count)
+    public static function getRandomKeys(array $array, $count)
     {
         $keys = array_rand($array, $count);
-        if($count === 1)
+
+        if ($count === 1)
         {
             return array($keys);
-        } else
+        }
+        else
         {
             return $keys;
         }
@@ -57,7 +59,7 @@ class ArrayHelper implements IHelper
      * @param array $array
      * @return mixed
      */
-    public static function getRandomValue(array &$array)
+    public static function getRandomValue(array $array)
     {
         return $array[self::getRandomKey($array)];
     }
@@ -67,7 +69,7 @@ class ArrayHelper implements IHelper
      * @param $count
      * @return mixed[]
      */
-    public static function getRandomValues(array &$array, $count)
+    public static function getRandomValues(array $array, $count)
     {
         $keys = self::getRandomKeys($array, $count);
         $values = array();

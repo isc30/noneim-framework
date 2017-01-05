@@ -5,22 +5,23 @@
  * @package Core
  * @subpackage Helpers
  */
-class ValidationHelper implements IHelper {
-
+class ValidationHelper implements IHelper
+{
     /**
      * No instanciable
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Test if $value is email
      * @param string $value
      * @return bool
      */
-    public static function isEmail($value) {
-        
+    public static function isEmail($value)
+    {
         return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
-        
     }
 
     /**
@@ -28,10 +29,9 @@ class ValidationHelper implements IHelper {
      * @param string $buffer
      * @return bool
      */
-    public static function isHtml($buffer) {
-        
+    public static function isHtml($buffer)
+    {
         return substr(trim($buffer), 0, 2) === '<!';
-        
     }
 
     /**
@@ -39,11 +39,11 @@ class ValidationHelper implements IHelper {
      * @param string $buffer
      * @return bool
      */
-    public static function isJson($buffer) {
-
+    public static function isJson($buffer)
+    {
         json_decode($buffer);
+
         return json_last_error() === JSON_ERROR_NONE;
-        
     }
 
     /**
@@ -51,14 +51,16 @@ class ValidationHelper implements IHelper {
      * @param null|string|array $input
      * @return bool
      */
-    public static function isNullOrEmpty($input) {
-
-        if (is_string($input)) {
+    public static function isNullOrEmpty($input)
+    {
+        if (is_string($input))
+        {
             return $input === null || strlen($input) === 0;
-        } else {
+        }
+        else
+        {
             return $input === null || count($input) === 0;
         }
-        
     }
 
     /**
@@ -88,14 +90,17 @@ class ValidationHelper implements IHelper {
      * @param mixed[] $inputArray Input array
      * @return bool
      */
-    public static function testInput(array $inputArray) {
-        
-        foreach ($inputArray as &$input) {
-            if (self::isNullOrEmpty($input)) return false;
+    public static function testInput(array $inputArray)
+    {
+        foreach ($inputArray as $input)
+        {
+            if (self::isNullOrEmpty($input))
+            {
+                return false;
+            }
         }
-        
+
         return true;
-        
     }
 
     /**
@@ -103,18 +108,18 @@ class ValidationHelper implements IHelper {
      * @param mixed[] $inputArray Input array (name => value)
      * @return string[]
      */
-    public static function testInputWithName(array $inputArray) {
-        
+    public static function testInputWithName(array $inputArray)
+    {
         $failedInputs = array();
-        
-        foreach ($inputArray as $name => &$value) {
-            if (self::isNullOrEmpty($value)) {
+
+        foreach ($inputArray as $name => $value)
+        {
+            if (self::isNullOrEmpty($value))
+            {
                 $failedInputs[] = $name;
             }
         }
-        
+
         return $failedInputs;
-        
     }
-    
 }

@@ -24,7 +24,7 @@ class CacheService implements ICacheService {
      * Return if loading cache is success
      * If $object is ICacheable, call setCache() method. If not, leave the value in $object
      * @param string $name
-     * @param mixed $object
+     * @param object& $object
      * @return bool
      */
     public function load($name, &$object) {
@@ -34,6 +34,7 @@ class CacheService implements ICacheService {
             try {
                 
                 $cacheFile = "{$this->baseDir}{$name}.cache";
+
                 if (file_exists($cacheFile)) {
                     
                     $cache = file_get_contents($cacheFile);
@@ -59,9 +60,9 @@ class CacheService implements ICacheService {
      * Save cache
      * If $object is ICacheable, call getCache() method. If not, serialize $object content
      * @param string $name
-     * @param mixed $object
+     * @param object $object
      */
-    public function save($name, &$object) {
+    public function save($name, $object) {
         
         if (Configuration::caching) {
         
