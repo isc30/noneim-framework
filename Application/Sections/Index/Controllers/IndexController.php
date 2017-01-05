@@ -15,7 +15,7 @@ class IndexController extends BaseLayoutController
     {
         $layoutViewModel = new BaseLayoutContentViewModel();
         $layoutViewModel->title = 'Welcome!';
-        $layoutViewModel->content = new ViewActionResult('Index', null, __FILE__);
+        $layoutViewModel->content = new View('Index', null, __FILE__);
 
         return $this->baseLayout($layoutViewModel);
     }
