@@ -7,27 +7,27 @@
  */
 class ContextService implements IContextService {
 
-    /** @var ITimeService& */
+    /** @var ITimeService */
     private $_timeService;
-    /** @var ISessionService& */
+    /** @var ISessionService */
     private $_sessionService;
-    /** @var IHeaderService& */
+    /** @var IHeaderService */
     private $_headerService;
 
     /**
      * ContextService constructor
-     * @param ITimeService& $timeService
-     * @param ISessionService& $sessionService
-     * @param IHeaderService& $headerService
+     * @param ITimeService $timeService
+     * @param ISessionService $sessionService
+     * @param IHeaderService $headerService
      */
     public function __construct(
-        ITimeService& $timeService,
-        ISessionService& $sessionService,
-        IHeaderService& $headerService
+        ITimeService $timeService,
+        ISessionService $sessionService,
+        IHeaderService $headerService
     ) {
-        $this->_timeService = &$timeService;
-        $this->_sessionService = &$sessionService;
-        $this->_headerService = &$headerService;
+        $this->_timeService = $timeService;
+        $this->_sessionService = $sessionService;
+        $this->_headerService = $headerService;
     }
 
     /**

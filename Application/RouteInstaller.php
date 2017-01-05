@@ -6,16 +6,16 @@
  */
 class RouteInstaller implements IInstaller
 {
-    /** @var IRouteContainer& */
+    /** @var IRouteContainer */
     private $_routeContainer;
     
     /**
      * RouteInstaller Constructor
-     * @param IRouteContainer& $routeContainer
+     * @param IRouteContainer $routeContainer
      */
-    public function __construct(IRouteContainer& $routeContainer)
+    public function __construct(IRouteContainer $routeContainer)
     {
-        $this->_routeContainer = &$routeContainer;
+        $this->_routeContainer = $routeContainer;
     }
     
     /**

@@ -7,16 +7,16 @@
  */
 class NavigationService implements INavigationService
 {
-    /** @var IHeaderService& */
+    /** @var IHeaderService */
     private $_headerService;
 
     /**
      * NavigationService Contructor
-     * @param IHeaderService& $headerService
+     * @param IHeaderService $headerService
      */
-    public function __construct(IHeaderService& $headerService)
+    public function __construct(IHeaderService $headerService)
     {
-        $this->_headerService = &$headerService;
+        $this->_headerService = $headerService;
     }
     /**
      * Redirect to url

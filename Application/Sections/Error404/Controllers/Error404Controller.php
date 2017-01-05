@@ -13,17 +13,17 @@ class Error404Controller extends BaseLayoutController
      * Error404Controller Constructor
      * @param IHeaderService $headerService
      */
-    public function __construct(IHeaderService& $headerService)
+    public function __construct(IHeaderService $headerService)
     {
-        $this->_headerService = &$headerService;
+        $this->_headerService = $headerService;
     }
 
     /**
      * Main Action
-     * @param IFrameworkRequest& $request
+     * @param IFrameworkRequest $request
      * @return IActionResult
      */
-    public function index(IFrameworkRequest& $request)
+    public function index(IFrameworkRequest $request)
     {
         $this->_headerService->setResponseCode(404);
 

@@ -59,26 +59,26 @@ class InstallerContainer implements IInstallerContainer, ICacheable
     /**
      * Register new Implementation for type
      * @param string $type Dependency type (Interface or Class Type)
-     * @param mixed &$implementation Implementation instance
+     * @param object $implementation Implementation instance
      * @throws InvalidOperationException If $implementedBy doesn't implement $type
      */
-    public function registerImplementation($type, &$implementation)
+    public function registerImplementation($type, $implementation)
     {
         if (Configuration::debug && !$implementation instanceof $type)
         {
             throw new InvalidOperationException("Class {$implementation} doesn't implement {$type}");
         }
 
-        $this->instances[$type] = &$implementation;
+        $this->instances[$type] = $implementation;
     }
 
     /**
      * Return reference to instance of type
      * @param string $type Dependency type (Interface or Class Type)
-     * @return object&
+     * @return object
      * @throws DependencyNotFoundException
      */
-    public function &get($type)
+    public function get($type)
     {
         if (!array_key_exists($type, $this->instances))
         {

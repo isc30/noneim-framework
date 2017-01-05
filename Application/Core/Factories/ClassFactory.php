@@ -49,12 +49,12 @@ class ClassFactory implements IClassFactory
             {
                 $parameterType = $parameter->getClass()->name;
 
-                if (!$parameter->isPassedByReference())
+                if (Configuration::debug && $parameter->isPassedByReference())
                 {
-                    echo "In class {{$reflectionClass->getName()}} please use reference injection<br/>";
+                    echo "In class {{$reflectionClass->getName()}} please DON'T use reference injection<br/>";
                 }
 
-                $arguments[$key] = &$this->_installerContainer->get($parameterType);
+                $arguments[$key] = $this->_installerContainer->get($parameterType);
             }
         }
 
@@ -96,7 +96,7 @@ class ClassFactory implements IClassFactory
 
             $index = 0;
             $parameters = $reflectionMethod->getParameters();
-            foreach ($parameters as &$param)
+            foreach ($parameters as $param)
             {
                 $name = (string)$param->getName();
                 $type = (string)$param->getClass()->getName();
@@ -145,7 +145,7 @@ class ClassFactory implements IClassFactory
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function callControllerAction(IFrameworkRequest &$request, $controller, $action, array $arguments = array()) {
+    public function callControllerAction(IFrameworkRequest $request, $controller, $action, array $arguments = array()) {
 
         $refectionClass = new ReflectionClass($controller);
         $reflectionMethod = $refectionClass->getMethod($action);

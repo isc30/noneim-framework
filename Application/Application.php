@@ -6,35 +6,35 @@
  */
 class Application
 {
-    /** @var IClassFactory& */
+    /** @var IClassFactory */
     private $_classFactory;
 
-    /** @var IRouteContainer& */
+    /** @var IRouteContainer */
     private $_routeContainer;
 
-    /** @var IOutputBufferService& */
+    /** @var IOutputBufferService */
     private $_outputBufferService;
 
-    /** @var IHeaderService& */
+    /** @var IHeaderService */
     private $_headerService;
 
     /**
      * Application Constructor
-     * @param IClassFactory& $classFactory
-     * @param IRouteContainer& $routeContainer
-     * @param IOutputBufferService& $outputBufferService
-     * @param IHeaderService& $headerService
+     * @param IClassFactory $classFactory
+     * @param IRouteContainer $routeContainer
+     * @param IOutputBufferService $outputBufferService
+     * @param IHeaderService $headerService
      */
     public function __construct(
-        IClassFactory& $classFactory,
-        IRouteContainer& $routeContainer,
-        IOutputBufferService& $outputBufferService,
-        IHeaderService& $headerService)
+        IClassFactory $classFactory,
+        IRouteContainer $routeContainer,
+        IOutputBufferService $outputBufferService,
+        IHeaderService $headerService)
     {
-        $this->_classFactory = &$classFactory;
-        $this->_routeContainer = &$routeContainer;
-        $this->_outputBufferService = &$outputBufferService;
-        $this->_headerService = &$headerService;
+        $this->_classFactory = $classFactory;
+        $this->_routeContainer = $routeContainer;
+        $this->_outputBufferService = $outputBufferService;
+        $this->_headerService = $headerService;
     }
 
     /**
