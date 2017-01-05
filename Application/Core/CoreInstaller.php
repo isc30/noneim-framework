@@ -25,14 +25,14 @@ class CoreInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('ICacheService', 'CacheService');
-        $this->_installerContainer->register('ILogService', 'LogService');
-        $this->_installerContainer->register('INavigationService', 'NavigationService');
-        $this->_installerContainer->register('IOutputBufferService', 'OutputBufferService');
-        $this->_installerContainer->register('ISessionService', 'SessionService');
-        $this->_installerContainer->register('ICookieService', 'CookieService');
-        $this->_installerContainer->register('IHeaderService', 'HeaderService');
-        $this->_installerContainer->register('IRequestService', 'RequestService');
-        $this->_installerContainer->register('ITimeService', 'TimeService');
+        $this->_installerContainer->registerDefinition('ICacheService', 'CacheService');
+        $this->_installerContainer->registerDefinition('ILogService', 'LogService');
+        $this->_installerContainer->registerDefinition('INavigationService', 'NavigationService');
+        $this->_installerContainer->registerDefinition('IOutputBufferService', 'OutputBufferService');
+        $this->_installerContainer->registerDefinition('ISessionService', 'SessionService');
+        $this->_installerContainer->registerDefinition('ICookieService', 'CookieService');
+        $this->_installerContainer->registerDefinition('IHeaderService', 'HeaderService');
+        $this->_installerContainer->registerDefinition('IRequestService', 'RequestService');
+        $this->_installerContainer->registerDefinition('ITimeService', 'TimeService');
     }
 }

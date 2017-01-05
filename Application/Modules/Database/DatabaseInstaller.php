@@ -23,6 +23,6 @@ class DatabaseInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('IConnectionContainer', 'ConnectionContainer');
+        $this->_installerContainer->registerDefinition('IConnectionContainer', 'ConnectionContainer');
     }
 }

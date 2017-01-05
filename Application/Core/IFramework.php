@@ -25,7 +25,9 @@ class IFramework {
         Configuration::load();
 
         // Init DependencyLoader
+        /** @noinspection PhpIncludeInspection */
         require_once Configuration::coreDir . 'DependencyLoader.php';
+
         $dependencyLoader = new DependencyLoader();
         $dependencyLoader->loadDependencies();
         
@@ -39,9 +41,9 @@ class IFramework {
         $routeContainer = new RouteContainer($classFactory);
         
         // Register implemented dependencies
-        $installerContainer->register('IInstallerContainer', $installerContainer);
-        $installerContainer->register('IClassFactory', $classFactory);
-        $installerContainer->register('IRouteContainer', $routeContainer);
+        $installerContainer->registerImplementation('IInstallerContainer', $installerContainer);
+        $installerContainer->registerImplementation('IClassFactory', $classFactory);
+        $installerContainer->registerImplementation('IRouteContainer', $routeContainer);
 
         // Load Routes
         if (!$cacheService->load('RouteContainer', $routeContainer))
@@ -63,11 +65,13 @@ class IFramework {
             foreach ($applicationFiles as $fileName => $paths)
             {
                 $fileName = substr($fileName, 0, strlen($fileName) - 4);
+
                 if (ValidationHelper::endsWith($fileName, 'Installer'))
                 {
                     foreach ($paths as $path)
                     {
                         $path = str_replace('\\', '/', $path);
+
                         if (ValidationHelper::startsWith($path, Configuration::modulesDir))
                         {
                             $classFactory->loadInstaller($fileName);

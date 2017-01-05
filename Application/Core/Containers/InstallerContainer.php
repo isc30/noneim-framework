@@ -43,29 +43,33 @@ class InstallerContainer implements IInstallerContainer, ICacheable
     /**
      * Register new Installer for dependency
      * @param string $type Dependency type (Interface or Class Type)
-     * @param string|object $implementedBy Implementation class (name or instance)
+     * @param string $implementedBy Implementation class name
      * @throws InvalidOperationException If $implementedBy doesn't implement $type
      */
-    public function register($type, $implementedBy)
+    public function registerDefinition($type, $implementedBy)
     {
-        if (is_string($implementedBy))
+        if (Configuration::debug && $type !== $implementedBy && !is_subclass_of($implementedBy, $type))
         {
-            if (Configuration::debug && $type !== $implementedBy && !is_subclass_of($implementedBy, $type))
-            {
-                throw new InvalidOperationException("Class {$implementedBy} doesn't implement {$type}");
-            }
-
-            $this->definitions[$type] = $implementedBy;
+            throw new InvalidOperationException("Class {$implementedBy} doesn't implement {$type}");
         }
-        else
+
+        $this->definitions[$type] = $implementedBy;
+    }
+
+    /**
+     * Register new Implementation for type
+     * @param string $type Dependency type (Interface or Class Type)
+     * @param mixed &$implementation Implementation instance
+     * @throws InvalidOperationException If $implementedBy doesn't implement $type
+     */
+    public function registerImplementation($type, &$implementation)
+    {
+        if (Configuration::debug && !$implementation instanceof $type)
         {
-            if (Configuration::debug && !$implementedBy instanceof $type)
-            {
-                throw new InvalidOperationException("Class {$implementedBy} doesn't implement {$type}");
-            }
-
-            $this->instances[$type] = $implementedBy;
+            throw new InvalidOperationException("Class {$implementation} doesn't implement {$type}");
         }
+
+        $this->instances[$type] = &$implementation;
     }
 
     /**

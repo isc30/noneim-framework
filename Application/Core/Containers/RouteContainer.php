@@ -7,7 +7,7 @@
  */
 class RouteContainer implements IRouteContainer, ICacheable
 {
-    /** @var IClassFactory */
+    /** @var IClassFactory& */
     private $_classFactory;
 
     /**
@@ -30,12 +30,13 @@ class RouteContainer implements IRouteContainer, ICacheable
 
     /**
      * RouteContainer Constructor
-     * @param IClassFactory $classFactory
+     * @param IClassFactory& $classFactory
      */
     public function __construct(
-        IClassFactory $classFactory
+        IClassFactory& $classFactory
     ) {
-        $this->_classFactory = $classFactory;
+        $this->_classFactory = &$classFactory;
+
         $this->routes = array();
     }
 
