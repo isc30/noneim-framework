@@ -6,16 +6,16 @@
  */
 class LanguageModuleInstaller implements IInstaller
 {
-    /** @var IInstallerContainer& */
+    /** @var IInstallerContainer */
     private $_installerContainer;
 
     /**
      * LanguageModuleInstaller Constructor
-     * @param IInstallerContainer& $installerContainer
+     * @param IInstallerContainer $installerContainer
      */
-    public function __construct(IInstallerContainer& $installerContainer)
+    public function __construct(IInstallerContainer $installerContainer)
     {
-        $this->_installerContainer = &$installerContainer;
+        $this->_installerContainer = $installerContainer;
     }
 
     /**

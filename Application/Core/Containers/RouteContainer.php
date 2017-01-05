@@ -7,7 +7,7 @@
  */
 class RouteContainer implements IRouteContainer, ICacheable
 {
-    /** @var IClassFactory& */
+    /** @var IClassFactory */
     private $_classFactory;
 
     /**
@@ -30,12 +30,12 @@ class RouteContainer implements IRouteContainer, ICacheable
 
     /**
      * RouteContainer Constructor
-     * @param IClassFactory& $classFactory
+     * @param IClassFactory $classFactory
      */
     public function __construct(
-        IClassFactory& $classFactory
+        IClassFactory $classFactory
     ) {
-        $this->_classFactory = &$classFactory;
+        $this->_classFactory = $classFactory;
 
         $this->routes = array();
     }
@@ -112,10 +112,10 @@ class RouteContainer implements IRouteContainer, ICacheable
 
     /**
      * Resolve request and follow rute
-     * @param IFrameworkRequest &$request
+     * @param IFrameworkRequest $request
      * @return IActionResult
      */
-    public function resolve(IFrameworkRequest &$request)
+    public function resolve(IFrameworkRequest $request)
     {
         $route = $this->getCurrentRoute($request->section);
         $arguments = $this->getArguments($request->section, $route);

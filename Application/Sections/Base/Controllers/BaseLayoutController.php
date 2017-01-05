@@ -12,10 +12,10 @@ class BaseLayoutController implements IController
 
     /**
      * Default Page
-     * @param BaseLayoutContentViewModel& $contentViewModel
+     * @param BaseLayoutContentViewModel $contentViewModel
      * @return IActionResult
      */
-    protected function baseLayout(BaseLayoutContentViewModel& $contentViewModel)
+    protected function baseLayout(BaseLayoutContentViewModel $contentViewModel)
     {
         $viewModel = new BaseLayoutViewModel();
         $viewModel->title = !ValidationHelper::isNullOrEmpty($contentViewModel->title) ? "{$contentViewModel->title} - {$this->title}" : $this->title;
