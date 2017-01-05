@@ -16,11 +16,10 @@ interface IInstallerContainer extends IContainer {
     public function register($type, $implementedBy);
 
     /**
-     * Return Instance of Dependency
+     * Return reference to instance of type
      * @param string $type Dependency type (Interface or Class Type)
-     * @return object
+     * @return object&
      * @throws DependencyNotFoundException
-     * @throws Exception
      */
     public function &get($type);
     
