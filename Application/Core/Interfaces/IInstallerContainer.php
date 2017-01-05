@@ -5,15 +5,23 @@
  * @package Core
  * @subpackage Interfaces
  */
-interface IInstallerContainer extends IContainer {
-    
+interface IInstallerContainer extends IContainer
+{
     /**
      * Register new Installer for dependency
      * @param string $type Dependency type (Interface or Class Type)
-     * @param string|object $implementedBy Implementation class (name or instance)
+     * @param string $implementedBy Implementation class name
      * @throws InvalidOperationException If $implementedBy doesn't implement $type
      */
-    public function register($type, $implementedBy);
+    public function registerDefinition($type, $implementedBy);
+
+    /**
+     * Register new Implementation for type
+     * @param string $type Dependency type (Interface or Class Type)
+     * @param mixed &$implementation Implementation instance
+     * @throws InvalidOperationException If $implementedBy doesn't implement $type
+     */
+    public function registerImplementation($type, &$implementation);
 
     /**
      * Return reference to instance of type
@@ -22,5 +30,4 @@ interface IInstallerContainer extends IContainer {
      * @throws DependencyNotFoundException
      */
     public function &get($type);
-    
 }

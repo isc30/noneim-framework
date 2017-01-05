@@ -33,15 +33,13 @@ class View implements IModel
 
         $view = dirname($basePath) . "/Views/{$viewPath}.phtml";
 
-        if (file_exists($view))
-        {
-            $this->view = $view;
-            $this->model = $model;
-        }
-        else
+        if (!file_exists($view))
         {
             throw new ViewNotFoundException($view);
         }
+
+        $this->view = $view;
+        $this->model = $model;
     }
 
     /**

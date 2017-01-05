@@ -23,6 +23,6 @@ class LanguageModuleInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('ILanguageService', 'LanguageService');
+        $this->_installerContainer->registerDefinition('ILanguageService', 'LanguageService');
     }
 }

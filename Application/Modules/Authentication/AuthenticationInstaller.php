@@ -23,6 +23,6 @@ class AuthenticationInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->register('IAuthenticationServiceBase', 'AuthenticationService');
+        $this->_installerContainer->registerDefinition('IAuthenticationServiceBase', 'AuthenticationService');
     }
 }
