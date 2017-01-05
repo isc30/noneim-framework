@@ -69,7 +69,7 @@ class InstallerContainer implements IInstallerContainer, ICacheable
     }
 
     /**
-     * Return Instance of Dependency
+     * Return reference to instance of type
      * @param string $type Dependency type (Interface or Class Type)
      * @return object&
      * @throws DependencyNotFoundException
