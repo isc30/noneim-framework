@@ -4,28 +4,27 @@
  * @package Application
  * @subpackage Controllers
  */
-class ExceptionController implements IController
+class ExceptionController extends BaseLayoutController
 {
-    /** @var IHeaderService */
+    /** @var IHeaderService& */
     private $_headerService;
 
     /**
      * ExceptionController Constructor
      * @param IHeaderService $headerService
      */
-    public function __construct(
-        IHeaderService $headerService
-    ) {
+    public function __construct(IHeaderService& $headerService)
+    {
         $this->_headerService = $headerService;
     }
 
     /**
      * Main Action
-     * @param IFrameworkRequest &$request
-     * @param Exception &$ex
+     * @param IFrameworkRequest& $request
+     * @param Exception& $ex
      * @return IActionResult
      */
-    public function index(IFrameworkRequest &$request, Exception &$ex)
+    public function index(IFrameworkRequest& $request, Exception& $ex)
     {
         $this->_headerService->setResponseCode(500);
 
@@ -33,10 +32,10 @@ class ExceptionController implements IController
         $viewModel->request = $request->section;
         $viewModel->exception = &$ex;
 
-        $actionResult = new BasePartialActionResult();
-        $actionResult->title = 'WOOPS';
-        $actionResult->actionResult = new ViewActionResult('Exception', $viewModel, __FILE__);
+        $layoutViewModel = new BaseLayoutContentViewModel();
+        $layoutViewModel->title = 'WOOPS';
+        $layoutViewModel->content = new View('Exception', $viewModel, __FILE__);
 
-        return $actionResult;
+        return $this->baseLayout($layoutViewModel);
     }
 }

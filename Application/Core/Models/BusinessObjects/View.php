@@ -5,8 +5,8 @@
  * @package Core
  * @subpackage Models\BusinessObjects
  */
-class View implements IModel {
-
+class View implements IModel
+{
     /** @var string */
     private $view;
 
@@ -20,37 +20,39 @@ class View implements IModel {
      * @param null|string $basePath Path where to search
      * @throws ViewNotFoundException
      */
-    public function __construct($viewPath, IModel $model = null, $basePath = null) {
-
-        if ($basePath !== null) {
+    public function __construct($viewPath, IModel $model = null, $basePath = null)
+    {
+        if ($basePath !== null)
+        {
             $basePath = dirname($basePath);
-        } else {
+        }
+        else
+        {
             $basePath = Configuration::staticDir;
         }
 
         $view = dirname($basePath) . "/Views/{$viewPath}.phtml";
-        if (file_exists($view)) {
 
+        if (file_exists($view))
+        {
             $this->view = $view;
             $this->model = $model;
-
-        } else {
-
-            throw new ViewNotFoundException($view);
-
         }
-
+        else
+        {
+            throw new ViewNotFoundException($view);
+        }
     }
 
     /**
      * Render
      */
-    public function render() {
-
+    public function render()
+    {
         /** @noinspection PhpUnusedLocalVariableInspection */
-        $model = $this->model; // Make model public accessible from the template
-        require $this->view;
+        $model = $this->model; // Make model accessible from the template
 
+        /** @noinspection PhpIncludeInspection */
+        require $this->view;
     }
-    
 }

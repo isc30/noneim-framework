@@ -71,40 +71,25 @@ class InstallerContainer implements IInstallerContainer, ICacheable
     /**
      * Return Instance of Dependency
      * @param string $type Dependency type (Interface or Class Type)
-     * @return object
+     * @return object&
      * @throws DependencyNotFoundException
      * @throws Exception
      */
-    public function get($type)
+    public function &get($type)
     {
-        if (array_key_exists($type, $this->instances))
-        {
-            return $this->instances[$type];
-        }
-        else
+        if (!array_key_exists($type, $this->instances))
         {
             if (isset($this->definitions[$type]))
             {
-                try
-                {
-                    $instance = $this->_classFactory->instantiate($this->definitions[$type]);
-                }
-                catch (Exception $ex)
-                {
-                    if (!isset($instance))
-                    {
-                        throw $ex;
-                    }
-                }
-                $this->instances[$type] = $instance;
-
-                return $instance;
+                $this->instances[$type] = $this->_classFactory->instantiate($this->definitions[$type]);
             }
             else
             {
                 throw new DependencyNotFoundException($type);
             }
         }
+
+        return $this->instances[$type];
     }
 
     /**
