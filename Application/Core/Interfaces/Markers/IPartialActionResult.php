@@ -7,8 +7,4 @@
  */
 interface IPartialActionResult extends IActionResult
 {
-    /**
-     * @return string
-     */
-    public function getControllerName();
 }

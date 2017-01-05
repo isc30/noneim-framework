@@ -36,27 +36,29 @@ class ClassFactory implements IClassFactory
      * @param ReflectionClass $reflectionClass
      * @return object Class instance
      */
-    public function instantiateReflectionClass(ReflectionClass $reflectionClass) {
-
+    public function instantiateReflectionClass(ReflectionClass $reflectionClass)
+    {
         $arguments = array();
 
-        if ($reflectionClass->hasMethod('__construct')) {
-
+        if ($reflectionClass->hasMethod('__construct'))
+        {
             $constructor = $reflectionClass->getMethod('__construct');
             $constructorParameters = $constructor->getParameters();
-            
-            foreach ($constructorParameters as $parameter) {
-                $parameterType = $parameter->getClass();
-                if ($parameterType !== null) {
-                    $parameterType = $parameterType->name;
-                    $arguments[] = $this->_installerContainer->get($parameterType);
+
+            foreach ($constructorParameters as $key => $parameter)
+            {
+                $parameterType = $parameter->getClass()->name;
+
+                if (!$parameter->isPassedByReference())
+                {
+                    echo "In class {{$reflectionClass->getName()}} please use reference injection<br/>";
                 }
+
+                $arguments[$key] = &$this->_installerContainer->get($parameterType);
             }
-
         }
-        
-        return $reflectionClass->newInstanceArgs($arguments);
 
+        return $reflectionClass->newInstanceArgs($arguments);
     }
 
     /**

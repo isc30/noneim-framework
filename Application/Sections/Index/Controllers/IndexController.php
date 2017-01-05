@@ -5,7 +5,7 @@
  * @package Application
  * @subpackage Controllers
  */
-class IndexController implements IController
+class IndexController extends BaseLayoutController
 {
     /**
      * Default Action
@@ -13,10 +13,10 @@ class IndexController implements IController
      */
     public function index()
     {
-        $actionResult = new BasePartialActionResult();
-        $actionResult->title = 'Welcome!';
-        $actionResult->actionResult = new ViewActionResult('Index', null, __FILE__);
+        $layoutViewModel = new BaseLayoutContentViewModel();
+        $layoutViewModel->title = 'Welcome!';
+        $layoutViewModel->content = new ViewActionResult('Index', null, __FILE__);
 
-        return $actionResult;
+        return $this->baseLayout($layoutViewModel);
     }
 }

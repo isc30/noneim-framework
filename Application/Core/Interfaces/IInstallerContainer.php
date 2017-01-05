@@ -22,6 +22,6 @@ interface IInstallerContainer extends IContainer {
      * @throws DependencyNotFoundException
      * @throws Exception
      */
-    public function get($type);
+    public function &get($type);
     
 }

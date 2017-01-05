@@ -4,18 +4,18 @@
  * Route Installer
  * @package Application
  */
-class RouteInstaller implements IInstaller {
-    
-    /** @var IRouteContainer */
+class RouteInstaller implements IInstaller
+{
+    /** @var IRouteContainer& */
     private $_routeContainer;
     
     /**
      * RouteInstaller Constructor
-     * @param IRouteContainer $routeContainer
+     * @param IRouteContainer& $routeContainer
      */
-    public function __construct(IRouteContainer $routeContainer)
+    public function __construct(IRouteContainer& $routeContainer)
     {
-        $this->_routeContainer = $routeContainer;
+        $this->_routeContainer = &$routeContainer;
     }
     
     /**
