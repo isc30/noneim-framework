@@ -22,7 +22,7 @@ class DependencyLoader
      */
     public function loadDependencies()
     {
-        $applicationFilesCacheFile = Configuration::coreCachesDir . 'DependencyLoader.cache';
+        $applicationFilesCacheFile = Configuration::cachesDir . 'Core/DependencyLoader.cache';
 
         if (Configuration::caching && file_exists($applicationFilesCacheFile))
         {
