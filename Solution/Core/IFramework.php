@@ -38,7 +38,7 @@ class IFramework {
         $installerContainer->setClassFactory($classFactory);
         $classFactory->setInstallerContainer($installerContainer);
         
-        $cacheService = new CacheService(Configuration::coreCachesDir);
+        $cacheService = new CacheService();
         
         // Register implemented dependencies
         $installerContainer->registerImplementation('IInstallerContainer', $installerContainer);

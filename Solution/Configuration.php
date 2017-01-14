@@ -6,7 +6,7 @@
  */
 class Configuration
 {
-    const debug = false;
+    const debug = true;
     const caching = !self::debug && true;
 
     const rootDir = '//Vboxsvr/php/php-framework/Solution/';
@@ -15,8 +15,6 @@ class Configuration
     const staticDir = self::rootDir . 'Static/';
     const resourcesDir = self::rootDir . 'Resources/';
     const cachesDir = self::rootDir . 'Caches/';
-    const coreCachesDir = self::cachesDir . 'Core/';
-    const moduleCachesDir = self::cachesDir . 'Modules/';
 
     const locale = 'es_ES'; // Optional
     const timezone = 'Europe/Madrid'; // Optional
