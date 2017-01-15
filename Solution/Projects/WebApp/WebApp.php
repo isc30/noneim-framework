@@ -39,8 +39,7 @@ class WebApp
      */
     public function main()
     {
-        WebAppConfiguration::transform();
-        $this->setupRoutes();
+        WebAppConfiguration::configure();
 
         $request = new IFrameworkRequest();
         $actionResult = $this->_routeContainer->resolve($request);
@@ -55,18 +54,6 @@ class WebApp
             $this->_outputBufferService->start('FormatHelper::minimizeHtml');
             $actionResult->render();
             $this->_outputBufferService->flushContent();
-        }
-    }
-
-    private function setupRoutes()
-    {
-        if (!$this->_cacheService->load('WebApp', 'RouteContainer', $this->_routeContainer))
-        {
-            $this->_routeContainer->registerDefault('Error404Controller');
-            $this->_routeContainer->registerException('ExceptionController');
-            $this->_routeContainer->register(array('Index'), 'IndexController');
-
-            $this->_cacheService->save('WebApp', 'RouteContainer', $this->_routeContainer);
         }
     }
 }

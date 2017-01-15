@@ -23,5 +23,13 @@ class WebAppInstaller implements IInstaller
      */
     public function install()
     {
+        switch ($this->_installerContainer->getType())
+        {
+            case 'WebApp':
+            {
+                echo 'WebApp installer!';
+                break;
+            }
+        }
     }
 }
