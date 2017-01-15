@@ -8,6 +8,18 @@
 interface IInstallerContainer extends IContainer
 {
     /**
+     * IInstallerContainer Constructor
+     * @param string $type
+     */
+    public function __construct($type);
+
+    /**
+     * Get container type
+     * @return string
+     */
+    public function getType();
+
+    /**
      * Register new Installer for dependency
      * @param string $type Dependency type (Interface or Class Type)
      * @param string $implementedBy Implementation class name

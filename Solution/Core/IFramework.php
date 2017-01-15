@@ -18,8 +18,8 @@ class IFramework {
      * Load Core and run Solution
      * @param string $application
      */
-    public static function init($application) {
-
+    public static function init($application)
+    {
         $startTime = microtime(true);
 
         // Load Configuration
@@ -33,7 +33,7 @@ class IFramework {
         $dependencyLoader->loadDependencies();
         
         // Circular dependency
-        $installerContainer = new InstallerContainer();
+        $installerContainer = new InstallerContainer($application);
         $classFactory = new ClassFactory();
         $installerContainer->setClassFactory($classFactory);
         $classFactory->setInstallerContainer($installerContainer);
@@ -52,12 +52,14 @@ class IFramework {
             // Core
             $classFactory->loadInstaller('CoreInstaller');
 
+            $lazyInstallers = array();
+
             // Modules
             foreach ($applicationFiles as $fileName => $paths)
             {
                 $fileName = substr($fileName, 0, strlen($fileName) - 4);
 
-                if (ValidationHelper::endsWith($fileName, 'Installer'))
+                if (ValidationHelper::endsWith($fileName, 'Installer') && $fileName !== 'IInstaller')
                 {
                     foreach ($paths as $path)
                     {
@@ -67,15 +69,19 @@ class IFramework {
                         {
                             $classFactory->loadInstaller($fileName);
                         }
+                        else
+                        {
+                            $lazyInstallers[] = $fileName;
+                        }
                     }
                 }
             }
 
-            /*// WebApp
-            if (ArrayHelper::keyExists($applicationFiles, 'ApplicationInstaller.php'))
+            // Custom installers
+            foreach ($lazyInstallers as $installer)
             {
-                $classFactory->loadInstaller('ApplicationInstaller');
-            }*/
+                $classFactory->loadInstaller($installer);
+            }
 
             $cacheService->save('Core', 'InstallerContainer', $installerContainer);
         }

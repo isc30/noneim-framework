@@ -8,9 +8,7 @@
  */
 class WebAppConfiguration
 {
-
-
-    public static function transform()
+    public static function configure()
     {
         WebConfiguration::$webUrl = 'http://phpframework.local/';
     }
