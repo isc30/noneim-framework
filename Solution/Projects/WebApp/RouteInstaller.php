@@ -8,14 +8,20 @@ class RouteInstaller implements IInstaller
 {
     /** @var IRouteContainer */
     private $_routeContainer;
-    
+    /** @var ICacheService */
+    private $_cacheService;
+
     /**
      * RouteInstaller Constructor
      * @param IRouteContainer $routeContainer
+     * @param ICacheService $cacheService
      */
-    public function __construct(IRouteContainer $routeContainer)
+    public function __construct(
+        IRouteContainer $routeContainer,
+        ICacheService $cacheService)
     {
         $this->_routeContainer = $routeContainer;
+        $this->_cacheService = $cacheService;
     }
     
     /**
@@ -23,9 +29,14 @@ class RouteInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_routeContainer->registerDefault('Error404Controller');
-        $this->_routeContainer->registerException('ExceptionController');
+        if (!$this->_cacheService->load('WebApp', 'RouteContainer', $this->_cacheService))
+        {
+            $this->_routeContainer->registerDefault('Error404Controller');
+            $this->_routeContainer->registerException('ExceptionController');
 
-        $this->_routeContainer->register(array('Index'), 'IndexController');
+            $this->_routeContainer->register(array('Index'), 'IndexController');
+
+            $this->_cacheService->save('WebApp', 'RouteContainer', $this->_cacheService);
+        }
     }
 }
