@@ -1,0 +1,5 @@
+syntax: glob
+.c9/*
+.idea/*
+php.ini
+*.cache
