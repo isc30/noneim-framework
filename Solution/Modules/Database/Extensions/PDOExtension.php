@@ -7,20 +7,20 @@ class PDOExtension extends PDO {
     {
         try
         {
-            if(DatabaseConfiguration::customPort !== null)
+            if(DatabaseLazyConfiguration::customPort !== null)
             {
-                @parent::__construct(DatabaseConfiguration::type . ':host=' . DatabaseConfiguration::host . ':port=' . DatabaseConfiguration::customPort . ';dbname=' . DatabaseConfiguration::database . ';charset=' . DatabaseConfiguration::charset, DatabaseConfiguration::username, DatabaseConfiguration::password, array(
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseConfiguration::charset,
+                @parent::__construct(DatabaseLazyConfiguration::type . ':host=' . DatabaseLazyConfiguration::host . ':port=' . DatabaseLazyConfiguration::customPort . ';dbname=' . DatabaseLazyConfiguration::database . ';charset=' . DatabaseLazyConfiguration::charset, DatabaseLazyConfiguration::username, DatabaseLazyConfiguration::password, array(
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseLazyConfiguration::charset,
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_PERSISTENT => DatabaseConfiguration::persistentConnection,
+                    PDO::ATTR_PERSISTENT => DatabaseLazyConfiguration::persistentConnection,
                 ));
             }
             else
             {
-                @parent::__construct(DatabaseConfiguration::type . ':host=' . DatabaseConfiguration::host . ';dbname=' . DatabaseConfiguration::database . ';charset=' . DatabaseConfiguration::charset, DatabaseConfiguration::username, DatabaseConfiguration::password, array(
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseConfiguration::charset,
+                @parent::__construct(DatabaseLazyConfiguration::type . ':host=' . DatabaseLazyConfiguration::host . ';dbname=' . DatabaseLazyConfiguration::database . ';charset=' . DatabaseLazyConfiguration::charset, DatabaseLazyConfiguration::username, DatabaseLazyConfiguration::password, array(
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DatabaseLazyConfiguration::charset,
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_PERSISTENT => DatabaseConfiguration::persistentConnection,
+                    PDO::ATTR_PERSISTENT => DatabaseLazyConfiguration::persistentConnection,
                 ));
             }
         }

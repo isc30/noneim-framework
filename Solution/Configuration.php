@@ -4,13 +4,12 @@
  * Default IFramework configuration file
  * @package Solution
  */
-class Configuration
+class Configuration implements ILazyConfiguration
 {
     const debug = true;
     const caching = !self::debug && true;
 
     const rootDir = '//Vboxsvr/php/php-framework/Solution/';
-    const coreDir = self::rootDir . 'Core/';
     const modulesDir = self::rootDir . 'Modules/';
     const staticDir = self::rootDir . 'Static/';
     const resourcesDir = self::rootDir . 'Resources/';
@@ -19,7 +18,7 @@ class Configuration
     const locale = 'es_ES'; // Optional
     const timezone = 'Europe/Madrid'; // Optional
 
-    public static function load()
+    public static function configure()
     {
         // Display errors in debug mode
         if (self::debug)

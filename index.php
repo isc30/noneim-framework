@@ -5,10 +5,11 @@
  * ivansanzcarasa@gmail.com
  */
 
-// Define current directory for relative path inclusion
-$CURRENT_DIR = dirname(__FILE__) . '/';
+// Define solution directory for relative path inclusion
+$solutionDir = dirname(__FILE__) . '/Solution/';
 
-require_once $CURRENT_DIR . 'Solution/Configuration.php'; // Include Configuration
-require_once $CURRENT_DIR . 'Solution/Core/IFramework.php'; // Include IFramework
+// Include IFramework
+require_once $solutionDir . 'Core/IFramework.php';
 
-IFramework::init('WebApp'); // Start project
+// Start project
+IFramework::init($solutionDir, 'WebApp');

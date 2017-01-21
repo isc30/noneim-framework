@@ -5,11 +5,10 @@
  * @package Core
  * @subpackage Interfaces
  */
-interface IInstaller {
-    
+interface IInstaller
+{
     /**
      * Install
      */
     public function install();
-    
 }

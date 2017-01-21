@@ -4,42 +4,49 @@
  * IFramework
  * @package Core
  */
-class IFramework {
-
+class IFramework
+{
     /** @var float */
     public static $coreLoadTime;
 
     /**
      * No instanciable
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Load Core and run Solution
+     * @param string $solutionDir
      * @param string $application
      */
-    public static function init($application)
+    public static function init($solutionDir, $application)
     {
         $startTime = microtime(true);
 
-        // Load Configuration
-        Configuration::load();
+        // Special requires
+        self::includeRequiredFiles($solutionDir);
 
-        // Init DependencyLoader
-        /** @noinspection PhpIncludeInspection */
-        require_once Configuration::coreDir . 'DependencyLoader.php';
+        // Init DependencyHelper
+        DependencyHelper::initAutoLoader();
 
-        $dependencyLoader = new DependencyLoader();
-        $dependencyLoader->loadDependencies();
-        
+        // Load lazy configurations
+        foreach (ReflectionHelper::getImplementations('ILazyConfiguration') as $classDefinition)
+        {
+            /** @var ILazyConfiguration $className */
+            $className = $classDefinition->name;
+            $className::configure();
+        }
+
         // Circular dependency
         $installerContainer = new InstallerContainer($application);
         $classFactory = new ClassFactory();
         $installerContainer->setClassFactory($classFactory);
         $classFactory->setInstallerContainer($installerContainer);
-        
+
         $cacheService = new CacheService();
-        
+
         // Register implemented dependencies
         $installerContainer->registerImplementation('IInstallerContainer', $installerContainer);
         $installerContainer->registerImplementation('IClassFactory', $classFactory);
@@ -47,48 +54,55 @@ class IFramework {
         // Load DependencyInstallers
         if (!$cacheService->load('Core', 'InstallerContainer', $installerContainer))
         {
-            $applicationFiles = $dependencyLoader->getApplicationFiles();
-
-            // Core
+            // Install Core
             $classFactory->loadInstaller('CoreInstaller');
 
-            $lazyInstallers = array();
+            $projectInstallers = array();
 
             // Modules
-            foreach ($applicationFiles as $fileName => $paths)
+            foreach (ReflectionHelper::getImplementations('IInstaller') as $classDefinition)
             {
-                $fileName = substr($fileName, 0, strlen($fileName) - 4);
+                $path = str_replace('\\', '/', $classDefinition->path);
 
-                if (ValidationHelper::endsWith($fileName, 'Installer') && $fileName !== 'IInstaller')
+                if (ValidationHelper::startsWith($path, Configuration::modulesDir))
                 {
-                    foreach ($paths as $path)
-                    {
-                        $path = str_replace('\\', '/', $path);
-
-                        if (ValidationHelper::startsWith($path, Configuration::modulesDir))
-                        {
-                            $classFactory->loadInstaller($fileName);
-                        }
-                        else
-                        {
-                            $lazyInstallers[] = $fileName;
-                        }
-                    }
+                    /** @var IInstaller $installer */
+                    $installer = $classFactory->instantiate($classDefinition->name);
+                    $installer->install();
+                }
+                else
+                {
+                    $projectInstallers[] = $classDefinition->name;
                 }
             }
 
             // Custom installers
-            foreach ($lazyInstallers as $installer)
+            foreach ($projectInstallers as $installer)
             {
-                $classFactory->loadInstaller($installer);
+                /** @var IInstaller $installer */
+                $installer = $classFactory->instantiate($installer);
+                $installer->install();
             }
 
             $cacheService->save('Core', 'InstallerContainer', $installerContainer);
         }
-        
+
         self::$coreLoadTime = round((microtime(true) - $startTime) * 1000, 2);
 
         // Run Solution
         $classFactory->call($application, 'main');
+    }
+
+    private static function includeRequiredFiles($solutionDir)
+    {
+        $coreDir = dirname(__FILE__) . '/';
+
+        require_once $coreDir . 'Interfaces/Markers/IConfiguration.php';
+        require_once $coreDir . 'Interfaces/ILazyConfiguration.php';
+        require_once $solutionDir . 'Configuration.php';
+
+        require_once $coreDir . 'ClassDefinition.php';
+        require_once $coreDir . 'ReflectionHelper.php';
+        require_once $coreDir . 'DependencyHelper.php';
     }
 }

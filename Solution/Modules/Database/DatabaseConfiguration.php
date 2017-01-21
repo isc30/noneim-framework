@@ -4,7 +4,7 @@
  * Database Module Configuration
  * @package Modules\Database
  */
-class DatabaseConfiguration
+class DatabaseConfiguration implements IConfiguration
 {
     const type = 'mysql';
     const host = 'localhost';

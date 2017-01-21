@@ -28,7 +28,7 @@ class LanguageService implements ILanguageService
     {
         if ($language === null)
         {
-            $language = LanguageModuleConfiguration::defaultLanguage;
+            $language = LanguageModuleLazyConfiguration::defaultLanguage;
         }
         return $this->getFromXML($language);
     }
@@ -43,7 +43,7 @@ class LanguageService implements ILanguageService
         $language = null;
         if (!$this->_cacheService->load('Modules/Language', "LanguageService_{$languageName}", $language))
         {
-            $language = XmlHelper::toArray(simplexml_load_file(Configuration::rootDir . LanguageModuleConfiguration::languagesDirectory . "/{$languageName}.xml"));
+            $language = XmlHelper::toArray(simplexml_load_file(Configuration::rootDir . LanguageModuleLazyConfiguration::languagesDirectory . "/{$languageName}.xml"));
             $this->_cacheService->save('Modules/Language', "LanguageService_{$languageName}", $language);
         }
 

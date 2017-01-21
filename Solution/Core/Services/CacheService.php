@@ -22,33 +22,39 @@ class CacheService implements ICacheService
      * @param object& $object
      * @return bool
      */
-    public function load($area, $name, &$object) {
-        
-        if (Configuration::caching) {
-        
-            try {
-                
-                $cacheFile = Configuration::cachesDir . "{$area}/{$name}.cache";
-
-                if (file_exists($cacheFile)) {
-                    
-                    $cache = file_get_contents($cacheFile);
-                    if ($object instanceof ICacheable) {
-                        $object->setCache($cache);
-                    } else {
-                        $object = unserialize($cache);
-                    }
-                    
-                    return true;
-                    
-                }
-                
-            } catch (Exception $ex) {}
-            
+    public function load($area, $name, &$object)
+    {
+        if (!Configuration::caching)
+        {
+            return false;
         }
-            
-        return false;
-        
+
+        try
+        {
+            $cacheFile = Configuration::cachesDir . "{$area}/{$name}.cache";
+
+            if (!file_exists($cacheFile))
+            {
+                return false;
+            }
+
+            $cache = file_get_contents($cacheFile);
+
+            if ($object instanceof ICacheable)
+            {
+                $object->setCache($cache);
+            }
+            else
+            {
+                $object = unserialize($cache);
+            }
+
+            return true;
+        }
+        catch (Exception $ex)
+        {
+            return false;
+        }
     }
 
     /**

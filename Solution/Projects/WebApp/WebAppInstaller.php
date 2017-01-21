@@ -27,7 +27,8 @@ class WebAppInstaller implements IInstaller
         {
             case 'WebApp':
             {
-                echo 'WebApp installer!';
+                // ...
+
                 break;
             }
         }

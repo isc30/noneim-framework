@@ -5,7 +5,7 @@
  * @package Modules\Authentication
  * @subpackage Services
  */
-class AuthenticationConfiguration
+class AuthenticationConfiguration implements IConfiguration
 {
     const sessionKey = 'keey';
 }

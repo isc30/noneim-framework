@@ -145,8 +145,8 @@ class ClassFactory implements IClassFactory
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function callControllerAction(IFrameworkRequest $request, $controller, $action, array $arguments = array()) {
-
+    public function callControllerAction(IFrameworkRequest $request, $controller, $action, array $arguments = array())
+    {
         $refectionClass = new ReflectionClass($controller);
         $reflectionMethod = $refectionClass->getMethod($action);
 
@@ -206,6 +206,7 @@ class ClassFactory implements IClassFactory
     public function loadInstaller($className)
     {
         $reflectionClass = new ReflectionClass($className);
+
         if (!Configuration::debug || $reflectionClass->implementsInterface('IInstaller'))
         {
             $this->callFromReflectionClass($reflectionClass, 'install');

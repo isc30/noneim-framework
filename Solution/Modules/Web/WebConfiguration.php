@@ -6,7 +6,7 @@
  * Date: 14/01/2017
  * Time: 15:25
  */
-class WebConfiguration
+class WebConfiguration implements IConfiguration
 {
     const prettyUrl = true;
 
@@ -15,5 +15,5 @@ class WebConfiguration
     const sectionRequest = 'p';
     const subsectionSeparator = '/';
 
-    const defaultCookieExpiration = 5 * 60; // Optional
+    const defaultCookieExpiration = 5 * 60;
 }

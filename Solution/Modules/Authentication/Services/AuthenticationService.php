@@ -35,7 +35,7 @@ abstract class AuthenticationService implements IAuthenticationServiceBase
      */
     public function delete()
     {
-        $this->_sessionService->delete(AuthenticationConfiguration::sessionKey);
+        $this->_sessionService->delete(AuthenticationLazyConfiguration::sessionKey);
     }
 
     /**
@@ -43,7 +43,7 @@ abstract class AuthenticationService implements IAuthenticationServiceBase
      */
     protected function _get()
     {
-        return $this->_sessionService->get(AuthenticationConfiguration::sessionKey);
+        return $this->_sessionService->get(AuthenticationLazyConfiguration::sessionKey);
     }
 
     /**
@@ -51,6 +51,6 @@ abstract class AuthenticationService implements IAuthenticationServiceBase
      */
     protected function _set($authentication)
     {
-        $this->_sessionService->set(AuthenticationConfiguration::sessionKey, $authentication);
+        $this->_sessionService->set(AuthenticationLazyConfiguration::sessionKey, $authentication);
     }
 }
