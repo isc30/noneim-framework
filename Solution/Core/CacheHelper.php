@@ -83,14 +83,16 @@ class CacheHelper
                 $cache = serialize($value);
             }
 
+            static $permissionCode = 0664;
+
             // Create folder if not exists
             if (!file_exists($cacheDir))
             {
-                mkdir($cacheDir, 0664, true);
+                mkdir($cacheDir, $permissionCode, true);
             }
 
             file_put_contents($cachePath, $cache);
-            chmod($cachePath, 0664);
+            chmod($cachePath, $permissionCode);
 
             return true;
         }
