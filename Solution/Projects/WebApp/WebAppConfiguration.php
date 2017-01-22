@@ -12,7 +12,6 @@ class WebAppConfiguration implements IProjectLazyConfiguration
     {
         if (Configuration::$project === 'WebApp')
         {
-            echo "jojo";
             WebConfiguration::$webUrl = 'http://phpframework.local/';
         }
     }
