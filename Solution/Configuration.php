@@ -6,7 +6,7 @@
  */
 class Configuration implements IDefaultLazyConfiguration
 {
-    const debug = true;
+    const debug = false;
     const caching = !self::debug && true;
 
     const rootDir = '//Vboxsvr/php/php-framework/Solution/';
