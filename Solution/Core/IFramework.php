@@ -114,7 +114,7 @@ class IFramework
         require_once $coreDir . 'Interfaces/Markers/IHelper.php';
         require_once $coreDir . 'Helpers/CacheHelper.php';
 
-        require_once $coreDir . 'ClassDefinition.php';
+        require_once $coreDir . 'Models/DTOs/ClassDefinition.php';
         require_once $coreDir . 'Helpers/ReflectionHelper.php';
         require_once $coreDir . 'Helpers/DependencyHelper.php';
     }
