@@ -68,7 +68,7 @@ class CacheHelper
 
         try
         {
-            $cacheDir = getCacheDir($area);
+            $cacheDir = self::getCacheDir($area);
             $cacheFile = self::getCacheFile($area, $name);
 
             if ($value instanceof ICacheable)
@@ -80,7 +80,7 @@ class CacheHelper
                 $cache = serialize($value);
             }
 
-            // Folder creation
+            // Create folder if not exists
             if (!file_exists($cacheDir))
             {
                 mkdir($cacheDir, 0664, true);
@@ -104,6 +104,6 @@ class CacheHelper
 
     private static function getCacheFile($area, $name)
     {
-        return getCacheDir($area) . "{$name}." . Configuration::$project . '.cache';
+        return self::getCacheDir($area) . "{$name}." . Configuration::$project . '.cache';
     }
 }
