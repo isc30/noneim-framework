@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 22/01/2017
- * Time: 1:20
+ * UnitTests Project
+ * @package Projects
  */
-class UnitTests
+class UnitTests implements IProject
 {
+    private $_cookieService;
+
     /**
      * UnitTests Constructor
      * @param ICookieService $cookieService
@@ -16,11 +16,14 @@ class UnitTests
         ICookieService $cookieService
     )
     {
-        $this->cookieService = $cookieService;
+        $this->_cookieService = $cookieService;
     }
 
+    /**
+     * Run project
+     */
     public function main()
     {
-        echo $this->cookieService->getAll();
+        echo $this->_cookieService->getAll();
     }
 }

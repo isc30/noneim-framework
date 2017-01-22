@@ -1,34 +1,33 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 21/01/2017
- * Time: 22:14
+ * Reflection Helper
+ * @package Core
+ * @subpackage Helpers
  */
-class ReflectionHelper
+class ReflectionHelper implements IHelper
 {
     /** @var ClassDefinition[] */
-    private static $solutionClasses = null;
+    private static $_solutionClasses = null;
 
     /**
      * @return ClassDefinition[]
      */
     public static function getSolutionClasses()
     {
-        if (self::$solutionClasses !== null)
+        if (self::$_solutionClasses !== null)
         {
-            return self::$solutionClasses; // Already filled
+            return self::$_solutionClasses; // Already filled
         }
 
-        if (!CacheHelper::load('Core', 'ReflectionHelper.SolutionClasses', self::$solutionClasses))
+        if (!CacheHelper::load('Core', 'ReflectionHelper.SolutionClasses', self::$_solutionClasses))
         {
-            self::prepareAutoloaderFiles();
+            self::fillSolutionClasses();
 
-            CacheHelper::save('Core', 'ReflectionHelper.SolutionClasses', self::$solutionClasses);
+            CacheHelper::save('Core', 'ReflectionHelper.SolutionClasses', self::$_solutionClasses);
         }
 
-        return self::$solutionClasses;
+        return self::$_solutionClasses;
     }
 
     /**
@@ -52,9 +51,9 @@ class ReflectionHelper
         return $classList;
     }
 
-    private static function prepareAutoloaderFiles()
+    private static function fillSolutionClasses()
     {
-        self::$solutionClasses = array();
+        self::$_solutionClasses = array();
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(Configuration::$solutionPath));
 
         foreach ($iterator as $file)
@@ -67,13 +66,13 @@ class ReflectionHelper
 
                 if ($extension === 'php')
                 {
-                    $className = substr($filename, 0, -4);
+                    $className = substr($filename, 0, -4); // Remove '.php'
 
                     $classDefinition = new ClassDefinition();
                     $classDefinition->name = $className;
                     $classDefinition->path = $path;
 
-                    self::$solutionClasses[$className] = $classDefinition;
+                    self::$_solutionClasses[$className] = $classDefinition;
                 }
             }
         }

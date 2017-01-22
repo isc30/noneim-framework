@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Solution
- * @package Solution
+ * WebApp Project
+ * @package Projects
  */
-class WebApp
+class WebApp implements IProject
 {
     /** @var IRouteContainer */
     private $_routeContainer;
@@ -30,7 +30,7 @@ class WebApp
     }
 
     /**
-     * Run Solution
+     * Run project
      */
     public function main()
     {
@@ -52,6 +52,9 @@ class WebApp
         }
     }
 
+    /**
+     * Register web routes
+     */
     private function registerRoutes()
     {
         if (!CacheHelper::load('WebApp', 'RouteContainer', $this->_routeContainer))
