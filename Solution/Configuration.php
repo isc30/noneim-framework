@@ -6,24 +6,31 @@
  */
 class Configuration implements IDefaultLazyConfiguration
 {
-    const debug = false;
-    const caching = !self::debug && true;
-
-    const rootDir = '//Vboxsvr/php/php-framework/Solution/';
-    const modulesDir = self::rootDir . 'Modules/';
-    const staticDir = self::rootDir . 'Static/';
-    const resourcesDir = self::rootDir . 'Resources/';
-    const cachesDir = self::rootDir . 'Caches/';
-
-    const locale = 'es_ES'; // Optional
-    const timezone = 'Europe/Madrid'; // Optional
-
     public static $project;
+
+    public static $debug = true;
+    public static $caching = true;
+
+    public static $solutionPath;
+    public static $staticDir = 'Static/';
+    public static $resourcesDir = 'Resources/';
+    public static $cachesDir = 'Caches/';
+
+    public static $locale = 'es_ES';
+    public static $timezone = 'Europe/Madrid';
+
+    public static $staticPath;
+    public static $resourcesPath;
+    public static $cachesPath;
 
     public static function configure()
     {
+        self::$staticPath = self::$solutionPath . 'Static/';
+        self::$resourcesPath = self::$solutionPath . 'Resources/';
+        self::$cachesPath = self::$solutionPath . 'Caches/';
+
         // Display errors in debug mode
-        if (self::debug)
+        if (self::$debug)
         {
             ini_set('display_errors', true);
             ini_set('display_startup_errors', true);
@@ -37,14 +44,14 @@ class Configuration implements IDefaultLazyConfiguration
         }
 
         // Set locale & timezone
-        if (defined('self::locale'))
+        if (defined('self::$locale'))
         {
-            setlocale(LC_ALL, self::locale);
+            setlocale(LC_ALL, self::$locale);
         }
 
-        if (defined('self::timezone'))
+        if (defined('self::$timezone'))
         {
-            date_default_timezone_set(self::timezone);
+            date_default_timezone_set(self::$timezone);
         }
     }
 }

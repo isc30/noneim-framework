@@ -26,7 +26,7 @@ class PDOExtension extends PDO {
         }
         catch (Exception $ex)
         {
-            if (Configuration::debug)
+            if (Configuration::$debug)
             {
                 throw new DatabaseConnectionException($ex->getMessage());
             }

@@ -18,7 +18,7 @@ class CacheHelper
      */
     public static function load($area, $name, &$value)
     {
-        if (!Configuration::caching)
+        if (!Configuration::$caching)
         {
             return false;
         }
@@ -63,7 +63,7 @@ class CacheHelper
      */
     public static function save($area, $name, $value)
     {
-        if (!Configuration::caching)
+        if (!Configuration::$caching)
         {
             return false;
         }
@@ -109,7 +109,7 @@ class CacheHelper
      */
     private static function getCacheDir($area)
     {
-        return Configuration::cachesDir . "{$area}/";
+        return Configuration::$cachesPath . "{$area}/";
     }
 
     /**
