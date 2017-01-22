@@ -6,10 +6,14 @@
  * Date: 14/01/2017
  * Time: 15:10
  */
-class WebAppConfiguration implements ILazyConfiguration
+class WebAppConfiguration implements IProjectLazyConfiguration
 {
     public static function configure()
     {
-        WebConfiguration::$webUrl = 'http://phpframework.local/';
+        if (Configuration::$project === 'WebApp')
+        {
+            echo "jojo";
+            WebConfiguration::$webUrl = 'http://phpframework.local/';
+        }
     }
 }

@@ -4,7 +4,7 @@
  * Authentication Module Installer
  * @package Modules\Authentication
  */
-class AuthenticationInstaller implements IInstaller
+class AuthenticationInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;

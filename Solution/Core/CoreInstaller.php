@@ -5,7 +5,7 @@
  * @package Core
  * @subpackage Installers
  */
-class CoreInstaller implements IInstaller
+class CoreInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;
@@ -24,7 +24,6 @@ class CoreInstaller implements IInstaller
      */
     public function install()
     {
-        $this->_installerContainer->registerDefinition('ICacheService', 'CacheService');
         $this->_installerContainer->registerDefinition('ILogService', 'LogService');
         $this->_installerContainer->registerDefinition('IOutputBufferService', 'OutputBufferService');
         $this->_installerContainer->registerDefinition('ITimeService', 'TimeService');

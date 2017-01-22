@@ -7,16 +7,11 @@
  */
 class LanguageService implements ILanguageService
 {
-    /** ICacheService */
-    private $_cacheService;
-
     /**
      * LanguageService Constructor
-     * @param ICacheService $cacheService
      */
-    public function __construct(ICacheService $cacheService)
+    public function __construct()
     {
-        $this->_cacheService = $cacheService;
     }
 
     /**
@@ -28,8 +23,9 @@ class LanguageService implements ILanguageService
     {
         if ($language === null)
         {
-            $language = LanguageModuleLazyConfiguration::defaultLanguage;
+            $language = LanguageModuleConfiguration::defaultLanguage;
         }
+
         return $this->getFromXML($language);
     }
 
@@ -41,10 +37,12 @@ class LanguageService implements ILanguageService
     private function getFromXML($languageName)
     {
         $language = null;
-        if (!$this->_cacheService->load('Modules/Language', "LanguageService_{$languageName}", $language))
+
+        if (!CacheHelper::load('Modules/Language', "LanguageService.{$languageName}", $language))
         {
-            $language = XmlHelper::toArray(simplexml_load_file(Configuration::rootDir . LanguageModuleLazyConfiguration::languagesDirectory . "/{$languageName}.xml"));
-            $this->_cacheService->save('Modules/Language', "LanguageService_{$languageName}", $language);
+            $language = XmlHelper::toArray(simplexml_load_file(Configuration::rootDir . LanguageModuleConfiguration::languagesDirectory . "/{$languageName}.xml"));
+
+            CacheHelper::save('Modules/Language', "LanguageService.{$languageName}", $language);
         }
 
         return $language;

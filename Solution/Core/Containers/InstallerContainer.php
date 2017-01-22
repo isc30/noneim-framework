@@ -23,28 +23,12 @@ class InstallerContainer implements IInstallerContainer, ICacheable
     private $definitions;
 
     /**
-     * @var string
-     */
-    private $_type;
-
-    /**
      * InstallerContainer Constructor
-     * @param string $type
      */
-    public function __construct($type)
+    public function __construct()
     {
-        $this->_type = $type;
         $this->instances = array();
         $this->definitions = array();
-    }
-
-    /**
-     * Get container type
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->_type;
     }
 
     /**
