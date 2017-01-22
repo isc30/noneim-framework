@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 22/01/2017
- * Time: 2:11
+ * Cache Helper
+ * @package Core
+ * @subpackage Helpers
  */
-class CacheHelper
+class CacheHelper implements IHelper
 {
     /**
      * Return if loading cache is success

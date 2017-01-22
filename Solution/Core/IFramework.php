@@ -19,9 +19,9 @@ class IFramework
     /**
      * Load Core and run Solution
      * @param string $solutionPath
-     * @param string $project
+     * @param string $projectName
      */
-    public static function init($solutionPath, $project)
+    public static function init($solutionPath, $projectName)
     {
         $startTime = microtime(true);
 
@@ -30,7 +30,7 @@ class IFramework
 
         // Setup main configuration
         Configuration::$solutionPath = $solutionPath;
-        Configuration::$project = $project;
+        Configuration::$project = $projectName;
         Configuration::configure();
 
         // Init DependencyHelper
@@ -93,7 +93,9 @@ class IFramework
         self::$coreLoadTime = round((microtime(true) - $startTime) * 1000, 2);
 
         // Run Solution
-        $classFactory->call($project, 'main');
+        /** @var IProject $project */
+        $project = $classFactory->instantiate($projectName);
+        return $project->main();
     }
 
     /**
@@ -109,10 +111,11 @@ class IFramework
         require_once $coreDir . 'Interfaces/Markers/IDefaultLazyConfiguration.php';
         require_once $solutionPath . 'Configuration.php';
 
-        require_once $coreDir . 'CacheHelper.php';
+        require_once $coreDir . 'Interfaces/Markers/IHelper.php';
+        require_once $coreDir . 'Helpers/CacheHelper.php';
 
         require_once $coreDir . 'ClassDefinition.php';
-        require_once $coreDir . 'ReflectionHelper.php';
-        require_once $coreDir . 'DependencyHelper.php';
+        require_once $coreDir . 'Helpers/ReflectionHelper.php';
+        require_once $coreDir . 'Helpers/DependencyHelper.php';
     }
 }

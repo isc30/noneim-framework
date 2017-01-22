@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 21/01/2017
- * Time: 21:58
+ * Dependency Helper
+ * @package Core
+ * @subpackage Helpers
  */
-class DependencyHelper
+class DependencyHelper implements IHelper
 {
     /** @var ClassDefinition[] */
     private static $autoloaderFiles = null;
@@ -15,10 +14,14 @@ class DependencyHelper
     {
         self::$autoloaderFiles = ReflectionHelper::getSolutionClasses();
 
-        spl_autoload_register('DependencyHelper::loadDependency');
+        spl_autoload_register('DependencyHelper::autoload');
     }
 
-    private static function loadDependency($className)
+    /**
+     * Autoloader function
+     * @param string $className
+     */
+    private static function autoload($className)
     {
         if (isset(self::$autoloaderFiles[$className]))
         {

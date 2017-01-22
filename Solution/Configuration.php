@@ -6,19 +6,15 @@
  */
 class Configuration implements IDefaultLazyConfiguration
 {
-    public static $project;
-
     public static $debug = true;
     public static $caching = false;
-
-    public static $solutionPath;
-    public static $staticDir = 'Static/';
-    public static $resourcesDir = 'Resources/';
-    public static $cachesDir = 'Caches/';
 
     public static $locale = 'es_ES';
     public static $timezone = 'Europe/Madrid';
 
+    public static $project;
+
+    public static $solutionPath;
     public static $staticPath;
     public static $resourcesPath;
     public static $cachesPath;
