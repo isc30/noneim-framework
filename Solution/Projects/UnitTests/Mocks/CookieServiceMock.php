@@ -45,7 +45,7 @@ class CookieServiceMock implements ICookieService
      */
     public function getAll()
     {
-        return "ajajaja";
+        return "ajajaja TROLOLOLO";
     }
 
     /**
