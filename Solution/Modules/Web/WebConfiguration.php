@@ -15,5 +15,5 @@ class WebConfiguration implements IConfiguration
     const sectionRequest = 'p';
     const subsectionSeparator = '/';
 
-    const defaultCookieExpiration = 5 * 60;
+    const defaultCookieExpiration = 300;
 }
