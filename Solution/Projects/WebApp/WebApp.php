@@ -12,26 +12,21 @@ class WebApp
     private $_outputBufferService;
     /** @var IHeaderService */
     private $_headerService;
-    /** @var ICacheService */
-    private $_cacheService;
 
     /**
      * WebApp Constructor
      * @param IRouteContainer $routeContainer
      * @param IOutputBufferService $outputBufferService
      * @param IHeaderService $headerService
-     * @param ICacheService $cacheService
      */
     public function __construct(
         IRouteContainer $routeContainer,
         IOutputBufferService $outputBufferService,
-        IHeaderService $headerService,
-        ICacheService $cacheService)
+        IHeaderService $headerService)
     {
         $this->_routeContainer = $routeContainer;
         $this->_outputBufferService = $outputBufferService;
         $this->_headerService = $headerService;
-        $this->_cacheService = $cacheService;
     }
 
     /**
@@ -39,6 +34,9 @@ class WebApp
      */
     public function main()
     {
+        // Load Configuration
+        WebAppConfiguration::configure();
+
         $this->registerRoutes();
 
         $request = new IFrameworkRequest();
@@ -59,13 +57,13 @@ class WebApp
 
     private function registerRoutes()
     {
-        if (!$this->_cacheService->load('WebApp', 'RouteContainer', $this->_routeContainer))
+        if (!CacheHelper::load('WebApp', 'RouteContainer', $this->_routeContainer))
         {
             $this->_routeContainer->registerDefault('Error404Controller');
             $this->_routeContainer->registerException('ExceptionController');
             $this->_routeContainer->register(array('Index'), 'IndexController');
 
-            $this->_cacheService->save('WebApp', 'RouteContainer', $this->_routeContainer);
+            CacheHelper::save('WebApp', 'RouteContainer', $this->_routeContainer);
         }
     }
 }

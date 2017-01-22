@@ -4,7 +4,7 @@
  * Solution Installer
  * @package Solution
  */
-class WebAppInstaller implements IInstaller
+class WebAppInstaller implements IProjectInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;
@@ -23,14 +23,9 @@ class WebAppInstaller implements IInstaller
      */
     public function install()
     {
-        switch ($this->_installerContainer->getType())
+        if (Configuration::$project === 'WebApp')
         {
-            case 'WebApp':
-            {
-                // ...
-
-                break;
-            }
+            // ...
         }
     }
 }

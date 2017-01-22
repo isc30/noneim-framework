@@ -40,7 +40,7 @@ class HeaderService implements IHeaderService {
         
         foreach ($_SERVER as $key => $value) {
             
-            if (substr($key, 0, 5) == "HTTP_") {
+            if (substr($key, 0, 5) === "HTTP_") {
                 
                 // RFC3875, 4.1.18
                 $key = str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($key, 5)))));

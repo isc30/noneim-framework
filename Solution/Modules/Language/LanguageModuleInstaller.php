@@ -4,7 +4,7 @@
  * Language Module Installer
  * @package Modules\Language
  */
-class LanguageModuleInstaller implements IInstaller
+class LanguageModuleInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;

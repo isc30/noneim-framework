@@ -4,7 +4,7 @@
  * Default IFramework configuration file
  * @package Solution
  */
-class Configuration implements ILazyConfiguration
+class Configuration implements IDefaultLazyConfiguration
 {
     const debug = true;
     const caching = !self::debug && true;
@@ -17,6 +17,8 @@ class Configuration implements ILazyConfiguration
 
     const locale = 'es_ES'; // Optional
     const timezone = 'Europe/Madrid'; // Optional
+
+    public static $project;
 
     public static function configure()
     {

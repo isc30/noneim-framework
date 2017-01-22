@@ -11,6 +11,47 @@ class ReflectionHelper
     /** @var ClassDefinition[] */
     private static $solutionClasses = null;
 
+    /**
+     * @return ClassDefinition[]
+     */
+    public static function getSolutionClasses()
+    {
+        if (self::$solutionClasses !== null)
+        {
+            return self::$solutionClasses; // Already filled
+        }
+
+        if (!CacheHelper::load('Core', 'ReflectionHelper.SolutionClasses', self::$solutionClasses))
+        {
+            self::prepareAutoloaderFiles();
+
+            CacheHelper::save('Core', 'ReflectionHelper.SolutionClasses', self::$solutionClasses);
+        }
+
+        return self::$solutionClasses;
+    }
+
+    /**
+     * @param string $interfaceName
+     * @return ClassDefinition[]
+     */
+    public static function getImplementations($interfaceName)
+    {
+        $classList = array();
+
+        foreach (self::getSolutionClasses() as $class => $definition)
+        {
+            $rc = new ReflectionClass($definition->name);
+
+            if (!$rc->isInterface() && $rc->implementsInterface($interfaceName))
+            {
+                $classList[] = $definition;
+            }
+        }
+
+        return $classList;
+    }
+
     private static function prepareAutoloaderFiles()
     {
         self::$solutionClasses = array();
@@ -36,58 +77,5 @@ class ReflectionHelper
                 }
             }
         }
-    }
-
-    /**
-     * @return ClassDefinition[]
-     */
-    public static function getSolutionClasses()
-    {
-        if (self::$solutionClasses !== null)
-        {
-            return self::$solutionClasses; // Already filled
-        }
-
-        $solutionClassesCacheFile = Configuration::cachesDir . 'Core/ReflectionHelper.SolutionClasses.cache';
-
-        if (Configuration::caching && file_exists($solutionClassesCacheFile))
-        {
-            $cache = file_get_contents($solutionClassesCacheFile);
-            self::$solutionClasses = unserialize($cache);
-        }
-        else
-        {
-            self::prepareAutoloaderFiles();
-
-            if (Configuration::caching)
-            {
-                $cache = serialize(self::$solutionClasses);
-                file_put_contents($solutionClassesCacheFile, $cache);
-                chmod($solutionClassesCacheFile, 0664);
-            }
-        }
-
-        return self::$solutionClasses;
-    }
-
-    /**
-     * @param string $interfaceName
-     * @return ClassDefinition[]
-     */
-    public static function getImplementations($interfaceName)
-    {
-        $classList = array();
-
-        foreach (self::getSolutionClasses() as $class => $definition)
-        {
-            $rc = new ReflectionClass($definition->name);
-
-            if (!$rc->isInterface() && $rc->implementsInterface($interfaceName))
-            {
-                $classList[] = $definition;
-            }
-        }
-
-        return $classList;
     }
 }

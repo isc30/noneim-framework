@@ -8,5 +8,8 @@
  */
 interface ILazyConfiguration extends IConfiguration
 {
+    /**
+     * @return void
+     */
     public static function configure();
 }

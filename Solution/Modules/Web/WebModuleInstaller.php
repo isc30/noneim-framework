@@ -4,7 +4,7 @@
  * Web Module Installer
  * @package Modules\Web
  */
-class WebModuleInstaller implements IInstaller
+class WebModuleInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;

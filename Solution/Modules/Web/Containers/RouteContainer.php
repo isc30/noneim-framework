@@ -154,7 +154,7 @@ class RouteContainer implements IRouteContainer, ICacheable
         {
             return $possibleRoutes[0];
         }
-        elseif ($possibleRoutesCount == 0)
+        elseif ($possibleRoutesCount === 0)
         {
             return $this->defaultRoute;
         }

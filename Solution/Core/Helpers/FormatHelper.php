@@ -44,7 +44,7 @@ class FormatHelper implements IHelper
 
     /**
      * Clean the array elements for correct output
-     * @param string[] $values Value array
+     * @param string[] &$values Value array
      */
     public static function cleanOutputArray(array &$values)
     {
