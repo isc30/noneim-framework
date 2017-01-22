@@ -34,9 +34,6 @@ class WebApp
      */
     public function main()
     {
-        // Load Configuration
-        WebAppConfiguration::configure();
-
         $this->registerRoutes();
 
         $request = new IFrameworkRequest();

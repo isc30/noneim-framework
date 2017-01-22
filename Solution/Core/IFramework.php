@@ -88,6 +88,10 @@ class IFramework
         $classFactory->call($project, 'main');
     }
 
+    /**
+     * Include initial required files
+     * @param string $solutionDir
+     */
     private static function includeRequiredFiles($solutionDir)
     {
         $coreDir = dirname(__FILE__) . '/';
@@ -97,10 +101,9 @@ class IFramework
         require_once $coreDir . 'Interfaces/Markers/IDefaultLazyConfiguration.php';
         require_once $solutionDir . 'Configuration.php';
 
-        require_once $coreDir . 'ClassDefinition.php';
-
         require_once $coreDir . 'CacheHelper.php';
 
+        require_once $coreDir . 'ClassDefinition.php';
         require_once $coreDir . 'ReflectionHelper.php';
         require_once $coreDir . 'DependencyHelper.php';
     }
