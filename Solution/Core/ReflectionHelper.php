@@ -55,7 +55,7 @@ class ReflectionHelper
     private static function prepareAutoloaderFiles()
     {
         self::$solutionClasses = array();
-        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(Configuration::rootDir));
+        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(Configuration::$solutionPath));
 
         foreach ($iterator as $file)
         {

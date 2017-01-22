@@ -18,18 +18,20 @@ class IFramework
 
     /**
      * Load Core and run Solution
-     * @param string $solutionDir
+     * @param string $solutionPath
      * @param string $project
      */
-    public static function init($solutionDir, $project)
+    public static function init($solutionPath, $project)
     {
         $startTime = microtime(true);
 
         // Special requires
-        self::includeRequiredFiles($solutionDir);
+        self::includeRequiredFiles($solutionPath);
 
-        // Set project
+        // Setup main configuration
+        Configuration::$solutionPath = $solutionPath;
         Configuration::$project = $project;
+        Configuration::configure();
 
         // Init DependencyHelper
         DependencyHelper::initAutoLoader();
@@ -37,6 +39,12 @@ class IFramework
         // Load default lazy configuration
         foreach (ReflectionHelper::getImplementations('IDefaultLazyConfiguration') as $classDefinition)
         {
+            // Exceptional case
+            if ($classDefinition->name === 'Configuration')
+            {
+                continue; // Skip as we called `configure()` manually
+            }
+
             /** @var ILazyConfiguration $className */
             $className = $classDefinition->name;
             $className::configure();
@@ -90,16 +98,16 @@ class IFramework
 
     /**
      * Include initial required files
-     * @param string $solutionDir
+     * @param string $solutionPath
      */
-    private static function includeRequiredFiles($solutionDir)
+    private static function includeRequiredFiles($solutionPath)
     {
         $coreDir = dirname(__FILE__) . '/';
 
         require_once $coreDir . 'Interfaces/Markers/IConfiguration.php';
         require_once $coreDir . 'Interfaces/ILazyConfiguration.php';
         require_once $coreDir . 'Interfaces/Markers/IDefaultLazyConfiguration.php';
-        require_once $solutionDir . 'Configuration.php';
+        require_once $solutionPath . 'Configuration.php';
 
         require_once $coreDir . 'CacheHelper.php';
 
