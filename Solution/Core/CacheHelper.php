@@ -25,14 +25,16 @@ class CacheHelper
 
         try
         {
-            $cacheFile = self::getCacheFile($area, $name);
+            $cacheDir = self::getCacheDir($area);
+            $cacheFileName = self::getCacheFileName($name);
+            $cachePath = $cacheDir . $cacheFileName;
 
-            if (!file_exists($cacheFile))
+            if (!file_exists($cachePath))
             {
                 return false;
             }
 
-            $cache = file_get_contents($cacheFile);
+            $cache = file_get_contents($cachePath);
 
             if ($value instanceof ICacheable)
             {
@@ -69,7 +71,8 @@ class CacheHelper
         try
         {
             $cacheDir = self::getCacheDir($area);
-            $cacheFile = self::getCacheFile($area, $name);
+            $cacheFileName = self::getCacheFileName($name);
+            $cachePath = $cacheDir . $cacheFileName;
 
             if ($value instanceof ICacheable)
             {
@@ -86,8 +89,8 @@ class CacheHelper
                 mkdir($cacheDir, 0664, true);
             }
 
-            file_put_contents($cacheFile, $cache);
-            chmod($cacheFile, 0664);
+            file_put_contents($cachePath, $cache);
+            chmod($cachePath, 0664);
 
             return true;
         }
@@ -97,13 +100,23 @@ class CacheHelper
         }
     }
 
+    /**
+     * Get directory of cache area
+     * @param string $area
+     * @return string
+     */
     private static function getCacheDir($area)
     {
         return Configuration::cachesDir . "{$area}/";
     }
 
-    private static function getCacheFile($area, $name)
+    /**
+     * Get cache file name
+     * @param string $name
+     * @return string
+     */
+    private static function getCacheFileName($name)
     {
-        return self::getCacheDir($area) . "{$name}." . Configuration::$project . '.cache';
+        return "{$name}." . Configuration::$project . '.cache';
     }
 }
