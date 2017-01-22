@@ -12,7 +12,7 @@ class UnitTestsConfiguration implements IProjectLazyConfiguration
     {
         if (Configuration::$project === 'UnitTests')
         {
-            echo "Configured UnitTests!<br/>";
+            // ...
         }
     }
 }
