@@ -9,7 +9,7 @@ class Configuration implements IDefaultLazyConfiguration
     public static $project;
 
     public static $debug = true;
-    public static $caching = true;
+    public static $caching = false;
 
     public static $solutionPath;
     public static $staticDir = 'Static/';
