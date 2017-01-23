@@ -29,7 +29,7 @@ class ExceptionController extends BaseLayoutController
         $this->_headerService->setResponseCode(500);
 
         $viewModel = new ExceptionViewModel();
-        $viewModel->request = $request->section;
+        $viewModel->request = FormatHelper::cleanOutput($request->section);
         $viewModel->exception = $ex;
 
         $layoutViewModel = new BaseLayoutContentViewModel();
