@@ -1,11 +1,10 @@
 <?php
 
 /**
- * Authentication Configuration
+ * Authentication Module Configuration
  * @package Modules\Authentication
- * @subpackage Services
  */
 class AuthenticationConfiguration implements IConfiguration
 {
-    const sessionKey = 'keey';
+    public static $sessionKey = 'keey';
 }
