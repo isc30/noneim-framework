@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Solution Installer
- * @package Solution
+ * WebApp Installer
+ * @package WebApp
  */
 class WebAppInstaller implements IProjectInstaller
 {

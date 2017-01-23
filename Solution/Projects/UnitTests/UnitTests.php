@@ -2,7 +2,7 @@
 
 /**
  * UnitTests Project
- * @package Projects
+ * @package UnitTests
  */
 class UnitTests implements IProject
 {

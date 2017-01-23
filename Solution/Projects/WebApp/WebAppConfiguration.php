@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 14/01/2017
- * Time: 15:10
+ * WebApp Project Configuration
+ * @package WebApp
  */
 class WebAppConfiguration implements IProjectLazyConfiguration
 {

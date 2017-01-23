@@ -2,7 +2,7 @@
 
 /**
  * WebApp Project
- * @package Projects
+ * @package WebApp
  */
 class WebApp implements IProject
 {
