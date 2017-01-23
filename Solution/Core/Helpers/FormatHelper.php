@@ -8,7 +8,7 @@
 class FormatHelper implements IHelper
 {
     /**
-     * No instanciable
+     * No instantiable
      */
     private function __construct()
     {
