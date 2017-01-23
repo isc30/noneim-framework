@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 14/01/2017
- * Time: 15:25
+ * Default Web Module Configuration
+ * @package Modules\Web
  */
 class WebConfiguration implements IConfiguration
 {
