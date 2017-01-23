@@ -17,7 +17,7 @@ class View implements IModel
      * View Constructor
      * @param string $viewPath View path
      * @param null|IModel $model ViewModel
-     * @param null|string $basePath Path where to search
+     * @param null|string $basePath Path where to search. Default: __FILE__
      * @throws ViewNotFoundException
      */
     public function __construct($viewPath, IModel $model = null, $basePath = null)
