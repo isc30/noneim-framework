@@ -19,15 +19,15 @@ class IFrameworkRequest
 
     private function getSection()
     {
-        if (isset($_GET[WebConfiguration::sectionRequest]))
+        if (isset($_GET[WebConfiguration::$sectionRequest]))
         {
-            $section = $_GET[WebConfiguration::sectionRequest];
+            $section = $_GET[WebConfiguration::$sectionRequest];
             if ($section !== '')
             {
                 return $section;
             }
         }
 
-        return WebConfiguration::defaultSection;
+        return WebConfiguration::$defaultSection;
     }
 }

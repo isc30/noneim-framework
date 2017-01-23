@@ -19,10 +19,10 @@ class UrlHelper implements IHelper {
      */
     public static function getLink(array $sections) {
 
-        if (WebConfiguration::prettyUrl) {
+        if (WebConfiguration::$prettyUrl) {
             return WebConfiguration::$webUrl . self::getSectionName($sections);
         } else {
-            return WebConfiguration::$webUrl . '?' . WebConfiguration::sectionRequest . '=' . self::getSectionName($sections);
+            return WebConfiguration::$webUrl . '?' . WebConfiguration::$sectionRequest . '=' . self::getSectionName($sections);
         }
 
     }
@@ -34,7 +34,7 @@ class UrlHelper implements IHelper {
      */
     public static function getSectionName(array $sections) {
 
-        return implode(WebConfiguration::subsectionSeparator, $sections);
+        return implode(WebConfiguration::$subsectionSeparator, $sections);
 
     }
 
@@ -45,7 +45,7 @@ class UrlHelper implements IHelper {
      */
     public static function getSectionArray($sectionName) {
 
-        return explode(WebConfiguration::subsectionSeparator, $sectionName);
+        return explode(WebConfiguration::$subsectionSeparator, $sectionName);
 
     }
 

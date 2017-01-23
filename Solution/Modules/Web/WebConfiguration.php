@@ -8,12 +8,12 @@
  */
 class WebConfiguration implements IConfiguration
 {
-    const prettyUrl = true;
+    public static $prettyUrl = true;
 
     public static $webUrl = 'http://test.local/';
-    const defaultSection = 'index';
-    const sectionRequest = 'p';
-    const subsectionSeparator = '/';
+    public static $defaultSection = 'index';
+    public static $sectionRequest = 'p';
+    public static $subsectionSeparator = '/';
 
-    const defaultCookieExpiration = 300;
+    public static $defaultCookieExpiration = 300;
 }
