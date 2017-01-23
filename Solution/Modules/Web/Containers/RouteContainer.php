@@ -55,9 +55,9 @@ class RouteContainer implements IRouteContainer, ICacheable
             $this->testControllerType($controller);
         }
 
-        $currentRoute = preg_quote(implode(WebConfiguration::subsectionSeparator, $route), '/');
+        $currentRoute = preg_quote(implode(WebConfiguration::$subsectionSeparator, $route), '/');
         $originalRoute = preg_replace('(\\\{([^\}]+)\\\})', '{$1}', $currentRoute);
-        $regexRoute = preg_replace('(\\\{([^\}]+)\\\})', '([^' . preg_quote(WebConfiguration::subsectionSeparator, '/') . ']+)', $currentRoute);
+        $regexRoute = preg_replace('(\\\{([^\}]+)\\\})', '([^' . preg_quote(WebConfiguration::$subsectionSeparator, '/') . ']+)', $currentRoute);
 
         // Generate Indices
         preg_match_all('/\{([^\}]+)\}/i', $originalRoute, $arguments);
@@ -218,7 +218,7 @@ class RouteContainer implements IRouteContainer, ICacheable
     {
         foreach ($route as $section)
         {
-            if (strpos($section, WebConfiguration::subsectionSeparator) !== false)
+            if (strpos($section, WebConfiguration::$subsectionSeparator) !== false)
             {
                 throw new InvalidOperationException('Invalid characters found');
             }
