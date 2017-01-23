@@ -6,13 +6,13 @@
  */
 class DatabaseConfiguration implements IConfiguration
 {
-    const type = 'mysql';
-    const host = 'localhost';
-    const customPort = null;
-    const database = 'prueba';
-    const username = 'root';
-    const password = '';
+    public static $type = 'mysql';
+    public static $host = 'localhost';
+    public static $customPort = null;
+    public static $database = 'prueba';
+    public static $username = 'root';
+    public static $password = '';
 
-    const persistentConnection = false;
-    const charset = 'utf8';
+    public static $persistentConnection = false;
+    public static $charset = 'utf8';
 }
