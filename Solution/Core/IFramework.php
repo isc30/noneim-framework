@@ -34,7 +34,7 @@ class IFramework
         Configuration::configure();
 
         // Init DependencyHelper
-        DependencyHelper::initAutoLoader();
+        DependencyHelper::initAutoloader();
 
         // Load default lazy configuration
         foreach (ReflectionHelper::getImplementations('IDefaultLazyConfiguration') as $classDefinition)

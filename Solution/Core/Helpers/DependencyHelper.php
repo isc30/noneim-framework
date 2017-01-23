@@ -10,13 +10,14 @@ class DependencyHelper implements IHelper
     /** @var ClassDefinition[] */
     private static $autoloaderFiles = null;
 
-    public static function initAutoLoader()
+    public static function initAutoloader()
     {
         self::$autoloaderFiles = ReflectionHelper::getSolutionClasses();
 
         spl_autoload_register('DependencyHelper::autoload');
     }
 
+    /** @noinspection PhpUnusedPrivateMethodInspection */
     /**
      * Autoloader function
      * @param string $className
