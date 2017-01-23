@@ -1,9 +1,8 @@
 <?php
 
-////
 // Isc Framework for PHP5
+// https://bitbucket.org/ivansanz/php-framework
 // ivansanzcarasa@gmail.com
-////
 
 // Define solution directory for relative path inclusion
 $solutionDir = dirname(__FILE__) . '/Solution/';
