@@ -6,9 +6,13 @@
  */
 class UnitTestsConfiguration implements IProjectLazyConfiguration
 {
+    /**
+     * Apply Configuration
+     * @return void
+     */
     public static function configure()
     {
-        if (Configuration::$project === 'UnitTests')
+        if (SolutionConfiguration::$project === 'UnitTests')
         {
             // ...
         }

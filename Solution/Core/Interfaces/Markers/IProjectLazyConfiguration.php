@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 22/01/2017
- * Time: 2:03
+ * Project Lazy Configuration Interface
+ * @package Core
+ * @subpackage Interfaces\Markers
  */
 interface IProjectLazyConfiguration extends ILazyConfiguration
 {

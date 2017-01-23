@@ -49,7 +49,7 @@ class ClassFactory implements IClassFactory
             {
                 $parameterType = $parameter->getClass()->name;
 
-                if (Configuration::$debug && $parameter->isPassedByReference())
+                if (RuntimeConfiguration::$debug && $parameter->isPassedByReference())
                 {
                     echo "In class {{$reflectionClass->getName()}} please DON'T use reference injection<br/>";
                 }
@@ -207,7 +207,7 @@ class ClassFactory implements IClassFactory
     {
         $reflectionClass = new ReflectionClass($className);
 
-        if (!Configuration::$debug || $reflectionClass->implementsInterface('IInstaller'))
+        if (!RuntimeConfiguration::$debug || $reflectionClass->implementsInterface('IInstaller'))
         {
             $this->callFromReflectionClass($reflectionClass, 'install');
         }

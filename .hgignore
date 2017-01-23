@@ -3,4 +3,4 @@ syntax: glob
 .idea/*
 doc/*
 php.ini
-*.cache
+*.tmp

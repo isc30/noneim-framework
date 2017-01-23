@@ -23,7 +23,7 @@ class WebAppInstaller implements IProjectInstaller
      */
     public function install()
     {
-        if (Configuration::$project === 'WebApp')
+        if (SolutionConfiguration::$project === 'WebApp')
         {
             // ...
         }

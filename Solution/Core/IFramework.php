@@ -29,9 +29,10 @@ class IFramework
         self::includeRequiredFiles($solutionPath);
 
         // Setup main configuration
-        Configuration::$solutionPath = $solutionPath;
-        Configuration::$project = $projectName;
-        Configuration::configure();
+        RuntimeConfiguration::configure();
+        SolutionConfiguration::$solutionPath = $solutionPath;
+        SolutionConfiguration::$project = $projectName;
+        SolutionConfiguration::configure();
 
         // Init DependencyHelper
         DependencyHelper::initAutoloader();
@@ -40,7 +41,7 @@ class IFramework
         foreach (ReflectionHelper::getImplementations('IDefaultLazyConfiguration') as $classDefinition)
         {
             // Exceptional case
-            if ($classDefinition->name === 'Configuration')
+            if ($classDefinition->name === 'RuntimeConfiguration' || $classDefinition->name === 'SolutionConfiguration')
             {
                 continue; // Skip as we called `configure()` manually
             }
@@ -109,7 +110,8 @@ class IFramework
         require_once $coreDir . 'Interfaces/Markers/IConfiguration.php';
         require_once $coreDir . 'Interfaces/ILazyConfiguration.php';
         require_once $coreDir . 'Interfaces/Markers/IDefaultLazyConfiguration.php';
-        require_once $solutionPath . 'Configuration.php';
+        require_once $solutionPath . 'SolutionConfiguration.php';
+        require_once $solutionPath . 'RuntimeConfiguration.php';
 
         require_once $coreDir . 'Interfaces/Markers/IHelper.php';
         require_once $coreDir . 'Helpers/CacheHelper.php';

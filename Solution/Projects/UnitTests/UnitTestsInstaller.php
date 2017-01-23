@@ -24,7 +24,7 @@ class UnitTestsInstaller implements IProjectInstaller
      */
     public function install()
     {
-        if (Configuration::$project === 'UnitTests')
+        if (SolutionConfiguration::$project === 'UnitTests')
         {
             $this->_installerContainer->registerDefinition('ICookieService', 'CookieServiceMock');
         }

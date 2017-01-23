@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Module Installer Interface
+ * Default Installer Interface
  * @package Core
  * @subpackage Interfaces
  */

@@ -33,7 +33,7 @@ class PDOExtension extends PDO {
         }
         catch (Exception $ex)
         {
-            if (Configuration::$debug)
+            if (RuntimeConfiguration::$debug)
             {
                 throw new DatabaseConnectionException($ex->getMessage());
             }

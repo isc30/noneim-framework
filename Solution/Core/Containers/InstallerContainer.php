@@ -48,7 +48,7 @@ class InstallerContainer implements IInstallerContainer, ICacheable
      */
     public function registerDefinition($type, $implementedBy)
     {
-        if (Configuration::$debug && $type !== $implementedBy && !is_subclass_of($implementedBy, $type))
+        if (RuntimeConfiguration::$debug && $type !== $implementedBy && !is_subclass_of($implementedBy, $type))
         {
             throw new InvalidOperationException("Class {$implementedBy} doesn't implement {$type}");
         }
@@ -64,7 +64,7 @@ class InstallerContainer implements IInstallerContainer, ICacheable
      */
     public function registerImplementation($type, $implementation)
     {
-        if (Configuration::$debug && !$implementation instanceof $type)
+        if (RuntimeConfiguration::$debug && !$implementation instanceof $type)
         {
             throw new InvalidOperationException("Class {$implementation} doesn't implement {$type}");
         }

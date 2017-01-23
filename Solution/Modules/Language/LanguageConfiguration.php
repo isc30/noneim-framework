@@ -4,8 +4,17 @@
  * Language Module Configuration
  * @package Modules\Language
  */
-class LanguageConfiguration implements IConfiguration
+class LanguageConfiguration implements IDefaultLazyConfiguration
 {
     public static $defaultLanguage = 'En';
-    public static $languagesDirectory = 'Languages';
+    public static $languagesPath;
+
+    /**
+     * Apply Configuration
+     * @return void
+     */
+    public static function configure()
+    {
+        self::$languagesPath = SolutionConfiguration::$projectPath . 'Languages/';
+    }
 }
