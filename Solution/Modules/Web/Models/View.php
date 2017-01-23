@@ -28,7 +28,7 @@ class View implements IModel
         }
         else
         {
-            $basePath = Configuration::$staticPath;
+            $basePath = SolutionConfiguration::$staticPath;
         }
 
         $view = dirname($basePath) . "/Views/{$viewPath}.phtml";

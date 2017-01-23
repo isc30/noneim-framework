@@ -34,7 +34,7 @@ abstract class Repository extends ReadOnlyRepository
      */
     protected function _add(Entity $entity)
     {
-        if (!Configuration::$debug || (is_object($entity) && get_class($entity) === $this->getType()))
+        if (!RuntimeConfiguration::$debug || (is_object($entity) && get_class($entity) === $this->getType()))
         {
             // Get values
             $reflectionClass = new ReflectionClass($this->getType());
@@ -84,7 +84,7 @@ abstract class Repository extends ReadOnlyRepository
      */
     protected function _edit(Entity $entity)
     {
-        if (!Configuration::$debug || (is_object($entity) && get_class($entity) === $this->getType()))
+        if (!RuntimeConfiguration::$debug || (is_object($entity) && get_class($entity) === $this->getType()))
         {
             if ($entity->id !== null)
             {
@@ -139,7 +139,7 @@ abstract class Repository extends ReadOnlyRepository
      */
     protected function _delete(Entity $entity)
     {
-        if (!Configuration::$debug || (is_object($entity) && get_class($entity) === $this->getType()))
+        if (!RuntimeConfiguration::$debug || (is_object($entity) && get_class($entity) === $this->getType()))
         {
             $this->deleteById($entity->id);
         }

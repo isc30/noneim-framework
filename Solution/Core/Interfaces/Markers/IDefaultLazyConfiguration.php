@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 22/01/2017
- * Time: 2:04
+ * Default Lazy Configuration Interface
+ * @package Core
+ * @subpackage Interfaces\Markers
  */
 interface IDefaultLazyConfiguration extends ILazyConfiguration
 {

@@ -10,6 +10,8 @@ class ReflectionHelper implements IHelper
     /** @var ClassDefinition[] */
     private static $_solutionClasses = null;
 
+    private static $_getImplementations = array();
+
     /**
      * @return ClassDefinition[]
      */
@@ -36,7 +38,28 @@ class ReflectionHelper implements IHelper
      */
     public static function getImplementations($interfaceName)
     {
-        $classList = array();
+        if (isset(self::$_getImplementations[$interfaceName]))
+        {
+            return self::$_getImplementations[$interfaceName];
+        }
+
+        if (!CacheHelper::load('Core', "ReflectionHelper.GetImplementations.{$interfaceName}", self::$_getImplementations[$interfaceName]))
+        {
+            self::$_getImplementations[$interfaceName] = self::_getImplementations($interfaceName);
+
+            CacheHelper::save('Core', "ReflectionHelper.GetImplementations.{$interfaceName}", self::$_getImplementations[$interfaceName]);
+        }
+
+        return self::$_getImplementations[$interfaceName];
+    }
+
+    /**
+     * @param string $interfaceName
+     * @return string[]
+     */
+    private static function _getImplementations($interfaceName)
+    {
+        $classNames = array();
 
         foreach (self::getSolutionClasses() as $class => $definition)
         {
@@ -44,17 +67,17 @@ class ReflectionHelper implements IHelper
 
             if (!$rc->isInterface() && $rc->implementsInterface($interfaceName))
             {
-                $classList[] = $definition;
+                $classNames[] = $definition;
             }
         }
 
-        return $classList;
+        return $classNames;
     }
 
     private static function fillSolutionClasses()
     {
         self::$_solutionClasses = array();
-        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(Configuration::$solutionPath));
+        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(SolutionConfiguration::$solutionPath));
 
         foreach ($iterator as $file)
         {

@@ -49,7 +49,7 @@ class RouteContainer implements IRouteContainer, ICacheable
      */
     public function register(array $route, $controller, $method = 'index')
     {
-        if (Configuration::$debug)
+        if (RuntimeConfiguration::$debug)
         {
             $this->searchForInvalidCharacters($route);
             $this->testControllerType($controller);
@@ -80,7 +80,7 @@ class RouteContainer implements IRouteContainer, ICacheable
      */
     public function registerDefault($controller, $method = 'index')
     {
-        if (Configuration::$debug)
+        if (RuntimeConfiguration::$debug)
         {
             $this->testControllerType($controller);
         }
@@ -99,7 +99,7 @@ class RouteContainer implements IRouteContainer, ICacheable
      */
     public function registerException($controller, $method = 'index')
     {
-        if (Configuration::$debug)
+        if (RuntimeConfiguration::$debug)
         {
             $this->testControllerType($controller);
         }

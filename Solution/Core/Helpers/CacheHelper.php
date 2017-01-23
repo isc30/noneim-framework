@@ -17,7 +17,7 @@ class CacheHelper implements IHelper
      */
     public static function load($area, $name, &$value)
     {
-        if (!Configuration::$caching)
+        if (!RuntimeConfiguration::$cache)
         {
             return false;
         }
@@ -62,7 +62,7 @@ class CacheHelper implements IHelper
      */
     public static function save($area, $name, $value)
     {
-        if (!Configuration::$caching)
+        if (!RuntimeConfiguration::$cache)
         {
             return false;
         }
@@ -108,7 +108,7 @@ class CacheHelper implements IHelper
      */
     private static function getCacheDir($area)
     {
-        return Configuration::$cachesPath . "{$area}/";
+        return SolutionConfiguration::$cachesPath . "{$area}/";
     }
 
     /**
@@ -118,6 +118,6 @@ class CacheHelper implements IHelper
      */
     private static function getCacheFileName($name)
     {
-        return "{$name}." . Configuration::$project . '.cache';
+        return "{$name}." . SolutionConfiguration::$project . '.tmp';
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: black
- * Date: 21/01/2017
- * Time: 23:38
+ * Configuration Interface
+ * @package Core
+ * @subpackage Interfaces\Markers
  */
 interface IConfiguration
 {
