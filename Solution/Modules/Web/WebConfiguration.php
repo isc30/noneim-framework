@@ -13,5 +13,5 @@ class WebConfiguration implements IConfiguration
     public static $sectionRequest = 'p';
     public static $subsectionSeparator = '/';
 
-    public static $defaultCookieExpiration = 300;
+    public static $defaultCookieExpiration = 300; // 5 * 60
 }

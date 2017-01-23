@@ -15,12 +15,14 @@ class Configuration implements IDefaultLazyConfiguration
     public static $project;
 
     public static $solutionPath;
+    public static $projectPath;
     public static $staticPath;
     public static $resourcesPath;
     public static $cachesPath;
 
     public static function configure()
     {
+        self::$projectPath = self::$solutionPath . 'Projects/' . self::$project . '/';
         self::$staticPath = self::$solutionPath . 'Static/';
         self::$resourcesPath = self::$solutionPath . 'Resources/';
         self::$cachesPath = self::$solutionPath . 'Caches/';
