@@ -28,7 +28,7 @@ class Error404Controller extends BaseLayoutController
         $this->_headerService->setResponseCode(404);
 
         $viewModel = new Error404ViewModel();
-        $viewModel->request = $request->section;
+        $viewModel->request = FormatHelper::cleanOutput($request->section);
 
         $layoutViewModel = new BaseLayoutContentViewModel();
         $layoutViewModel->title = 'Error 404';
