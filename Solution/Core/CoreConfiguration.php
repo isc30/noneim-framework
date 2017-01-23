@@ -6,5 +6,15 @@
  */
 class CoreConfiguration implements IConfiguration
 {
-    const version = '1.0.0';
+    /**
+     * x.y.z
+     *
+     * x = stable
+     * y = stable (path)
+     * z =
+     *      0 - stable
+     *      1 - alpha
+     *      2 - beta
+     **/
+    public static $version = '0.9.1 alpha';
 }
