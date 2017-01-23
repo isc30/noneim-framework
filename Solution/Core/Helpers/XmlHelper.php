@@ -8,7 +8,7 @@
 class XmlHelper {
 
     /**
-     * No instanciable
+     * No instantiable
      */
     private function __construct() {}
 

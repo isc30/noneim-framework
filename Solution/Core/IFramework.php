@@ -10,7 +10,7 @@ class IFramework
     public static $coreLoadTime;
 
     /**
-     * No instanciable
+     * No instantiable
      */
     private function __construct()
     {
