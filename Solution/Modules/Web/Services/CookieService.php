@@ -27,10 +27,11 @@ class CookieService implements ICookieService
      */
     public function set($key, $value, $expire = null, $path = '/', $domain = null, $secure = null, $httpOnly = null)
     {
-        if ($expire === null && defined('Configuration::$defaultCookieExpiration'))
+        if (WebConfiguration::$defaultCookieExpiration != null)
         {
-            $expire = time() + SolutionConfiguration::$defaultCookieExpiration;
+            $expire = time() + WebConfiguration::$defaultCookieExpiration;
         }
+
         setcookie($key, $value, $expire, $path, $domain, $secure, $httpOnly);
         $_COOKIE[$key] = $value;
     }
