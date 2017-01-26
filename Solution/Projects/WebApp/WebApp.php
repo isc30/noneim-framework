@@ -63,6 +63,8 @@ class WebApp implements IProject
             $this->_routeContainer->registerException('ExceptionController');
             $this->_routeContainer->register(array('Index'), 'IndexController');
 
+            $this->_routeContainer->register(array('ExceptionDemo'), 'ExceptionDemoController');
+
             $this->_routeContainer->register(array('CookieDemo'), 'CookieDemoController');
             $this->_routeContainer->register(array('CookieDemo', 'ChangeName'), 'CookieDemoController', 'changeName');
             $this->_routeContainer->register(array('CookieDemo', 'DeleteName'), 'CookieDemoController', 'deleteName');
