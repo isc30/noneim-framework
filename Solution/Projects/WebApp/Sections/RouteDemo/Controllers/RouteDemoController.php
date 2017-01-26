@@ -4,13 +4,8 @@
  * @package Application
  * @subpackage Controllers
  */
-class RouteDemoController implements IController
+class RouteDemoController extends BaseLayoutController
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * @return null|IActionResult
      */
@@ -31,10 +26,11 @@ class RouteDemoController implements IController
             $viewModel->topics[] = $topicViewModel;
         }
 
-        $actionResult = new BasePartialActionResult();
+        $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Topics";
-        $actionResult->actionResult = new ViewActionResult('TopicList', $viewModel, __FILE__);
-        return $actionResult;
+        $actionResult->content = new View('TopicList', $viewModel, __FILE__);
+
+        return $this->baseLayout($actionResult);
     }
 
 
@@ -64,10 +60,11 @@ class RouteDemoController implements IController
                 $viewModel->subtopics[] = $topicViewModel;
             }
 
-            $actionResult = new BasePartialActionResult();
+            $actionResult = new BaseLayoutContentViewModel();
             $actionResult->title = "Subtopics";
-            $actionResult->actionResult = new ViewActionResult('SubtopicList', $viewModel, __FILE__);
-            return $actionResult;
+            $actionResult->content = new View('SubtopicList', $viewModel, __FILE__);
+
+            return $this->baseLayout($actionResult);
         }
         else
         {
@@ -108,10 +105,11 @@ class RouteDemoController implements IController
                     $viewModel->messages[] = $messageViewModel;
                 }
 
-                $actionResult = new BasePartialActionResult();
+                $actionResult = new BaseLayoutContentViewModel();
                 $actionResult->title = "Messages";
-                $actionResult->actionResult = new ViewActionResult('MessageList', $viewModel, __FILE__);
-                return $actionResult;
+                $actionResult->content = new View('MessageList', $viewModel, __FILE__);
+
+                return $this->baseLayout($actionResult);
             }
             else
             {
