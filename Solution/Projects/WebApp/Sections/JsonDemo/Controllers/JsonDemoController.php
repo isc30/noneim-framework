@@ -4,7 +4,7 @@
  * @package Application
  * @subpackage Controllers
  */
-class JsonDemoController implements IController
+class JsonDemoController extends BaseLayoutController
 {
     /**
      * Default Action
@@ -12,11 +12,11 @@ class JsonDemoController implements IController
      */
     public function index()
     {
-        $actionResult = new BasePartialActionResult();
+        $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "JSON Demo";
-        $actionResult->actionResult = new ViewActionResult('Index', null, __FILE__);
+        $actionResult->content = new View('Index', null, __FILE__);
 
-        return $actionResult;
+        return $this->baseLayout($actionResult);
     }
 
     /**
@@ -26,10 +26,12 @@ class JsonDemoController implements IController
     {
         $person = $this->generateRandomPerson();
         $person->friends = array();
+
         for ($i = 0, $end = rand(0, 2); $i < $end; $i++)
         {
             $person->friends[] = $this->generateRandomPerson();
         }
+
         return new JsonActionResult($person);
     }
 

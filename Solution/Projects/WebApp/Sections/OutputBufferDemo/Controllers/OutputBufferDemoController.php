@@ -4,7 +4,7 @@
  * @package Application
  * @subpackage Controllers
  */
-class OutputBufferDemoController implements IController
+class OutputBufferDemoController extends BaseLayoutController
 {
     private $_outputBufferService;
 
@@ -34,9 +34,10 @@ class OutputBufferDemoController implements IController
         $viewModel = new OutputBufferDemoViewModel();
         $viewModel->content = $content;
 
-        $actionResult = new BasePartialActionResult();
+        $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Output Buffer Demo";
-        $actionResult->actionResult = new ViewActionResult('Index', $viewModel, __FILE__);
-        return $actionResult;
+        $actionResult->content = new View('Index', $viewModel, __FILE__);
+
+        return $this->baseLayout($actionResult);
     }
 }
