@@ -38,7 +38,7 @@ class CookieDemoController extends BaseLayoutController
 
         $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Cookie Demo";
-        $actionResult->content = new ViewActionResult('Index', $viewModel, __FILE__);
+        $actionResult->content = new View('Index', $viewModel, __FILE__);
 
         return $this->baseLayout($actionResult);
     }
@@ -51,7 +51,7 @@ class CookieDemoController extends BaseLayoutController
     {
         $name = $request->parameters->post('txtName');
         $this->_cookieService->set('name', $name, null, '/CookieDemo/');
-        $this->_navigationService->redirectSection(array('CookieDemo'));
+        $this->_navigationService->redirectBack();
 
         return null;
     }
@@ -62,7 +62,7 @@ class CookieDemoController extends BaseLayoutController
     public function deleteName()
     {
         $this->_cookieService->delete('name', '/CookieDemo/');
-        $this->_navigationService->redirectSection(array('CookieDemo'));
+        $this->_navigationService->redirectBack();
 
         return null;
     }
