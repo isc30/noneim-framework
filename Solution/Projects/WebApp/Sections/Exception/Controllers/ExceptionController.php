@@ -34,7 +34,9 @@ class ExceptionController extends BaseLayoutController
 
         $layoutViewModel = new BaseLayoutContentViewModel();
         $layoutViewModel->title = 'WOOPS';
-        $layoutViewModel->content = new View('Exception', $viewModel, __FILE__);
+        $layoutViewModel->content = RuntimeConfiguration::$debug
+                                        ? new View('DebugException', $viewModel, __FILE__)
+                                        : new View('Exception', $viewModel, __FILE__);
 
         return $this->baseLayout($layoutViewModel);
     }
