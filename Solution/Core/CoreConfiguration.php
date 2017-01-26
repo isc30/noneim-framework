@@ -15,6 +15,8 @@ class CoreConfiguration implements IConfiguration
      *      0 - stable
      *      1 - alpha
      *      2 - beta
+     *
+     * @var string
      **/
     public static $version = '0.9.1 alpha';
 }

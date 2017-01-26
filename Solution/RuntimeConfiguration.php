@@ -6,7 +6,9 @@
  */
 class RuntimeConfiguration implements IDefaultLazyConfiguration
 {
+    /** @var bool */
     public static $debug = true;
+    /** @var bool */
     public static $cache = false;
 
     /**

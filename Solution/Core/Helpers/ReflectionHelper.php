@@ -86,7 +86,7 @@ class ReflectionHelper implements IHelper
     {
         self::$_solutionClasses = array();
 
-        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(SolutionConfiguration::$solutionPath));
+        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(SolutionConfiguration::$solutionDir));
 
         foreach ($iterator as $file)
         {
