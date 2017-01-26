@@ -30,7 +30,7 @@ class CookieDemoController extends BaseLayoutController
     {
         if (!$this->_cookieService->exists('name'))
         {
-            $this->_cookieService->set('name', 'Default-Name', null, '/CookieDemo/');
+            $this->_cookieService->set('name', 'Default-Name');
         }
 
         $viewModel = new CookieDemoViewModel();
@@ -50,7 +50,7 @@ class CookieDemoController extends BaseLayoutController
     public function changeName(IFrameworkRequest &$request)
     {
         $name = $request->parameters->post('txtName');
-        $this->_cookieService->set('name', $name, null, '/CookieDemo/');
+        $this->_cookieService->set('name', $name);
         $this->_navigationService->redirectBack();
 
         return null;
@@ -61,7 +61,7 @@ class CookieDemoController extends BaseLayoutController
      */
     public function deleteName()
     {
-        $this->_cookieService->delete('name', '/CookieDemo/');
+        $this->_cookieService->delete('name');
         $this->_navigationService->redirectBack();
 
         return null;
