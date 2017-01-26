@@ -18,6 +18,6 @@ class WebConfiguration implements IConfiguration
     /** @var string */
     public static $subsectionSeparator = '/';
 
-    /** @var int */
+    /** @var null|int */
     public static $defaultCookieExpiration = 300; // 5 * 60
 }
