@@ -100,13 +100,54 @@ class ReflectionHelper implements IHelper
                 {
                     $className = substr($filename, 0, -4); // Remove '.php'
 
-                    $classDefinition = new ClassDefinition();
-                    $classDefinition->name = $className;
-                    $classDefinition->path = $path;
+                    if (self::containsDefinition($path, $className))
+                    {
+                        $classDefinition = new ClassDefinition();
+                        $classDefinition->name = $className;
+                        $classDefinition->path = $path;
 
-                    self::$_solutionClasses[$className] = $classDefinition;
+                        self::$_solutionClasses[$className] = $classDefinition;
+                    }
                 }
             }
         }
+    }
+
+    /**
+     * Scan source code looking for the declaration
+     * @param string $file
+     * @param string $className
+     * @return bool
+     */
+    private static function containsDefinition($file, $className)
+    {
+        $tokens = token_get_all(file_get_contents($file));
+        $waitingClassName = false;
+
+        foreach ($tokens as $token)
+        {
+            if (is_array($token))
+            {
+                $tokenName = token_name($token[0]);
+
+                if ($tokenName === 'T_CLASS' || $tokenName === 'T_INTERFACE' || $tokenName === 'T_TRAIT')
+                {
+                    $waitingClassName = true;
+                }
+                elseif ($waitingClassName && $tokenName === 'T_STRING')
+                {
+                    if ($token[1] === $className)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        $waitingClassName = false;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
