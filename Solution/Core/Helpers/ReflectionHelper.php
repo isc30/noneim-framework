@@ -10,8 +10,6 @@ class ReflectionHelper implements IHelper
     /** @var ClassDefinition[] */
     private static $_solutionClasses = null;
 
-    private static $_getImplementations = array();
-
     /**
      * @return ClassDefinition[]
      */
@@ -31,6 +29,12 @@ class ReflectionHelper implements IHelper
 
         return self::$_solutionClasses;
     }
+
+    /**
+     * GetImplementations Cache
+     * @var ClassDefinition[][]
+     */
+    private static $_getImplementations = array();
 
     /**
      * @param string $interfaceName
@@ -54,6 +58,7 @@ class ReflectionHelper implements IHelper
     }
 
     /**
+     * Find Implementations of given Interface
      * @param string $interfaceName
      * @return string[]
      */
@@ -74,9 +79,13 @@ class ReflectionHelper implements IHelper
         return $classNames;
     }
 
+    /**
+     * Iterate all dirs inside Solution and get a list of classes available
+     */
     private static function fillSolutionClasses()
     {
         self::$_solutionClasses = array();
+
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(SolutionConfiguration::$solutionPath));
 
         foreach ($iterator as $file)
