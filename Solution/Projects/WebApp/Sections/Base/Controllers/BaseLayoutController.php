@@ -36,6 +36,8 @@ class BaseLayoutController implements IController
         $viewModel->links = array
         (
             'Index' => UrlHelper::getLink(array('')),
+            'Error 404 Demo' => UrlHelper::getLink(array('TROLOLOLOL')),
+            'Internal Exception Demo' => UrlHelper::getLink(array('ExceptionDemo')),
             'Route Demo' => UrlHelper::getLink(array('RouteDemo')),
             'Cookie Demo' => UrlHelper::getLink(array('CookieDemo')),
             'Session Demo' => UrlHelper::getLink(array('SessionDemo')),
