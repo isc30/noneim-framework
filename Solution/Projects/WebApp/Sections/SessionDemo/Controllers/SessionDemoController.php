@@ -4,7 +4,7 @@
  * @package Application
  * @subpackage Controllers
  */
-class SessionDemoController implements IController
+class SessionDemoController extends BaseLayoutController
 {
     private $_sessionService;
     private $_navigationService;
@@ -36,11 +36,11 @@ class SessionDemoController implements IController
         $viewModel = new SessionDemoViewModel();
         $viewModel->name = $this->_sessionService->get('name');
 
-        $actionResult = new BasePartialActionResult();
+        $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Session Demo";
-        $actionResult->actionResult = new ViewActionResult('Index', $viewModel, __FILE__);
+        $actionResult->content = new View('Index', $viewModel, __FILE__);
 
-        return $actionResult;
+        return $this->baseLayout($actionResult);
     }
 
     /**
@@ -57,7 +57,8 @@ class SessionDemoController implements IController
             $this->_sessionService->set('name', $name);
         }
 
-        $this->_navigationService->redirectSection(array('SessionDemo'));
+        $this->_navigationService->redirectBack();
+
         return null;
     }
 
@@ -67,7 +68,7 @@ class SessionDemoController implements IController
     public function deleteName()
     {
         $this->_sessionService->delete('name');
-        $this->_navigationService->redirectSection(array('SessionDemo'));
+        $this->_navigationService->redirectBack();
 
         return null;
     }
