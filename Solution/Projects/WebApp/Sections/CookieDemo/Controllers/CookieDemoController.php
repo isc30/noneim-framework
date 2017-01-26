@@ -4,7 +4,7 @@
  * @package Application
  * @subpackage Controllers
  */
-class CookieDemoController implements IController
+class CookieDemoController extends BaseLayoutController
 {
     private $_cookieService;
     private $_navigationService;
@@ -36,11 +36,11 @@ class CookieDemoController implements IController
         $viewModel = new CookieDemoViewModel();
         $viewModel->name = $this->_cookieService->get('name');
 
-        $actionResult = new BasePartialActionResult();
+        $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Cookie Demo";
-        $actionResult->actionResult = new ViewActionResult('Index', $viewModel, __FILE__);
+        $actionResult->content = new ViewActionResult('Index', $viewModel, __FILE__);
 
-        return $actionResult;
+        return $this->baseLayout($actionResult);
     }
 
     /**
