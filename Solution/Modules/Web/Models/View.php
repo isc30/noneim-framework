@@ -17,21 +17,21 @@ class View implements IModel
      * View Constructor
      * @param string $viewPath View path
      * @param null|IModel $model ViewModel
-     * @param null|string $basePath Path where to search. Default: __FILE__
+     * @param null|string $baseDir Dir where to search. Default: __FILE__
      * @throws ViewNotFoundException
      */
-    public function __construct($viewPath, IModel $model = null, $basePath = null)
+    public function __construct($viewPath, IModel $model = null, $baseDir = null)
     {
-        if ($basePath !== null)
+        if ($baseDir !== null)
         {
-            $basePath = dirname($basePath);
+            $baseDir = dirname($baseDir);
         }
         else
         {
-            $basePath = SolutionConfiguration::$staticPath;
+            $baseDir = SolutionConfiguration::$staticDir;
         }
 
-        $view = dirname($basePath) . "/Views/{$viewPath}.phtml";
+        $view = dirname($baseDir) . "/Views/{$viewPath}.phtml";
 
         if (!file_exists($view))
         {

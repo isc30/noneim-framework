@@ -18,19 +18,19 @@ class IFramework
 
     /**
      * Load Core and run Solution
-     * @param string $solutionPath
+     * @param string $solutionDir
      * @param string $projectName
      */
-    public static function init($solutionPath, $projectName)
+    public static function init($solutionDir, $projectName)
     {
         $startTime = microtime(true);
 
         // Special requires
-        self::includeRequiredFiles($solutionPath);
+        self::includeRequiredFiles($solutionDir);
 
         // Setup main configuration
         RuntimeConfiguration::configure();
-        SolutionConfiguration::$solutionPath = $solutionPath;
+        SolutionConfiguration::$solutionDir = $solutionDir;
         SolutionConfiguration::$project = $projectName;
         SolutionConfiguration::configure();
 
@@ -101,17 +101,17 @@ class IFramework
 
     /**
      * Include initial required files
-     * @param string $solutionPath
+     * @param string $solutionDir
      */
-    private static function includeRequiredFiles($solutionPath)
+    private static function includeRequiredFiles($solutionDir)
     {
         $coreDir = dirname(__FILE__) . '/';
 
         require_once $coreDir . 'Interfaces/Markers/IConfiguration.php';
         require_once $coreDir . 'Interfaces/ILazyConfiguration.php';
         require_once $coreDir . 'Interfaces/Markers/IDefaultLazyConfiguration.php';
-        require_once $solutionPath . 'SolutionConfiguration.php';
-        require_once $solutionPath . 'RuntimeConfiguration.php';
+        require_once $solutionDir . 'SolutionConfiguration.php';
+        require_once $solutionDir . 'RuntimeConfiguration.php';
 
         require_once $coreDir . 'Interfaces/Markers/IHelper.php';
         require_once $coreDir . 'Helpers/CacheHelper.php';

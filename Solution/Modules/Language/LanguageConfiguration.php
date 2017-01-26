@@ -6,8 +6,14 @@
  */
 class LanguageConfiguration implements IDefaultLazyConfiguration
 {
+    /** @var string */
     public static $defaultLanguage = 'En';
-    public static $languagesPath;
+
+    //////////////////////////////////////////
+    // Automatic
+
+    /** @var string */
+    public static $languagesDir;
 
     /**
      * Apply Configuration
@@ -15,6 +21,6 @@ class LanguageConfiguration implements IDefaultLazyConfiguration
      */
     public static function configure()
     {
-        self::$languagesPath = SolutionConfiguration::$projectPath . 'Languages/';
+        self::$languagesDir = SolutionConfiguration::$projectDir . 'Languages/';
     }
 }

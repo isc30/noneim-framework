@@ -108,7 +108,7 @@ class CacheHelper implements IHelper
      */
     private static function getCacheDir($area)
     {
-        return SolutionConfiguration::$cachesPath . "{$area}/";
+        return SolutionConfiguration::$cachesDir . "{$area}/";
     }
 
     /**

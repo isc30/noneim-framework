@@ -6,17 +6,27 @@
  */
 class SolutionConfiguration implements IDefaultLazyConfiguration
 {
+    /** @var string */
     public static $locale = 'es_ES';
+    /** @var string */
     public static $timezone = 'Europe/Madrid';
 
-    public static $projectPath;
-    public static $staticPath;
-    public static $resourcesPath;
-    public static $cachesPath;
+    /** @var string */
+    public static $projectDir;
+    /** @var string */
+    public static $staticDir;
+    /** @var string */
+    public static $resourcesDir;
+    /** @var string */
+    public static $cachesDir;
 
+    //////////////////////////////////////////
     // Automatic
+
+    /** @var string */
     public static $project;
-    public static $solutionPath;
+    /** @var string */
+    public static $solutionDir;
 
     /**
      * Apply Configuration
@@ -24,10 +34,10 @@ class SolutionConfiguration implements IDefaultLazyConfiguration
      */
     public static function configure()
     {
-        self::$projectPath = self::$solutionPath . 'Projects/' . self::$project . '/';
-        self::$staticPath = self::$solutionPath . 'Static/';
-        self::$resourcesPath = self::$solutionPath . 'Resources/';
-        self::$cachesPath = self::$solutionPath . 'Caches/';
+        self::$projectDir = self::$solutionDir . 'Projects/' . self::$project . '/';
+        self::$staticDir = self::$solutionDir . 'Static/';
+        self::$resourcesDir = self::$solutionDir . 'Resources/';
+        self::$cachesDir = self::$solutionDir . 'Caches/';
 
         // Set locale & timezone
         if (defined('self::$locale'))
