@@ -25,7 +25,6 @@ class CoreInstaller implements IDefaultInstaller
     public function install()
     {
         $this->_installerContainer->registerDefinition('ILogService', 'LogService');
-        $this->_installerContainer->registerDefinition('IOutputBufferService', 'OutputBufferService');
         $this->_installerContainer->registerDefinition('ITimeService', 'TimeService');
     }
 }

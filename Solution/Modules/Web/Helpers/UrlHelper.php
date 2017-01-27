@@ -2,7 +2,7 @@
 
 /**
  * Navigation Helper
- * @package Core
+ * @package Modules\Web
  * @subpackage Helpers
  */
 class UrlHelper implements IHelper {
