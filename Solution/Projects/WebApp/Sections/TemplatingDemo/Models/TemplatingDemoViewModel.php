@@ -4,7 +4,7 @@
  * @package Application
  * @subpackage Models\ViewModels
  */
-class OutputBufferDemoViewModel implements IViewModel
+class TemplatingDemoViewModel implements IViewModel
 {
-    public $content;
+    public $contents;
 }

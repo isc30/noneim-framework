@@ -42,7 +42,7 @@ class BaseLayoutController implements IController
             'Cookie Demo' => UrlHelper::getLink(array('CookieDemo')),
             'Session Demo' => UrlHelper::getLink(array('SessionDemo')),
             'JSON Demo' => UrlHelper::getLink(array('JsonDemo')),
-            'OutputBuffer Demo' => UrlHelper::getLink(array('OutputBufferDemo')),
+            'Templating Demo' => UrlHelper::getLink(array('TemplatingDemo')),
         );
 
         return new View('TopMenu', $viewModel, __FILE__);
