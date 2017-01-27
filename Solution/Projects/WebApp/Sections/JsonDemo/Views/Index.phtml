@@ -1,0 +1,55 @@
+<?php /** @var null $model */ ?>
+
+<h1>JSON Demo</h1>
+<button id="btGetRandomPerson">Get Random Person</button>
+<div id="divResult"></div>
+
+<script src="<?= WebConfiguration::$webUrl ?>js/jquery-2.1.4.min.js"></script>
+<script>
+
+    var btGetRandomPerson = null;
+    var divResult = null;
+
+    window.addEventListener('DOMContentLoaded', function()
+    {
+        btGetRandomPerson = document.getElementById('btGetRandomPerson');
+        divResult = document.getElementById('divResult');
+        btGetRandomPerson.addEventListener('click', getRandomPerson);
+    });
+
+    function getRandomPerson()
+    {
+        $.getJSON("<?= UrlHelper::getLink(array('JsonDemo', 'GetRandomPerson')) ?>", function(result)
+        {
+            var html = "";
+            html += "<p>Name: <strong>" + result.name + " " + result.surname + "<\/strong><\/p>";
+            html += "<p>City: <strong>" + result.city + "<\/strong><\/p>";
+            html += "<p>Hobbies:<ul>";
+            for (var i = 0; i < result.hobbies.length; i++)
+            {
+                html += "<li>" + result.hobbies[i] + "<\/li>";
+            }
+            html += "<\/ul><\/p>";
+
+            html += "<h3>Friends (" + result.friends.length + ")<\/h3>";
+            html += "<ul>";
+            for (var i = 0; i < result.friends.length; i++)
+            {
+                var friend = result.friends[i];
+                html += "<li><p>Name: <strong>" + friend.name + " " + friend.surname + "<\/strong><\/p>";
+                html += "<p>City: <strong>" + friend.city + "<\/strong><\/p>";
+                html += "<p>Hobbies:<ul>";
+                for (var j = 0; j < friend.hobbies.length; j++)
+                {
+                    html += "<li>" + friend.hobbies[j] + "<\/li>";
+                }
+                html += "<\/ul><\/p><\/li>";
+            }
+            html += "<\/ul>";
+
+            html += "<p>Received: <strong>" + JSON.stringify(result) + "<\/strong><\/p>";
+            divResult.innerHTML = html;
+        });
+    }
+
+</script>
