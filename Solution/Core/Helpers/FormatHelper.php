@@ -45,6 +45,7 @@ class FormatHelper implements IHelper
     /**
      * Clean the array elements for correct output
      * @param string[] &$values Value array
+     * @return string[]
      */
     public static function cleanOutputArray(array &$values)
     {
@@ -59,6 +60,8 @@ class FormatHelper implements IHelper
                 self::cleanOutputArray($value);
             }
         }
+
+        return $values;
     }
 
     public static function minimizeHtml($buffer)
