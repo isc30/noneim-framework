@@ -73,7 +73,7 @@ class WebApp implements IProject
             $this->_routeContainer->register(array('JsonDemo'), 'JsonDemoController');
             $this->_routeContainer->register(array('JsonDemo', 'GetRandomPerson'), 'JsonDemoController', 'getRandomPerson');
 
-            $this->_routeContainer->register(array('OutputBufferDemo'), 'OutputBufferDemoController');
+            $this->_routeContainer->register(array('TemplatingDemo'), 'TemplatingDemoController');
 
             $this->_routeContainer->register(array('RouteDemo'), 'RouteDemoController', 'topics');
             $this->_routeContainer->register(array('RouteDemo', '{topicId}'), 'RouteDemoController', 'subTopics');
