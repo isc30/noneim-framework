@@ -82,16 +82,22 @@ class CacheHelper implements IHelper
                 $cache = serialize($value);
             }
 
-            static $permissionCode = 0664;
+            static $permissionCode = 0774;
+
+            $oldmask = umask(0); // Avoid readonly folder
 
             // Create folder if not exists
             if (!file_exists($cacheDir))
             {
                 mkdir($cacheDir, $permissionCode, true);
+                chmod($cacheDir, $permissionCode);
             }
 
+            // Create file
             file_put_contents($cachePath, $cache);
             chmod($cachePath, $permissionCode);
+
+            umask($oldmask); // Restore default configuration
 
             return true;
         }
