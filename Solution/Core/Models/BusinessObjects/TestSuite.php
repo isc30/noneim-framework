@@ -11,8 +11,6 @@ class TestSuite implements IModel {
     private $classFactory;
     /** @var IContextService */
     private $contextService;
-    /** @var IOutputBufferService */
-    private $outputBufferService;
     /** @var ITimeService */
     private $timeService;
     
@@ -28,18 +26,15 @@ class TestSuite implements IModel {
      * TestSuite Constructor
      * @param IClassFactory $classFactory
      * @param IContextService $contextService
-     * @param IOutputBufferService $outputBufferService
      * @param ITimeService $timeService
      */
     public function __construct(
         IClassFactory $classFactory,
         IContextService $contextService,
-        IOutputBufferService $outputBufferService,
         ITimeService $timeService
     ) {
         $this->classFactory = $classFactory;
         $this->contextService = $contextService;
-        $this->outputBufferService = $outputBufferService;
         $this->timeService = $timeService;
         $this->testClasses = array();
         
@@ -109,13 +104,15 @@ class TestSuite implements IModel {
                 
                 try {
                     
-                    for ($i = 0; $i < TestingConfiguration::repetitions; ++$i) {
+                    for ($i = 0; $i < 10; ++$i) { // 10 repetitions
                         
                         $this->contextService->set($this->emptyContext);
-                        
-                        $this->outputBufferService->start();
-                        $method->invoke($instance);
-                        $this->outputBufferService->end();
+
+                        OutputBufferHelper::start();
+                        {
+                            $method->invoke($instance);
+                        }
+                        OutputBufferHelper::end();
                         
                     }
 

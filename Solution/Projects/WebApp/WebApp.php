@@ -8,24 +8,19 @@ class WebApp implements IProject
 {
     /** @var IRouteContainer */
     private $_routeContainer;
-    /** @var IOutputBufferService */
-    private $_outputBufferService;
     /** @var IHeaderService */
     private $_headerService;
 
     /**
      * WebApp Constructor
      * @param IRouteContainer $routeContainer
-     * @param IOutputBufferService $outputBufferService
      * @param IHeaderService $headerService
      */
     public function __construct(
         IRouteContainer $routeContainer,
-        IOutputBufferService $outputBufferService,
         IHeaderService $headerService)
     {
         $this->_routeContainer = $routeContainer;
-        $this->_outputBufferService = $outputBufferService;
         $this->_headerService = $headerService;
     }
 
@@ -46,9 +41,11 @@ class WebApp implements IProject
                 $this->_headerService->set('Content-Type', 'application/json');
             }
 
-            $this->_outputBufferService->start('FormatHelper::minimizeHtml');
-            $actionResult->render();
-            $this->_outputBufferService->flushContent();
+            OutputBufferHelper::start('FormatHelper::minimizeHtml');
+            {
+                $actionResult->render();
+            }
+            OutputBufferHelper::flushAndEnd();
         }
     }
 
