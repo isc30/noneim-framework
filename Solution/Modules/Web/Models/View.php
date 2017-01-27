@@ -53,4 +53,20 @@ class View implements IModel
         /** @noinspection PhpIncludeInspection */
         require $this->view;
     }
+
+    /**
+     * Render to string
+     * @return string
+     */
+    public function renderToString()
+    {
+        OutputBufferHelper::start();
+        {
+            $this->render();
+            $content = OutputBufferHelper::getContent();
+        }
+        OutputBufferHelper::end();
+
+        return $content;
+    }
 }
