@@ -29,5 +29,6 @@ class WebModuleInstaller implements IDefaultInstaller
         $this->_installerContainer->registerDefinition('ICookieService', 'CookieService');
         $this->_installerContainer->registerDefinition('IHeaderService', 'HeaderService');
         $this->_installerContainer->registerDefinition('IRequestService', 'RequestService');
+        $this->_installerContainer->registerDefinition('IActionResultService', 'ActionResultService');
     }
 }

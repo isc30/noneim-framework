@@ -5,10 +5,10 @@
  * @package Core
  * @subpackage Models\ActionResults
  */
-class ViewActionResult implements IActionResult {
-
+class ViewActionResult extends ActionResult
+{
     /** @var View */
-    private $view;
+    private $_view;
 
     /**
      * ViewActionResult Constructor
@@ -17,19 +17,16 @@ class ViewActionResult implements IActionResult {
      * @param null|string $baseDir Path where to search
      * @throws ViewNotFoundException
      */
-    public function __construct($viewPath, IModel $model = null, $baseDir = null) {
-        
-        $this->view = new View($viewPath, $model, $baseDir);
-        
+    public function __construct($viewPath, IModel $model = null, $baseDir = null)
+    {
+        $this->_view = new View($viewPath, $model, $baseDir);
     }
-    
+
     /**
      * Render content
      */
-    public function render() {
-        
-        $this->view->render();
-        
+    public function render()
+    {
+        $this->_view->render();
     }
-    
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ViewActionResult not found Exception
+ * View not found Exception
  * @package Core
  * @subpackage Exceptions
  */

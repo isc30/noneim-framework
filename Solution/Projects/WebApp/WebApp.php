@@ -8,20 +8,20 @@ class WebApp implements IProject
 {
     /** @var IRouteContainer */
     private $_routeContainer;
-    /** @var IHeaderService */
-    private $_headerService;
+    /** @var IActionResultService */
+    private $_actionResultService;
 
     /**
      * WebApp Constructor
      * @param IRouteContainer $routeContainer
-     * @param IHeaderService $headerService
+     * @param IActionResultService $actionResultService
      */
     public function __construct(
         IRouteContainer $routeContainer,
-        IHeaderService $headerService)
+        IActionResultService $actionResultService)
     {
         $this->_routeContainer = $routeContainer;
-        $this->_headerService = $headerService;
+        $this->_actionResultService = $actionResultService;
     }
 
     /**
@@ -34,19 +34,7 @@ class WebApp implements IProject
         $request = new IFrameworkRequest();
         $actionResult = $this->_routeContainer->resolve($request);
 
-        if ($actionResult !== null)
-        {
-            if ($actionResult instanceof JsonActionResult)
-            {
-                $this->_headerService->set('Content-Type', 'application/json');
-            }
-
-            OutputBufferHelper::start('FormatHelper::minimizeHtml');
-            {
-                $actionResult->render();
-            }
-            OutputBufferHelper::flushAndEnd();
-        }
+        $this->_actionResultService->render($actionResult);
     }
 
     /**
