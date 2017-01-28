@@ -9,7 +9,7 @@ class IndexController extends BaseLayoutController
 {
     /**
      * Default Action
-     * @return IActionResult
+     * @return ActionResult
      */
     public function index()
     {

@@ -13,7 +13,7 @@ class BaseLayoutController implements IController
     /**
      * Default Page
      * @param BaseLayoutContentViewModel $contentViewModel
-     * @return IActionResult
+     * @return ActionResult
      */
     protected function baseLayout(BaseLayoutContentViewModel $contentViewModel)
     {
