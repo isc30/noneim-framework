@@ -8,7 +8,7 @@ class TemplatingDemoController extends BaseLayoutController
 {
     /**
      * Default Action
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function index()
     {

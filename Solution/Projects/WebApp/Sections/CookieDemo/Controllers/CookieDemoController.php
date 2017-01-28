@@ -24,7 +24,7 @@ class CookieDemoController extends BaseLayoutController
 
     /**
      * Default Action
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function index()
     {
@@ -45,7 +45,7 @@ class CookieDemoController extends BaseLayoutController
 
     /**
      * @param IFrameworkRequest &$request
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function changeName(IFrameworkRequest &$request)
     {
@@ -57,7 +57,7 @@ class CookieDemoController extends BaseLayoutController
     }
 
     /**
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function deleteName()
     {

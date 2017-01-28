@@ -24,7 +24,7 @@ class SessionDemoController extends BaseLayoutController
 
     /**
      * Default Action
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function index()
     {
@@ -45,7 +45,7 @@ class SessionDemoController extends BaseLayoutController
 
     /**
      * @param IFrameworkRequest $request
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function changeName(IFrameworkRequest &$request)
     {
@@ -63,7 +63,7 @@ class SessionDemoController extends BaseLayoutController
     }
 
     /**
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function deleteName()
     {

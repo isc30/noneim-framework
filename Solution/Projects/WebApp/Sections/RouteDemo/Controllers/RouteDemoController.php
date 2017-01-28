@@ -7,7 +7,7 @@
 class RouteDemoController extends BaseLayoutController
 {
     /**
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function topics()
     {
@@ -36,7 +36,7 @@ class RouteDemoController extends BaseLayoutController
 
     /**
      * @param int $topicId
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function subTopics($topicId)
     {
@@ -76,7 +76,7 @@ class RouteDemoController extends BaseLayoutController
      * @param int $topicId
      * @param int $subtopicId
      * @param null|int $messageId
-     * @return null|IActionResult
+     * @return null|ActionResult
      */
     public function subTopicMessages($topicId, $subtopicId, $messageId = null)
     {
