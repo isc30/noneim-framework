@@ -24,7 +24,7 @@ class NavigationService implements INavigationService
      */
     public function redirect($url)
     {
-        $this->_headerService->set('Location', $url);
+        $this->_headerService->set(HeaderType::Location, $url);
     }
 
     /**
@@ -32,7 +32,7 @@ class NavigationService implements INavigationService
      */
     public function redirectBack()
     {
-        $referer = $this->_headerService->get('Referer');
+        $referer = $this->_headerService->get(HeaderType::Referer);
         
         if (!ValidationHelper::isNullOrEmpty($referer))
         {
@@ -47,7 +47,7 @@ class NavigationService implements INavigationService
      */
     public function redirectIn($url, $seconds)
     {
-        $this->_headerService->set('Refresh', "{$seconds}; url={$url}");
+        $this->_headerService->set(HeaderType::Refresh, "{$seconds}; url={$url}");
     }
 
     /**

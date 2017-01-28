@@ -35,7 +35,7 @@ interface IRouteContainer extends IContainer {
     /**
      * Resolve request and follow rute
      * @param IFrameworkRequest $request
-     * @return IActionResult
+     * @return ActionResult
      */
     public function resolve(IFrameworkRequest $request);
     

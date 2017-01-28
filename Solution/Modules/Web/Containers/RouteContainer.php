@@ -113,7 +113,7 @@ class RouteContainer implements IRouteContainer, ICacheable
     /**
      * Resolve request and follow rute
      * @param IFrameworkRequest $request
-     * @return IActionResult
+     * @return ActionResult
      */
     public function resolve(IFrameworkRequest $request)
     {
