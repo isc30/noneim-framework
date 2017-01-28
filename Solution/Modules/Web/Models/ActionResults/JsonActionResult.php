@@ -5,28 +5,25 @@
  * @package Core
  * @subpackage Models\ActionResults
  */
-class JsonActionResult implements IActionResult {
-
+class JsonActionResult extends ActionResult
+{
     /** @var string */
-    private $jsonString;
+    private $_jsonString;
 
     /**
      * JsonActionResult Constructor
      * @param null|array|IModel $item
      */
-    public function __construct($item) {
-
-        $this->jsonString = json_encode($item);
-
+    public function __construct($item)
+    {
+        $this->_jsonString = json_encode($item);
     }
 
     /**
      * Render content
      */
-    public function render() {
-
-        echo $this->jsonString;
-
+    public function render()
+    {
+        echo $this->_jsonString;
     }
-
 }

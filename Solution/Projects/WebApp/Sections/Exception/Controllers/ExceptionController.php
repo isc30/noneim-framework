@@ -6,28 +6,14 @@
  */
 class ExceptionController extends BaseLayoutController
 {
-    /** @var IHeaderService */
-    private $_headerService;
-
-    /**
-     * ExceptionController Constructor
-     * @param IHeaderService $headerService
-     */
-    public function __construct(IHeaderService $headerService)
-    {
-        $this->_headerService = $headerService;
-    }
-
     /**
      * Main Action
      * @param IFrameworkRequest $request
      * @param Exception $ex
-     * @return IActionResult
+     * @return ActionResult
      */
     public function index(IFrameworkRequest $request, Exception $ex)
     {
-        $this->_headerService->setResponseCode(500);
-
         $viewModel = new ExceptionViewModel();
         $viewModel->request = FormatHelper::cleanOutput($request->section);
         $viewModel->exception = $ex;
@@ -38,6 +24,9 @@ class ExceptionController extends BaseLayoutController
                                         ? new View('DebugException', $viewModel, __FILE__)
                                         : new View('Exception', $viewModel, __FILE__);
 
-        return $this->baseLayout($layoutViewModel);
+        $actionResult = $this->baseLayout($layoutViewModel);
+        $actionResult->responseCode = 500;
+
+        return $actionResult;
     }
 }

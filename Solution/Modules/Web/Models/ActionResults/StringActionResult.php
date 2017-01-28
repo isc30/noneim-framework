@@ -5,28 +5,25 @@
  * @package Core
  * @subpackage Models\ActionResults
  */
-class StringActionResult implements IActionResult {
-
+class StringActionResult extends ActionResult
+{
     /** @var string */
-    private $text;
+    private $_text;
 
     /**
      * StringActionResult Constructor
      * @param null|string $text
      */
-    public function __construct($text) {
-
-        $this->text = $text;
-
+    public function __construct($text)
+    {
+        $this->_text = $text;
     }
 
     /**
      * Render content
      */
-    public function render() {
-
-        echo $this->text;
-
+    public function render()
+    {
+        echo $this->_text;
     }
-
 }
