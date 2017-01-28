@@ -56,5 +56,17 @@ class ActionResultService implements IActionResultService
         {
             $this->_headerService->set(HeaderType::ContentType, MimeType::Json);
         }
+
+        if ($actionResult instanceof RedirectActionResult)
+        {
+            if ($actionResult->isSection())
+            {
+                $this->_navigationService->redirectSection($actionResult->urlOrSection, $actionResult->waitSeconds);
+            }
+            else
+            {
+                $this->_navigationService->redirect($actionResult->urlOrSection, $actionResult->waitSeconds);
+            }
+        }
     }
 }

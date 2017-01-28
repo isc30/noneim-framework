@@ -18,54 +18,31 @@ class NavigationService implements INavigationService
     {
         $this->_headerService = $headerService;
     }
+
     /**
      * Redirect to url
      * @param string $url
+     * @param int $waitSeconds
      */
-    public function redirect($url)
+    public function redirect($url, $waitSeconds = 0)
     {
-        $this->_headerService->set(HeaderType::Location, $url);
-    }
-
-    /**
-     * Redirect to previous page
-     */
-    public function redirectBack()
-    {
-        $referer = $this->_headerService->get(HeaderType::Referer);
-        
-        if (!ValidationHelper::isNullOrEmpty($referer))
+        if ($waitSeconds > 0)
         {
-            $this->redirect($referer);
+            $this->_headerService->set(HeaderType::Refresh, "{$waitSeconds}; url={$url}");
+        }
+        else
+        {
+            $this->_headerService->set(HeaderType::Location, $url);
         }
     }
 
     /**
-     * Redirect to url in X seconds
-     * @param string $url
-     * @param number $seconds
-     */
-    public function redirectIn($url, $seconds)
-    {
-        $this->_headerService->set(HeaderType::Refresh, "{$seconds}; url={$url}");
-    }
-
-    /**
      * Redirect to section
-     * @param string[] $sections
+     * @param string[] $section
+     * @param int $waitSeconds
      */
-    public function redirectSection(array $sections)
+    public function redirectSection(array $section, $waitSeconds = 0)
     {
-        $this->redirect(UrlHelper::getLink($sections));
-    }
-
-    /**
-     * Redirect to section in X seconds
-     * @param string[] $sections
-     * @param number $seconds
-     */
-    public function redirectSectionIn(array $sections, $seconds)
-    {
-        $this->redirectIn(UrlHelper::getLink($sections), $seconds);
+        $this->redirect(UrlHelper::getLink($section), $waitSeconds);
     }
 }

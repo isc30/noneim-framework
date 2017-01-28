@@ -5,37 +5,19 @@
  * @package Core
  * @subpackage Interfaces
  */
-interface INavigationService extends IService {
-
+interface INavigationService extends IService
+{
     /**
      * Redirect to url
      * @param string $url
+     * @param int $waitSeconds
      */
-    public function redirect($url);
-
-    /**
-     * Redirect to previous page
-     */
-    public function redirectBack();
-
-    /**
-     * Redirect to url in X seconds
-     * @param string $url
-     * @param number $seconds
-     */
-    public function redirectIn($url, $seconds);
+    public function redirect($url, $waitSeconds = 0);
 
     /**
      * Redirect to section
-     * @param string[] $sections
+     * @param string[] $section
+     * @param int $waitSeconds
      */
-    public function redirectSection(array $sections);
-
-    /**
-     * Redirect to section in X seconds
-     * @param string[] $sections
-     * @param number $seconds
-     */
-    public function redirectSectionIn(array $sections, $seconds);
-
+    public function redirectSection(array $section, $waitSeconds = 0);
 }
