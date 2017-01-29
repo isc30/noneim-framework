@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Cacheable Interface
+ */
 interface ICacheable {
     
     /**

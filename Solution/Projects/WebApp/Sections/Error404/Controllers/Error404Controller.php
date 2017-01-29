@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Error 404 Controller
+ */
 class Error404Controller extends BaseLayoutController
 {
     /**

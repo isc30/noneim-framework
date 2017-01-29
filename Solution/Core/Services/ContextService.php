@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Context Service
+ */
 class ContextService implements IContextService {
 
     /** @var ITimeService */

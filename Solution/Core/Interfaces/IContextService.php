@@ -1,6 +1,9 @@
 <?php
 
-interface IContextService extends IService {
+/**
+ * ContextService Interface
+ */
+interface IContextService {
 
     /**
      * Return current Context

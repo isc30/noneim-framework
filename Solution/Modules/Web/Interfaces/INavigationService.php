@@ -1,6 +1,9 @@
 <?php
 
-interface INavigationService extends IService
+/**
+ * NavigationService Interface
+ */
+interface INavigationService
 {
     /**
      * Redirect to url

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * IFrameworkRequest Parameters
+ */
 class IFrameworkRequestParameters
 {
     private $get;

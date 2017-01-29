@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * BaseLayout Content ViewModel
+ */
 class BaseLayoutContentViewModel implements IViewModel
 {
     /** @var string */

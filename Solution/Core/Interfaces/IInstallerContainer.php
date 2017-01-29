@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * InstallerContainer Interface
+ */
 interface IInstallerContainer extends IContainer
 {
     /**

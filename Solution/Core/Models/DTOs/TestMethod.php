@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * TestMethod
+ */
 class TestMethod implements IModel {
 
     /** @var string */

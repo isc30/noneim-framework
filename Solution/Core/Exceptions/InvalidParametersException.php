@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * InvalidParameters Exception
+ */
 class InvalidParametersException extends Exception {
 
     /**

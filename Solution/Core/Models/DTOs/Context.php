@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Context
+ */
 class Context implements IModel {
 
     /** @var float */

@@ -1,6 +1,9 @@
 <?php
 
-class WebModuleInstaller implements IDefaultInstaller
+/**
+ * Web Installer
+ */
+class WebInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * DatabaseConnection Exception
+ */
 class DatabaseConnectionException extends Exception
 {
     /**

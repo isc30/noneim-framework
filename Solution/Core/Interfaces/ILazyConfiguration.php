@@ -1,6 +1,9 @@
 <?php
 
-interface ILazyConfiguration extends IConfiguration
+/**
+ * LazyConfiguration Interface
+ */
+interface LazyConfiguration extends IConfiguration
 {
     /**
      * Apply Configuration

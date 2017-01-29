@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Top Menu ViewModel
+ */
 class TopMenuViewModel implements IViewModel
 {
     /**

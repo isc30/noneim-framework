@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * InvalidOperation Exception
+ */
 class InvalidOperationException extends Exception {
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * PropertyNotFound Exception
+ */
 class PropertyNotFoundException extends Exception {
 
     /**

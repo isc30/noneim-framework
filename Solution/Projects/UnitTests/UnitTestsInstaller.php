@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * UnitTests Installer
+ */
 class UnitTestsInstaller implements IProjectInstaller
 {
     private $_installerContainer;

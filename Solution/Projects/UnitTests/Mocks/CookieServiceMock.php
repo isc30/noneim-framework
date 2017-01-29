@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * CookieService Mock
+ */
 class CookieServiceMock implements ICookieService
 {
     /**

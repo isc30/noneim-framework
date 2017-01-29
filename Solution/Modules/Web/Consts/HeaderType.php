@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Header Type
+ */
 class HeaderType
 {
     const ContentType = 'Content-Type';

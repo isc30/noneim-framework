@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * WebApp Installer
+ */
 class WebAppInstaller implements IProjectInstaller
 {
     /** @var IInstallerContainer */

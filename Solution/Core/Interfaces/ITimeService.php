@@ -1,6 +1,9 @@
 <?php
 
-interface ITimeService extends IService {
+/**
+ * TimeService Interface
+ */
+interface ITimeService {
 
     /**
      * Return current Microtime

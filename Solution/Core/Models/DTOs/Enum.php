@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Enum
+ */
 class Enum
 {
     /** @var int */

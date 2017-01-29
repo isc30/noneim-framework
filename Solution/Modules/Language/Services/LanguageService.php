@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Language Service
+ */
 class LanguageService implements ILanguageService
 {
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * BaseLayout Controller
+ */
 class BaseLayoutController implements IController
 {
     /** @var string */

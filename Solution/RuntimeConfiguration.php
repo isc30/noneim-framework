@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Runtime Configuration
+ */
 class RuntimeConfiguration implements IDefaultLazyConfiguration
 {
     /** @var bool */

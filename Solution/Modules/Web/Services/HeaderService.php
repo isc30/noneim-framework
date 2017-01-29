@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Header Service
+ */
 class HeaderService implements IHeaderService {
 
     /**
