@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * View
+ */
 class View implements IModel
 {
     /** @var string */

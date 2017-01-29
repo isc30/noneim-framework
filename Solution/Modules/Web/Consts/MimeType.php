@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Mime Type
+ */
 class MimeType
 {
     const Aac = 'audio/aac';

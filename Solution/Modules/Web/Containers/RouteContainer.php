@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Route Container
+ */
 class RouteContainer implements IRouteContainer, ICacheable
 {
     /** @var IClassFactory */

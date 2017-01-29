@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class DependencyNotFoundException
+ */
 class DependencyNotFoundException extends Exception {
 
     /**

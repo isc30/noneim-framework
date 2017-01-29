@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * IFramework
+ */
 class IFramework
 {
     /** @var float */

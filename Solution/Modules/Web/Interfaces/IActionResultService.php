@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ActionResultService Interface
+ */
 interface IActionResultService
 {
     /**

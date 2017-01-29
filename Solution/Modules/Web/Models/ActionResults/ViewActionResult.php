@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * View ActionResult
+ */
 class ViewActionResult extends ActionResult
 {
     /** @var View */

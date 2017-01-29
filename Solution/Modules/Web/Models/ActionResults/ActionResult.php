@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ActionResult
+ */
 abstract class ActionResult
 {
     /** @var null|int */

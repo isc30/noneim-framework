@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * IFramework Request
+ */
 class IFrameworkRequest
 {
     public $section;

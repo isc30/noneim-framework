@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Assertion Helper
+ */
 class AssertionHelper implements IHelper {
 
     /**

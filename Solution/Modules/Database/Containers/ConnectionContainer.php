@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Connection Container
+ */
 class ConnectionContainer implements IConnectionContainer
 {
     /** @var PDOExtension */

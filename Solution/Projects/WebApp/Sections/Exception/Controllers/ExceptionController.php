@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Exception Controller
+ */
 class ExceptionController extends BaseLayoutController
 {
     /**

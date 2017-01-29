@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ClassFactory Interface
+ */
 interface IClassFactory extends IFactory
 {
     /**

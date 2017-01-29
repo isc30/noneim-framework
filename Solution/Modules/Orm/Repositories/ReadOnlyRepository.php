@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ReadOnly Repository
+ */
 abstract class ReadOnlyRepository
 {
     /** @var IConnectionContainer */

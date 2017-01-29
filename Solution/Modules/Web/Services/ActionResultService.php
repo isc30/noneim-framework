@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ActionResult Service
+ */
 class ActionResultService implements IActionResultService
 {
     private $_headerService;

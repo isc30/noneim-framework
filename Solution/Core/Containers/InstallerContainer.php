@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Installer Container
+ */
 class InstallerContainer implements IInstallerContainer, ICacheable
 {
     /** @var IClassFactory */

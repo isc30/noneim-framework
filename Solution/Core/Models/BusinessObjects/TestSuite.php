@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Test Suite
+ */
 class TestSuite implements IModel {
 
     /** @var IClassFactory */

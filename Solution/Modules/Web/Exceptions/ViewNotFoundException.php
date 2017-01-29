@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ViewNotFound Exception
+ */
 class ViewNotFoundException extends Exception {
 
     /**

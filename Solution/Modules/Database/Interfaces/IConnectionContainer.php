@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ConnectionContainer Interface
+ */
 interface IConnectionContainer extends IContainer
 {
     /**

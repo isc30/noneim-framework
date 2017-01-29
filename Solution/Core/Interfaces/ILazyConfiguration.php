@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * LazyConfiguration Interface
+ */
 interface ILazyConfiguration extends IConfiguration
 {
     /**

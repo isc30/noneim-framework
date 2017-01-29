@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Cache Helper
+ */
 class CacheHelper implements IHelper
 {
     /**

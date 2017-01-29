@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * SqlParameter
+ */
 class SqlParameter
 {
     const BOOL = PDO::PARAM_BOOL;

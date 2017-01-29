@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Array Helper
+ */
 class ArrayHelper implements IHelper
 {
     /**

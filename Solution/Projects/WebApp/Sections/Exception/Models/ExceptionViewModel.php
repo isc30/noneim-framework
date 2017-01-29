@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Exception ViewModel
+ */
 class ExceptionViewModel implements IViewModel
 {
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Redirect ActionResult
+ */
 class RedirectActionResult extends ActionResult
 {
     /** @var string|string[] */

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Session Service
+ */
 class SessionService implements ISessionService {
 
     /** @var bool */

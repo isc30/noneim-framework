@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Database Installer
+ */
 class DatabaseInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */

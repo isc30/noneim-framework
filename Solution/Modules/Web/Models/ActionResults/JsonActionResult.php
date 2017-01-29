@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Json ActionResult
+ */
 class JsonActionResult extends ActionResult
 {
     /** @var string */
