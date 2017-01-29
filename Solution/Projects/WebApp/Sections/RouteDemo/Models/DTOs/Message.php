@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Message
+ */
 class Message
 {
     public $user;

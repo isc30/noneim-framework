@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Templating Demo Controller
+ */
 class TemplatingDemoController extends BaseLayoutController
 {
     /**

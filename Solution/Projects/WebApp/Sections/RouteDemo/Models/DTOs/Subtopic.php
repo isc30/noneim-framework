@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Subtopic
+ */
 class Subtopic
 {
     public $title;

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Json Demo Controller
+ */
 class JsonDemoController extends BaseLayoutController
 {
     /**

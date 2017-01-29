@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Topic ViewModel
+ */
 class TopicViewModel implements IViewModel
 {
     public $title;

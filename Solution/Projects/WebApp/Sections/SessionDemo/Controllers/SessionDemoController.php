@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Session Demo Controller
+ */
 class SessionDemoController extends BaseLayoutController
 {
     private $_sessionService;
