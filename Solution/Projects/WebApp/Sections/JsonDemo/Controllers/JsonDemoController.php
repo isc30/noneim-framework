@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Controllers
- */
 class JsonDemoController extends BaseLayoutController
 {
     /**

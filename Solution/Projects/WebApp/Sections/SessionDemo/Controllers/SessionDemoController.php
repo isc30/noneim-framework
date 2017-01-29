@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Controllers
- */
 class SessionDemoController extends BaseLayoutController
 {
     private $_sessionService;

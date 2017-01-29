@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Models\DTOs
- */
 class Topic
 {
     public $title;

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Models\ViewModels
- */
 class TopicViewModel implements IViewModel
 {
     public $title;

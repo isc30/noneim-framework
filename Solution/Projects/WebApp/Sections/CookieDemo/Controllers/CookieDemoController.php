@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Controllers
- */
 class CookieDemoController extends BaseLayoutController
 {
     private $_cookieService;
