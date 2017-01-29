@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Context
- * @package Core
- * @subpackage Models\DTOs
- */
 class Context implements IModel {
 
     /** @var float */

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * ContextService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface IContextService extends IService {
 
     /**

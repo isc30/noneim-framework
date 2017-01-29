@@ -1,9 +1,5 @@
 <?php
 
-/**
- * IFramework
- * @package Core
- */
 class IFramework
 {
     /** @var float */

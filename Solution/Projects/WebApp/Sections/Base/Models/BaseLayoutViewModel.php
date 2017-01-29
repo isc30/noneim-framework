@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Base Layout ViewModel
- * @package Application
- * @subpackage Models\ViewModels
- */
 class BaseLayoutViewModel implements IViewModel
 {
     /** @var string */

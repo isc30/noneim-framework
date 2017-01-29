@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Invalid operation Exception
- * @package Core
- * @subpackage Exceptions
- */
 class InvalidOperationException extends Exception {
 
     /**

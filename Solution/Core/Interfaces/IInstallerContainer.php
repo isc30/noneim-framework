@@ -1,10 +1,5 @@
 <?php
 
-/**
- * InstallerContainer Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface IInstallerContainer extends IContainer
 {
     /**

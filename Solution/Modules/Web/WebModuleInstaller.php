@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Web Module Installer
- * @package Modules\Web
- */
 class WebModuleInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */

@@ -1,7 +1,5 @@
 <?php
 
-// PDOExtension dependency
-// TODO: Strong Refactoring
 class SqlParameter
 {
     const BOOL = PDO::PARAM_BOOL;

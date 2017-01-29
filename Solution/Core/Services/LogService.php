@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Log Service
- * @package Core
- * @subpackage Services
- */
 class LogService implements ILogService {
     
     /** @var array[] */

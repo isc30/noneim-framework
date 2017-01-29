@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: isc
- * Date: 8/4/16
- * Time: 1:54 PM
- */
 class IFrameworkRequest
 {
     public $section;

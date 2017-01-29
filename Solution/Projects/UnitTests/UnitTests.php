@@ -1,9 +1,5 @@
 <?php
 
-/**
- * UnitTests Project
- * @package UnitTests
- */
 class UnitTests implements IProject
 {
     private $_cookieService;

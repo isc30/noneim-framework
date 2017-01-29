@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Language Module Configuration
- * @package Modules\Language
- */
 class LanguageConfiguration implements IDefaultLazyConfiguration
 {
     /** @var string */

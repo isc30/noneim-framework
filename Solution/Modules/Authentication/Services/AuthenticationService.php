@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Authentication Service
- * @package Modules\Authentication
- * @subpackage Containers
- */
 abstract class AuthenticationService implements IAuthenticationServiceBase
 {
     /** @var ISessionService */

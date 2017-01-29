@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Cookie Service
- * @package Core
- * @subpackage Services
- */
 class CookieService implements ICookieService
 {
     /**

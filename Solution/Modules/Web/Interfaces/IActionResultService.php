@@ -1,10 +1,5 @@
 <?php
 
-/**
- * ActionResultService Interface
- * @package Modules\Web
- * @subpackage Interfaces
- */
 interface IActionResultService
 {
     /**

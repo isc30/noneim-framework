@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Authentication Module Installer
- * @package Modules\Authentication
- */
 class AuthenticationInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */

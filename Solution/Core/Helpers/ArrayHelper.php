@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Array Helper
- * @package Core
- * @subpackage Helpers
- */
 class ArrayHelper implements IHelper
 {
     /**

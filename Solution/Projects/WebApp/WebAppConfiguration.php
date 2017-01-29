@@ -1,9 +1,5 @@
 <?php
 
-/**
- * WebApp Project Configuration
- * @package WebApp
- */
 class WebAppConfiguration implements IProjectLazyConfiguration
 {
     /**

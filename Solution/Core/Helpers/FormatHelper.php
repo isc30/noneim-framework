@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Format Helper
- * @package Core
- * @subpackage Helpers
- */
 class FormatHelper implements IHelper
 {
     /**
