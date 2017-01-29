@@ -1,10 +1,5 @@
 <?php
 
-/**
- * SessionService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface ISessionService extends IService {
 
     /**

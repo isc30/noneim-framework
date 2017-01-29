@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Assertion failed Exception
- * @package Core
- * @subpackage Exceptions
- */
 class DatabaseConnectionException extends Exception
 {
     /**

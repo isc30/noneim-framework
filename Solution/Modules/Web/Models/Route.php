@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Route
- * @package Core
- * @subpackage Models\DTOs
- */
 class Route implements IModel
 {
     /** @var string */

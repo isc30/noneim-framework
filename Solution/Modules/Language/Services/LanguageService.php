@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Language Service
- * @package Modules\Language
- * @subpackage Services
- */
 class LanguageService implements ILanguageService
 {
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * HeaderService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface IHeaderService extends IService {
     
     /**

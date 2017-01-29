@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Default Web Module Configuration
- * @package Modules\Web
- */
 class WebConfiguration implements IConfiguration
 {
     /** @var bool */

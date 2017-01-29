@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Assertion Helper
- * @package Core
- * @subpackage Helpers
- */
 class AssertionHelper implements IHelper {
 
     /**

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Database Module Configuration
- * @package Modules\Database
- */
 class DatabaseConfiguration implements IConfiguration
 {
     /** @var string */

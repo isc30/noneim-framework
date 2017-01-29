@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Core Installer
- * @package Core
- * @subpackage Installers
- */
 class CoreInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */

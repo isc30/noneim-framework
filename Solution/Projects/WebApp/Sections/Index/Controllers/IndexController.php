@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Index Controller
- * @package Application
- * @subpackage Controllers
- */
 class IndexController extends BaseLayoutController
 {
     /**

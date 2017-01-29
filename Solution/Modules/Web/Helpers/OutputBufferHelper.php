@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Output buffer Service
- * @package Modules\Web
- * @subpackage Helpers
- */
 class OutputBufferHelper implements IHelper
 {
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Sql Exception
- * @package Core
- * @subpackage Exceptions
- */
 class SqlException extends Exception {
 
     /**

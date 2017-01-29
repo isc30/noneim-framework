@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Test Suite
- * @package Core
- * @subpackage Models\BusinessObjects
- */
 class TestSuite implements IModel {
 
     /** @var IClassFactory */

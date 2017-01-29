@@ -1,10 +1,5 @@
 <?php
 
-/**
- * ReadOnlyRepository Interface
- * @package Modules\Orm
- * @subpackage Interfaces
- */
 interface IReadOnlyRepository
 {
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Header Types
- * @package Modules\Web
- * @subpackage Consts
- */
 class HeaderType
 {
     const ContentType = 'Content-Type';

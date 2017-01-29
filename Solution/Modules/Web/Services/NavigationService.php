@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Navigation Service
- * @package Core
- * @subpackage Services
- */
 class NavigationService implements INavigationService
 {
     /** @var IHeaderService */

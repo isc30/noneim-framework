@@ -1,10 +1,5 @@
 <?php
 
-/**
- * View ActionResult
- * @package Core
- * @subpackage Models\ActionResults
- */
 class ViewActionResult extends ActionResult
 {
     /** @var View */

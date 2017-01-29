@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Enum
- * @package Core
- * @subpackage Models\DTOs
- */
 class Enum
 {
     /** @var int */

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Dependency Helper
- * @package Core
- * @subpackage Helpers
- */
 class DependencyHelper implements IHelper
 {
     /** @var ClassDefinition[] */

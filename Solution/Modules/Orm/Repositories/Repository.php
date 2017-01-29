@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Repository
- * @package Modules\Orm
- * @subpackage Repositories
- */
 abstract class Repository extends ReadOnlyRepository
 {
     /**

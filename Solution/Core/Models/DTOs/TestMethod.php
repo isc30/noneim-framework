@@ -1,10 +1,5 @@
 <?php
 
-/**
- * TestMethod
- * @package Core
- * @subpackage Models\DTOs
- */
 class TestMethod implements IModel {
 
     /** @var string */

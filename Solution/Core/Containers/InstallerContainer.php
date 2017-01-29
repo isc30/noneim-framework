@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Installer Container
- * @package Core
- * @subpackage Containers
- */
 class InstallerContainer implements IInstallerContainer, ICacheable
 {
     /** @var IClassFactory */

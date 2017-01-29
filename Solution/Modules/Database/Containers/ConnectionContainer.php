@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Connection Container
- * @package Modules\Database
- * @subpackage Containers
- */
 class ConnectionContainer implements IConnectionContainer
 {
     /** @var PDOExtension */

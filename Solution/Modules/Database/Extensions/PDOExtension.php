@@ -1,9 +1,5 @@
 <?php
 
-// Extend PDO functionality
-/**
- * PDO Extension
- */
 class PDOExtension extends PDO {
 
     /**

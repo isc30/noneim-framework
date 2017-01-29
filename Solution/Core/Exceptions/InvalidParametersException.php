@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Invalid parameters Exception
- * @package Core
- * @subpackage Exceptions
- */
 class InvalidParametersException extends Exception {
 
     /**
