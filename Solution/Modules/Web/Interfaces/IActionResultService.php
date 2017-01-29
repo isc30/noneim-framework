@@ -8,7 +8,7 @@
 interface IActionResultService
 {
     /**
-     * @param ActionResult $actionResult
+     * @param null|ActionResult $actionResult
      */
     public function render(ActionResult $actionResult);
 }
