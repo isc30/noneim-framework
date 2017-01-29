@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Index Controller
+ */
 class IndexController extends BaseLayoutController
 {
     /**

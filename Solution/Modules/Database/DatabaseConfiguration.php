@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Database Configuration
+ */
 class DatabaseConfiguration implements IConfiguration
 {
     /** @var string */

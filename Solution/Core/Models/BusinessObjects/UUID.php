@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * UUID
+ */
 class UUID implements IModel {
     
     /** @var string */

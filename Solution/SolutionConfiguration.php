@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Solution Configuration
+ */
 class SolutionConfiguration implements IDefaultLazyConfiguration
 {
     /** @var string */

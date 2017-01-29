@@ -1,6 +1,9 @@
 <?php
 
-interface IRequestService extends IService {
+/**
+ * RequestService Interface
+ */
+interface IRequestService {
 
     /**
      * Return GET value of $key or null if not exists

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Cookie Service
+ */
 class CookieService implements ICookieService
 {
     /**

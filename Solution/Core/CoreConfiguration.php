@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Core Configuration
+ */
 class CoreConfiguration implements IConfiguration
 {
     /**

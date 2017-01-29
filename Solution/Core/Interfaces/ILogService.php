@@ -1,6 +1,9 @@
 <?php
 
-interface ILogService extends IService {
+/**
+ * LogService Interface
+ */
+interface ILogService {
 
     /**
      * Add item to Item Collection

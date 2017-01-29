@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * AssertionFailed Exception
+ */
 class AssertionFailedException extends Exception {
 
     /**

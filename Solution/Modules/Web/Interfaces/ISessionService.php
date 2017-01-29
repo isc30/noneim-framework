@@ -1,6 +1,9 @@
 <?php
 
-interface ISessionService extends IService {
+/**
+ * SessionService Interface
+ */
+interface ISessionService {
 
     /**
      * Start session

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Time Service
+ */
 class TimeService implements ITimeService {
     
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * UnitTests Configuration
+ */
 class UnitTestsConfiguration implements IProjectLazyConfiguration
 {
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Reflection Helper
+ */
 class ReflectionHelper implements IHelper
 {
     /** @var ClassDefinition[] */

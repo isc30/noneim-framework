@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Web Configuration
+ */
 class WebConfiguration implements IConfiguration
 {
     /** @var bool */

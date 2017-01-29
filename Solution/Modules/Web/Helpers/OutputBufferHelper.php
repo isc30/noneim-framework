@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * OutputBuffer Helper
+ */
 class OutputBufferHelper implements IHelper
 {
     /**

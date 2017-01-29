@@ -1,6 +1,9 @@
 <?php
 
-interface ILanguageService extends IService
+/**
+ * LanguageService Interface
+ */
+interface ILanguageService
 {
     /**
      * Load $language

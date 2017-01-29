@@ -1,6 +1,9 @@
 <?php
 
-class LanguageModuleInstaller implements IDefaultInstaller
+/**
+ * LanguageModule Installer
+ */
+class LanguageInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */
     private $_installerContainer;

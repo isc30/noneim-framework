@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Navigation Service
+ */
 class NavigationService implements INavigationService
 {
     /** @var IHeaderService */

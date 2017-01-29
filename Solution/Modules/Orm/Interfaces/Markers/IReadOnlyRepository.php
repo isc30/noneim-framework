@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ReadOnlyRepository Interface
+ */
 interface IReadOnlyRepository
 {
     /**

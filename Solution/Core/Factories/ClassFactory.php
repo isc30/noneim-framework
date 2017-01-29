@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Factory
+ */
 class ClassFactory implements IClassFactory
 {
     /** @var IInstallerContainer */

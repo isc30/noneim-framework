@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * String ActionResult
+ */
 class StringActionResult extends ActionResult
 {
     /** @var string */

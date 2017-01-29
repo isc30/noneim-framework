@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Format Helper
+ */
 class FormatHelper implements IHelper
 {
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * TestResult
+ */
 class TestResult implements IModel {
 
     /** @var string */
