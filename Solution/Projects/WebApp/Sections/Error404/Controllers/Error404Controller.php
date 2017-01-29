@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Controllers
- */
 class Error404Controller extends BaseLayoutController
 {
     /**

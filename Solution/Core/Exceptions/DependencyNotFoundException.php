@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Dependency not found Exception
- * @package Core
- * @subpackage Exceptions
- */
 class DependencyNotFoundException extends Exception {
 
     /**

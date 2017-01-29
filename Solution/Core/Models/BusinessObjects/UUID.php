@@ -1,10 +1,5 @@
 <?php
 
-/**
- * UUID
- * @package Core
- * @subpackage Models\BusinessObjects
- */
 class UUID implements IModel {
     
     /** @var string */

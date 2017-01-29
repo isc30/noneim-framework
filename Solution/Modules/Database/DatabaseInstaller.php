@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Database Module Installer
- * @package Modules\Database
- */
 class DatabaseInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */

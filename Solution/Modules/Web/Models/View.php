@@ -1,10 +1,5 @@
 <?php
 
-/**
- * View
- * @package Core
- * @subpackage Models\BusinessObjects
- */
 class View implements IModel
 {
     /** @var string */

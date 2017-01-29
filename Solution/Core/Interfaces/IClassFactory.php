@@ -1,10 +1,5 @@
 <?php
 
-/**
- * ClassFactory Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface IClassFactory extends IFactory
 {
     /**

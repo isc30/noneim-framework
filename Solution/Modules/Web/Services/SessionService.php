@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Session Service
- * @package Core
- * @subpackage Services
- */
 class SessionService implements ISessionService {
 
     /** @var bool */

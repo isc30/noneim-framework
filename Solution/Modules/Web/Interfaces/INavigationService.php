@@ -1,10 +1,5 @@
 <?php
 
-/**
- * NavigationService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface INavigationService extends IService
 {
     /**

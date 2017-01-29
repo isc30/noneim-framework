@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Class Factory
- * @package Core
- * @subpackage Factories
- */
 class ClassFactory implements IClassFactory
 {
     /** @var IInstallerContainer */

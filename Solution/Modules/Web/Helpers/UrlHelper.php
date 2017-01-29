@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Navigation Helper
- * @package Modules\Web
- * @subpackage Helpers
- */
 class UrlHelper implements IHelper {
 
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Error404 ViewModel
- * @package Application
- * @subpackage Models\ViewModels
- */
 class Error404ViewModel implements IViewModel
 {
     /**

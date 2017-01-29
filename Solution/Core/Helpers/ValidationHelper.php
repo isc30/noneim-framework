@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Validation Helper
- * @package Core
- * @subpackage Helpers
- */
 class ValidationHelper implements IHelper
 {
     /**
