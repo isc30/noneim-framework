@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Models\ViewModels
- */
 class RouteDemoMessagesViewModel implements IViewModel
 {
     public $topicId;

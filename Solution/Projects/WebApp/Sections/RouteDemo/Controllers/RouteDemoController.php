@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package Application
- * @subpackage Controllers
- */
 class RouteDemoController extends BaseLayoutController
 {
     /**
