@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Log Service
+ */
 class LogService implements ILogService {
     
     /** @var array[] */

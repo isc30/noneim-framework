@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Dependency Helper
+ */
 class DependencyHelper implements IHelper
 {
     /** @var ClassDefinition[] */

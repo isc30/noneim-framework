@@ -1,6 +1,9 @@
 <?php
 
-interface IHeaderService extends IService {
+/**
+ * HeaderService Interface
+ */
+interface IHeaderService {
     
     /**
      * Return Request Header

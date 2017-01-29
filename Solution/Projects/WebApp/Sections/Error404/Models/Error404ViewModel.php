@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Error 404 ViewModel
+ */
 class Error404ViewModel implements IViewModel
 {
     /**

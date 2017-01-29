@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Query Builder
+ */
 class QueryBuilder
 {
     /** @var string[] */

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Xml Helper
+ */
 class XmlHelper {
 
     /**

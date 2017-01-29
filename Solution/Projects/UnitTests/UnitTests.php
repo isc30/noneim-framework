@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * UnitTests Project
+ */
 class UnitTests implements IProject
 {
     private $_cookieService;

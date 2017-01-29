@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Installer Interface
+ */
 interface IInstaller
 {
     /**

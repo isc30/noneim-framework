@@ -1,6 +1,9 @@
 <?php
 
-interface ICookieService extends IService
+/**
+ * CookieService Interface
+ */
+interface ICookieService
 {
     /**
      * @param string $key

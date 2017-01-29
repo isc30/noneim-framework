@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Validation Helper
+ */
 class ValidationHelper implements IHelper
 {
     /**

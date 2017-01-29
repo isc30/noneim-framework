@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Request Service
+ */
 class RequestService implements IRequestService {
 
     /**

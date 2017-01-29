@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Sql Exception
+ */
 class SqlException extends Exception {
 
     /**

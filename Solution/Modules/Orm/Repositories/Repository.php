@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Repository
+ */
 abstract class Repository extends ReadOnlyRepository
 {
     /**
@@ -7,21 +10,21 @@ abstract class Repository extends ReadOnlyRepository
      * @param Entity $entity TODO: Change 'Entity' to native type
      * @throws Exception
      */
-    public abstract function add($entity);
+    public abstract function add(Entity $entity);
 
     /**
      * TODO: return parent::_edit($entity);
      * @param Entity $entity TODO: Change 'Entity' to native type
      * @throws Exception
      */
-    public abstract function edit($entity);
+    public abstract function edit(Entity $entity);
 
     /**
      * TODO: return parent::_delete($entity);
      * @param Entity $entity TODO: Change 'Entity' to native type
      * @throws Exception
      */
-    public abstract function delete($entity);
+    public abstract function delete(Entity $entity);
 
     /**
      * @param Entity $entity

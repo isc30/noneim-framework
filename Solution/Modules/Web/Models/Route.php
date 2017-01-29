@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Route
+ */
 class Route implements IModel
 {
     /** @var string */

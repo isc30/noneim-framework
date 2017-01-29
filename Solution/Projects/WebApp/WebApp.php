@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * WebApp Project
+ */
 class WebApp implements IProject
 {
     /** @var IRouteContainer */
