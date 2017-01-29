@@ -15,4 +15,7 @@ interface INavigationService extends IService
      * @param int $waitSeconds
      */
     public function redirectSection(array $section, $waitSeconds = 0);
+
+    /** Remove this */
+    public function redirectBack();
 }
