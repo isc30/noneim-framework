@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Cookie Demo Controller
+ */
 class CookieDemoController extends BaseLayoutController
 {
     private $_cookieService;

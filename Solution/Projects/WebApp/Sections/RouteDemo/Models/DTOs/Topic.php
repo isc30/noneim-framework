@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Topic
+ */
 class Topic
 {
     public $title;

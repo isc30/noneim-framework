@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Person
+ */
 class Person implements IModel
 {
     public $name;

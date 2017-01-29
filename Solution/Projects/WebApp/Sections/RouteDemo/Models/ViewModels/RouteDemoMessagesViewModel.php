@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Route Demo Messages ViewModel
+ */
 class RouteDemoMessagesViewModel implements IViewModel
 {
     public $topicId;

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Route Demo Controller
+ */
 class RouteDemoController extends BaseLayoutController
 {
     /**

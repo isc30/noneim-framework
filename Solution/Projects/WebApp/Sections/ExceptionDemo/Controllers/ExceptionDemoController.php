@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Exception Demo Controller
+ */
 class ExceptionDemoController implements IController
 {
     public function index()
