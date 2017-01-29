@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Lazy Configuration Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface ILazyConfiguration extends IConfiguration
 {
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * QueryBuilder
- * @package Modules\Orm
- * @subpackage Models\BusinessObjects
- */
 class QueryBuilder
 {
     /** @var string[] */

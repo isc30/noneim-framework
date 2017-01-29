@@ -1,10 +1,5 @@
 <?php
 
-/**
- * String ActionResult
- * @package Core
- * @subpackage Models\ActionResults
- */
 class StringActionResult extends ActionResult
 {
     /** @var string */

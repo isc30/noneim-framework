@@ -1,10 +1,5 @@
 <?php
 
-/**
- * RouteContainer Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface IRouteContainer extends IContainer {
     
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Request Service
- * @package Core
- * @subpackage Services
- */
 class RequestService implements IRequestService {
 
     /**

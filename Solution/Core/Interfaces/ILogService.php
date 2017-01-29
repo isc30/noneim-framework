@@ -1,10 +1,5 @@
 <?php
 
-/**
- * LogService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface ILogService extends IService {
 
     /**

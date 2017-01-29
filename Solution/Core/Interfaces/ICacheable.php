@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Cacheable Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface ICacheable {
     
     /**

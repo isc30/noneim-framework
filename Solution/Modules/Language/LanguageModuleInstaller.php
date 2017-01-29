@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Language Module Installer
- * @package Modules\Language
- */
 class LanguageModuleInstaller implements IDefaultInstaller
 {
     /** @var IInstallerContainer */

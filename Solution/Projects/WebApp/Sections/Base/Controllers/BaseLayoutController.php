@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Base Layout Controller
- * @package WebApp
- * @subpackage Controllers
- */
 class BaseLayoutController implements IController
 {
     /** @var string */

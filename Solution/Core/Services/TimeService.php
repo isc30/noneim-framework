@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Time Service
- * @package Core
- * @subpackage Services
- */
 class TimeService implements ITimeService {
     
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * ActionResult Service
- * @package Core
- * @subpackage Services
- */
 class ActionResultService implements IActionResultService
 {
     private $_headerService;

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Header Service
- * @package Core
- * @subpackage Services
- */
 class HeaderService implements IHeaderService {
 
     /**

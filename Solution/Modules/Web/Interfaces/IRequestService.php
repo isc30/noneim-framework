@@ -1,10 +1,5 @@
 <?php
 
-/**
- * RequestService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface IRequestService extends IService {
 
     /**

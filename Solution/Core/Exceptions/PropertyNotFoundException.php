@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Property not found Exception
- * @package Core
- * @subpackage Exceptions
- */
 class PropertyNotFoundException extends Exception {
 
     /**

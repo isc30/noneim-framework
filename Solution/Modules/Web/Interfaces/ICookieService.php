@@ -1,10 +1,5 @@
 <?php
 
-/**
- * CookieService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface ICookieService extends IService
 {
     /**

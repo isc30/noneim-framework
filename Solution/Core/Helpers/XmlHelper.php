@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Xml Helper
- * @package Core
- * @subpackage Helpers
- */
 class XmlHelper {
 
     /**

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * TimeService Interface
- * @package Core
- * @subpackage Interfaces
- */
 interface ITimeService extends IService {
 
     /**

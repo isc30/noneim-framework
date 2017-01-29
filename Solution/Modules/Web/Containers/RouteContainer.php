@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Route Container
- * @package Core
- * @subpackage Containers
- */
 class RouteContainer implements IRouteContainer, ICacheable
 {
     /** @var IClassFactory */

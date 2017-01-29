@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Context Service
- * @package Core
- * @subpackage Services
- */
 class ContextService implements IContextService {
 
     /** @var ITimeService */

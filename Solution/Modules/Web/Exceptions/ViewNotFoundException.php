@@ -1,10 +1,5 @@
 <?php
 
-/**
- * View not found Exception
- * @package Core
- * @subpackage Exceptions
- */
 class ViewNotFoundException extends Exception {
 
     /**

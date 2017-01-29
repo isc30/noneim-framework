@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Mime Types
- * @package Modules\Web
- * @subpackage Consts
- */
 class MimeType
 {
     const Aac = 'audio/aac';

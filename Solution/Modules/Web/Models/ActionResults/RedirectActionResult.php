@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Redirect ActionResult
- * @package Core
- * @subpackage Models\ActionResults
- */
 class RedirectActionResult extends ActionResult
 {
     /** @var string|string[] */

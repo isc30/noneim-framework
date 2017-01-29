@@ -1,10 +1,5 @@
 <?php
 
-/**
- * LanguageService Interface
- * @package Modules\Language
- * @subpackage Interfaces
- */
 interface ILanguageService extends IService
 {
     /**

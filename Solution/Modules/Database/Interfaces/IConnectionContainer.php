@@ -1,10 +1,5 @@
 <?php
 
-/**
- * ConnectionContainer Interface
- * @package Modules\Database
- * @subpackage Interfaces
- */
 interface IConnectionContainer extends IContainer
 {
     /**

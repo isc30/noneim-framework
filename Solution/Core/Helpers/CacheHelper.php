@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Cache Helper
- * @package Core
- * @subpackage Helpers
- */
 class CacheHelper implements IHelper
 {
     /**
