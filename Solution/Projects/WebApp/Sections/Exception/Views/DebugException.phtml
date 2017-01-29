@@ -11,6 +11,6 @@ When trying to load page: <i><?= $model->request ?></i>
     
 <?php else: ?>
 
-    <?php var_dump($model->exception); ?>
+    <pre><code><?php var_dump($model->exception); ?></code></pre>
 
 <?php endif; ?>
