@@ -24,7 +24,7 @@ class ActionResultService implements IActionResultService
     }
 
     /**
-     * @param ActionResult $actionResult
+     * @param null|ActionResult $actionResult
      */
     public function render(ActionResult $actionResult)
     {
@@ -34,12 +34,7 @@ class ActionResultService implements IActionResultService
         }
 
         $this->process($actionResult);
-
-        OutputBufferHelper::start('FormatHelper::minimizeHtml');
-        {
-            $actionResult->render();
-        }
-        OutputBufferHelper::flushAndEnd();
+        $actionResult->render();
     }
 
     /**
