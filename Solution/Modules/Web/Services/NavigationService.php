@@ -43,4 +43,11 @@ class NavigationService implements INavigationService
     {
         $this->redirect(UrlHelper::getLink($section), $waitSeconds);
     }
+
+    /** Remove this */
+    public function redirectBack()
+    {
+        $referer = $this->_headerService->get(HeaderType::Referer);
+        $this->redirect($referer);
+    }
 }
