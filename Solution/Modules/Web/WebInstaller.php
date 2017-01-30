@@ -22,6 +22,7 @@ class WebInstaller implements IDefaultInstaller
      */
     public function install()
     {
+        $this->_installerContainer->registerDefinition('ILogService', 'LogService');
         $this->_installerContainer->registerDefinition('IRouteContainer', 'RouteContainer');
         $this->_installerContainer->registerDefinition('INavigationService', 'NavigationService');
         $this->_installerContainer->registerDefinition('ISessionService', 'SessionService');
