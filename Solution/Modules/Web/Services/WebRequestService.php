@@ -5,6 +5,18 @@
  */
 class WebRequestService implements IWebRequestService
 {
+    /** @var IHeaderService */
+    private $_headerService;
+
+    /**
+     * WebRequestService Constructor
+     * @param IHeaderService $headerService
+     */
+    public function __construct(IHeaderService $headerService)
+    {
+        $this->_headerService = $headerService;
+    }
+
     /**
      * @return IFrameworkRequest
      */
@@ -14,6 +26,7 @@ class WebRequestService implements IWebRequestService
         $request->parameters = new IFrameworkRequestParameters($_GET, $_POST);
         $request->section = $this->getSection($request->parameters);
         $request->type = $this->getType();
+        $request->headers = new WebRequestHeaders($this->_headerService->getAll());
 
         return $request;
     }

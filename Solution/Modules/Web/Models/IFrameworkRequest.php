@@ -11,4 +11,6 @@ class IFrameworkRequest
     public $parameters;
     /** @var string */
     public $type;
+    /** @var WebRequestHeaders */
+    public $headers;
 }
