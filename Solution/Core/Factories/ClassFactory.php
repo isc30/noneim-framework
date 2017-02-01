@@ -94,32 +94,26 @@ class ClassFactory implements IClassFactory
 
             $index = 0;
             $parameters = $reflectionMethod->getParameters();
+
             foreach ($parameters as &$param)
             {
                 $name = (string)$param->getName();
-                $type = (string)$param->getClass()->getName();
+                if ($isAssociative)
+                {
+                    $argumentExists = array_key_exists($name, $arguments);
 
-                if ($type === 'IFrameworkRequest')
-                {
-                    $param = null;
-                }
-                else
-                {
-                    if ($isAssociative)
+                    if ($argumentExists || $param->isOptional())
                     {
-                        if (array_key_exists($name, $arguments) || $param->isOptional())
-                        {
-                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
-                        }
-                        else
-                        {
-                            throw new InvalidParametersException("Parameter '{$name}' not found");
-                        }
+                        $param = $argumentExists ? $arguments[$name] : $param->getDefaultValue();
                     }
                     else
                     {
-                        $param = $arguments[$index++];
+                        throw new InvalidParametersException("Parameter '{$name}' not found");
                     }
+                }
+                else
+                {
+                    $param = $arguments[$index++];
                 }
             }
 
@@ -152,18 +146,21 @@ class ClassFactory implements IClassFactory
 
         $argumentCount = count($arguments);
         $requiredParameterCount = $reflectionMethod->getNumberOfRequiredParameters() - 1;
+
         if ($argumentCount >= $requiredParameterCount) {
 
             $isAssociative = ArrayHelper::isAssociative($arguments);
+            $requestType = get_class($request);
 
             $index = 0;
             $parameters = $reflectionMethod->getParameters();
+
             foreach ($parameters as &$param)
             {
                 $name = (string)$param->getName();
                 $type = (string)(($class = $param->getClass()) !== null ? $class->getName() : null);
 
-                if ($type === 'IFrameworkRequest')
+                if ($type === $requestType)
                 {
                     $param = $request;
                 }
@@ -171,9 +168,11 @@ class ClassFactory implements IClassFactory
                 {
                     if ($isAssociative)
                     {
-                        if (array_key_exists($name, $arguments) || $param->isOptional())
+                        $argumentExists = array_key_exists($name, $arguments);
+
+                        if ($argumentExists || $param->isOptional())
                         {
-                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
+                            $param = $argumentExists ? $arguments[$name] : $param->getDefaultValue();
                         }
                         else
                         {
