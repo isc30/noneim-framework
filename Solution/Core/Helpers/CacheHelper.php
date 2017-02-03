@@ -129,6 +129,6 @@ class CacheHelper implements IHelper
      */
     private static function getCacheFileName($name)
     {
-        return "{$name}." . SolutionConfiguration::$project . '.tmp';
+        return "{$name}." . RuntimeConfiguration::$project . '.tmp';
     }
 }
