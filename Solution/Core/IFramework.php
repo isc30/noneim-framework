@@ -28,9 +28,9 @@ class IFramework
         self::includeRequiredFiles($solutionDir);
 
         // Setup main configuration
+        RuntimeConfiguration::$project = $projectName;
         RuntimeConfiguration::configure();
         SolutionConfiguration::$solutionDir = $solutionDir;
-        SolutionConfiguration::$project = $projectName;
         SolutionConfiguration::configure();
 
         // Init DependencyHelper
