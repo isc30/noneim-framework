@@ -8,7 +8,9 @@ class UrlHelper implements IHelper {
     /**
      * No instantiable
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Return full link of section

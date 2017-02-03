@@ -5,6 +5,13 @@
  */
 class ReflectionHelper implements IHelper
 {
+    /**
+     * No instantiable
+     */
+    private function __construct()
+    {
+    }
+
     /** @var ClassDefinition[] */
     private static $_solutionClasses = null;
 
