@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Helper
+ * StaticClass
  */
-abstract class Helper
+abstract class StaticClass
 {
     /**
      * Private Constructor

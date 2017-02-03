@@ -3,7 +3,7 @@
 /**
  * Installer
  */
-abstract class Installer extends Helper implements IInstaller
+abstract class Installer extends StaticClass implements IInstaller
 {
     public static $isDefault = false;
 }
