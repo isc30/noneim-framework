@@ -8,7 +8,9 @@ class AssertionHelper implements IHelper {
     /**
      * No instantiable
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Test assertion

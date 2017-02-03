@@ -6,6 +6,13 @@
 class OutputBufferHelper implements IHelper
 {
     /**
+     * No instantiable
+     */
+    private function __construct()
+    {
+    }
+
+    /**
      * Start capturing output to buffer
      * @param null|string $callback
      */
