@@ -3,25 +3,15 @@
 /**
  * LanguageModule Installer
  */
-class LanguageInstaller implements IDefaultInstaller
+class LanguageInstaller extends DefaultInstaller
 {
-    /** @var IInstallerContainer */
-    private $_installerContainer;
-
-    /**
-     * LanguageModuleInstaller Constructor
-     * @param IInstallerContainer $installerContainer
-     */
-    public function __construct(IInstallerContainer $installerContainer)
-    {
-        $this->_installerContainer = $installerContainer;
-    }
-
     /**
      * Install
+     * @param IInstallerContainer $container
+     * @return void
      */
-    public function install()
+    public static function install(IInstallerContainer $container)
     {
-        $this->_installerContainer->registerDefinition('ILanguageService', 'LanguageService');
+        $container->registerDefinition('ILanguageService', 'LanguageService');
     }
 }
