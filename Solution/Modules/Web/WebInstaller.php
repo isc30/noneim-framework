@@ -12,7 +12,7 @@ class WebInstaller extends DefaultInstaller
      */
     public static function install(IInstallerContainer $container)
     {
-        $this->_installerContainer->registerDefinition('IWebRequestService', 'WebRequestService');
+        $container->registerDefinition('IWebRequestService', 'WebRequestService');
         $container->registerDefinition('ILogService', 'LogService');
         $container->registerDefinition('IRouteContainer', 'RouteContainer');
         $container->registerDefinition('INavigationService', 'NavigationService');
