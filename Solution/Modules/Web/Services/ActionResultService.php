@@ -5,7 +5,9 @@
  */
 class ActionResultService implements IActionResultService
 {
+    /** @var IHeaderService */
     private $_headerService;
+    /** @var INavigationService */
     private $_navigationService;
 
     /**

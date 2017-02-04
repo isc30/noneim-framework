@@ -10,6 +10,12 @@ class RuntimeConfiguration implements IDefaultLazyConfiguration
     /** @var bool */
     public static $cache = false;
 
+    //////////////////////////////////////////
+    // Automatic
+
+    /** @var string */
+    public static $project = null;
+
     /**
      * Apply Configuration
      * @return void

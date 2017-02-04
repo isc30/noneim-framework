@@ -28,68 +28,31 @@ class IFramework
         self::includeRequiredFiles($solutionDir);
 
         // Setup main configuration
+        RuntimeConfiguration::$project = $projectName;
         RuntimeConfiguration::configure();
         SolutionConfiguration::$solutionDir = $solutionDir;
-        SolutionConfiguration::$project = $projectName;
         SolutionConfiguration::configure();
 
         // Init DependencyHelper
         DependencyHelper::initAutoloader();
 
-        // Load default lazy configuration
-        foreach (ReflectionHelper::getImplementations('IDefaultLazyConfiguration') as $classDefinition)
-        {
-            // Exceptional case
-            if ($classDefinition->name === 'RuntimeConfiguration' || $classDefinition->name === 'SolutionConfiguration')
-            {
-                continue; // Skip as we called `configure()` manually
-            }
+        // Load Lazy Configurations
+        self::loadLazyConfigurations();
 
-            /** @var ILazyConfiguration $className */
-            $className = $classDefinition->name;
-            $className::configure();
-        }
-
-        // Load lazy configurations
-        foreach (ReflectionHelper::getImplementations('IProjectLazyConfiguration') as $classDefinition)
-        {
-            /** @var ILazyConfiguration $className */
-            $className = $classDefinition->name;
-            $className::configure();
-        }
-
-        // Circular dependency
+        // Create vital dependencies
         $installerContainer = new InstallerContainer();
         $classFactory = new ClassFactory();
         $installerContainer->setClassFactory($classFactory);
         $classFactory->setInstallerContainer($installerContainer);
 
-        // Register implemented dependencies
+        // Register vital dependencies
         $installerContainer->registerImplementation('IInstallerContainer', $installerContainer);
         $installerContainer->registerImplementation('IClassFactory', $classFactory);
 
         // Load DependencyInstallers
-        if (!CacheHelper::load('Core', "InstallerContainer", $installerContainer))
-        {
-            // Default installers
-            foreach (ReflectionHelper::getImplementations('IDefaultInstaller') as $classDefinition)
-            {
-                /** @var IProjectInstaller $installer */
-                $installer = $classFactory->instantiate($classDefinition->name);
-                $installer->install();
-            }
+        self::loadInstallers($installerContainer);
 
-            // Project installers
-            foreach (ReflectionHelper::getImplementations('IProjectInstaller') as $classDefinition)
-            {
-                /** @var IProjectInstaller $installer */
-                $installer = $classFactory->instantiate($classDefinition->name);
-                $installer->install();
-            }
-
-            CacheHelper::save('Core', "InstallerContainer", $installerContainer);
-        }
-
+        // Benchmark :D
         self::$coreLoadTime = round((microtime(true) - $startTime) * 1000, 2);
 
         // Run Project
@@ -118,5 +81,68 @@ class IFramework
         require_once $coreDir . 'Models/ClassDefinition.php';
         require_once $coreDir . 'Helpers/ReflectionHelper.php';
         require_once $coreDir . 'Helpers/DependencyHelper.php';
+    }
+
+    /**
+     * Load Lazy Configurations
+     */
+    private static function loadLazyConfigurations()
+    {
+        // Load default lazy configuration
+        foreach (ReflectionHelper::getImplementations('IDefaultLazyConfiguration') as $classDefinition)
+        {
+            // Exceptional case
+            if ($classDefinition->name === 'RuntimeConfiguration' || $classDefinition->name === 'SolutionConfiguration')
+            {
+                continue; // Skip as we called `configure()` manually
+            }
+
+            /** @var ILazyConfiguration $className */
+            $className = $classDefinition->name;
+            $className::configure();
+        }
+
+        // Load lazy configurations
+        foreach (ReflectionHelper::getImplementations('IProjectLazyConfiguration') as $classDefinition)
+        {
+            /** @var ILazyConfiguration $className */
+            $className = $classDefinition->name;
+            $className::configure();
+        }
+    }
+
+    /**
+     * Load Installers
+     * @param IInstallerContainer $installerContainer
+     */
+    private static function loadInstallers(IInstallerContainer $installerContainer)
+    {
+        if (!CacheHelper::load('Core', 'InstallerContainer', $installerContainer))
+        {
+            $installers = ReflectionHelper::getSubclasses('Installer');
+
+            // Default installers
+            foreach ($installers as $index => $classDefinition)
+            {
+                /** @var Installer $className */
+                $className = $classDefinition->name;
+
+                if ($className::$isDefault)
+                {
+                    $className::install($installerContainer);
+                    unset($installers[$index]);
+                }
+            }
+
+            // Remaining installers
+            foreach ($installers as $classDefinition)
+            {
+                /** @var Installer $className */
+                $className = $classDefinition->name;
+                $className::install($installerContainer);
+            }
+
+            CacheHelper::save('Core', 'InstallerContainer', $installerContainer);
+        }
     }
 }

@@ -6,6 +6,13 @@
 class CacheHelper implements IHelper
 {
     /**
+     * No instantiable
+     */
+    private function __construct()
+    {
+    }
+
+    /**
      * Return if loading cache is success
      * If $object is ICacheable, call setCache() method. If not, leave the value in $object
      * @param string $area
@@ -122,6 +129,6 @@ class CacheHelper implements IHelper
      */
     private static function getCacheFileName($name)
     {
-        return "{$name}." . SolutionConfiguration::$project . '.tmp';
+        return "{$name}." . RuntimeConfiguration::$project . '.tmp';
     }
 }

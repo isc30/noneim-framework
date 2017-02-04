@@ -3,26 +3,16 @@
 /**
  * WebApp Installer
  */
-class WebAppInstaller implements IProjectInstaller
+class WebAppInstaller extends Installer
 {
-    /** @var IInstallerContainer */
-    private $_installerContainer;
-
-    /**
-     * ApplicationInstaller Constructor
-     * @param IInstallerContainer $installerContainer
-     */
-    public function __construct(IInstallerContainer $installerContainer)
-    {
-        $this->_installerContainer = $installerContainer;
-    }
-
     /**
      * Install
+     * @param IInstallerContainer $container
+     * @return void
      */
-    public function install()
+    public static function install(IInstallerContainer $container)
     {
-        if (SolutionConfiguration::$project === 'WebApp')
+        if (RuntimeConfiguration::$project === 'WebApp')
         {
             // ...
         }

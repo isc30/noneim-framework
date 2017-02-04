@@ -7,15 +7,14 @@ class ClassFactory implements IClassFactory
 {
     /** @var IInstallerContainer */
     private $_installerContainer;
-        
+
     /**
      * Set InstallerContainer
      * @param IInstallerContainer $installerContainer
      */
-    public function setInstallerContainer(IInstallerContainer $installerContainer) {
-        
+    public function setInstallerContainer(IInstallerContainer $installerContainer)
+    {
         $this->_installerContainer = $installerContainer;
-        
     }
 
     /**
@@ -23,10 +22,9 @@ class ClassFactory implements IClassFactory
      * @param string $class Class name
      * @return object Class instance
      */
-    public function instantiate($class) {
-
+    public function instantiate($class)
+    {
         return $this->instantiateReflectionClass(new ReflectionClass($class));
-
     }
 
     /**
@@ -67,11 +65,11 @@ class ClassFactory implements IClassFactory
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function call($class, $method, array $arguments = array()) {
-
+    public function call($class, $method, array $arguments = array())
+    {
         $refectionClass = new ReflectionClass($class);
-        return $this->callFromReflectionClass($refectionClass, $method, $arguments);
 
+        return $this->callFromReflectionClass($refectionClass, $method, $arguments);
     }
 
     /**
@@ -82,19 +80,19 @@ class ClassFactory implements IClassFactory
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function callFromReflectionClass(ReflectionClass $refectionClass, $method, array $arguments = array()) {
-
+    public function callFromReflectionClass(ReflectionClass $refectionClass, $method, array $arguments = array())
+    {
         $reflectionMethod = $refectionClass->getMethod($method);
-
         $instance = $this->instantiateReflectionClass($refectionClass);
 
-        if (count($arguments) + 1 >= $reflectionMethod->getNumberOfRequiredParameters()) {
-
+        if (count($arguments) + 1 >= $reflectionMethod->getNumberOfRequiredParameters())
+        {
             $isAssociative = ArrayHelper::isAssociative($arguments);
 
             $index = 0;
             $parameters = $reflectionMethod->getParameters();
 
+            /** @var ReflectionParameter $param */
             foreach ($parameters as &$param)
             {
                 $name = (string)$param->getName();
@@ -118,14 +116,13 @@ class ClassFactory implements IClassFactory
             }
 
             return $reflectionMethod->invokeArgs($instance, $parameters);
-
-        } else {
-
-            $count = count($arguments);
-            throw new InvalidParametersException("Missing parameters in call (got {$count} of {$reflectionMethod->getNumberOfRequiredParameters()})");
-
         }
+        else
+        {
+            $count = count($arguments);
 
+            throw new InvalidParametersException("Missing parameters in call (got {$count} of {$reflectionMethod->getNumberOfRequiredParameters()})");
+        }
     }
 
     /**
@@ -147,8 +144,9 @@ class ClassFactory implements IClassFactory
         $argumentCount = count($arguments);
         $requiredParameterCount = $reflectionMethod->getNumberOfRequiredParameters() - 1;
 
-        if ($argumentCount >= $requiredParameterCount) {
 
+        if ($argumentCount >= $requiredParameterCount)
+        {
             $isAssociative = ArrayHelper::isAssociative($arguments);
             $requestType = get_class($request);
 
@@ -187,26 +185,10 @@ class ClassFactory implements IClassFactory
             }
 
             return $reflectionMethod->invokeArgs($instance, $parameters);
-
-        } else {
-
-            throw new InvalidParametersException("Missing parameters in call (got {$argumentCount} of {$requiredParameterCount})");
-
         }
-
-    }
-
-    /**
-     * Load Installer
-     * @param string $className
-     */
-    public function loadInstaller($className)
-    {
-        $reflectionClass = new ReflectionClass($className);
-
-        if (!RuntimeConfiguration::$debug || $reflectionClass->implementsInterface('IInstaller'))
+        else
         {
-            $this->callFromReflectionClass($reflectionClass, 'install');
+            throw new InvalidParametersException("Missing parameters in call (got {$argumentCount} of {$requiredParameterCount})");
         }
     }
 }

@@ -3,29 +3,18 @@
 /**
  * UnitTests Installer
  */
-class UnitTestsInstaller implements IProjectInstaller
+class UnitTestsInstaller extends Installer
 {
-    private $_installerContainer;
-
-    /**
-     * UnitTestsInstaller constructor.
-     * @param IInstallerContainer $installerContainer
-     */
-    public function __construct(
-        IInstallerContainer $installerContainer
-    )
-    {
-        $this->_installerContainer = $installerContainer;
-    }
-
     /**
      * Install
+     * @param IInstallerContainer $container
+     * @return void
      */
-    public function install()
+    public static function install(IInstallerContainer $container)
     {
-        if (SolutionConfiguration::$project === 'UnitTests')
+        if (RuntimeConfiguration::$project === 'UnitTests')
         {
-            $this->_installerContainer->registerDefinition('ICookieService', 'CookieServiceMock');
+            $container->registerDefinition('ICookieService', 'CookieServiceMock');
         }
     }
 }

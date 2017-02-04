@@ -23,8 +23,6 @@ class SolutionConfiguration implements IDefaultLazyConfiguration
     // Automatic
 
     /** @var string */
-    public static $project;
-    /** @var string */
     public static $solutionDir;
 
     /**
@@ -33,7 +31,7 @@ class SolutionConfiguration implements IDefaultLazyConfiguration
      */
     public static function configure()
     {
-        self::$projectDir = self::$solutionDir . 'Projects/' . self::$project . '/';
+        self::$projectDir = self::$solutionDir . 'Projects/' . RuntimeConfiguration::$project . '/';
         self::$staticDir = self::$solutionDir . 'Static/';
         self::$resourcesDir = self::$solutionDir . 'Resources/';
         self::$cachesDir = self::$solutionDir . 'Caches/';
