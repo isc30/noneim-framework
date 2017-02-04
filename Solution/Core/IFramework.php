@@ -52,7 +52,7 @@ class IFramework
         // Load DependencyInstallers
         self::loadInstallers($installerContainer);
 
-        // Benchmarkt :D
+        // Benchmark :D
         self::$coreLoadTime = round((microtime(true) - $startTime) * 1000, 2);
 
         // Run Project
