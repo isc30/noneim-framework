@@ -3,7 +3,7 @@
 /**
  * ConnectionContainer Interface
  */
-interface IConnectionContainer extends IContainer
+interface IConnectionContainer
 {
     /**
      * Return PDO
