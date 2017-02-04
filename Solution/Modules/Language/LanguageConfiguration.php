@@ -3,7 +3,7 @@
 /**
  * Language Configuration
  */
-class LanguageConfiguration implements IDefaultLazyConfiguration
+class LanguageConfiguration extends DefaultLazyConfiguration
 {
     /** @var string */
     public static $defaultLanguage = 'En';

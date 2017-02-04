@@ -3,7 +3,7 @@
 /**
  * Database Configuration
  */
-class DatabaseConfiguration implements IConfiguration
+class DatabaseConfiguration extends StaticClass
 {
     /** @var string */
     public static $type = 'mysql';
