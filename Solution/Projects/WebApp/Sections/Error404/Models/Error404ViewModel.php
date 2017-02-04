@@ -3,7 +3,7 @@
 /**
  * Error 404 ViewModel
  */
-class Error404ViewModel implements IViewModel
+class Error404ViewModel implements IModel
 {
     /**
      * Requested section

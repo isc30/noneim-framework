@@ -43,7 +43,7 @@ class RouteContainer implements IRouteContainer, ICacheable
      * @param string[] $route
      * @param string $controller
      * @param string $method
-     * @throws InvalidOperationException If $controller doesn't implement IController
+     * @throws InvalidOperationException If $controller doesn't extend Controller
      */
     public function register(array $route, $controller, $method = 'index')
     {
@@ -74,7 +74,7 @@ class RouteContainer implements IRouteContainer, ICacheable
      * Register default Controller
      * @param string $controller
      * @param string $method
-     * @throws InvalidOperationException If $controller doesn't implement IController
+     * @throws InvalidOperationException If $controller doesn't extend Controller
      */
     public function registerDefault($controller, $method = 'index')
     {
@@ -93,7 +93,7 @@ class RouteContainer implements IRouteContainer, ICacheable
      * Register Exception Controller
      * @param string $controller
      * @param string $method
-     * @throws InvalidOperationException If $controller doesn't implement IController
+     * @throws InvalidOperationException If $controller doesn't extend Controller
      */
     public function registerException($controller, $method = 'index')
     {
@@ -109,7 +109,7 @@ class RouteContainer implements IRouteContainer, ICacheable
     }
 
     /**
-     * Resolve request and follow rute
+     * Resolve request and follow route
      * @param WebRequest $request
      * @return ActionResult
      */
@@ -254,15 +254,15 @@ class RouteContainer implements IRouteContainer, ICacheable
     }
 
     /**
-     * Test if Controller implements IController
+     * Test if Controller extends Controller
      * @param string $controller
-     * @throws InvalidOperationException If $controller doesn't implement IController
+     * @throws InvalidOperationException If $controller doesn't extend Controller
      */
     private function testControllerType($controller)
     {
-        if (!is_subclass_of($controller, 'IController'))
+        if (!is_subclass_of($controller, 'Controller'))
         {
-            throw new InvalidOperationException("Class {$controller} doesn't implement IController");
+            throw new InvalidOperationException("Class {$controller} doesn't extend Controller");
         }
     }
 

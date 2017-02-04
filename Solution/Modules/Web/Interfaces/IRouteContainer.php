@@ -10,7 +10,7 @@ interface IRouteContainer
      * @param string[] $route
      * @param string $controller
      * @param string $method
-     * @throws InvalidOperationException If $controller doesn't implement IController
+     * @throws InvalidOperationException If $controller doesn't extend Controller
      */
     public function register(array $route, $controller, $method = 'index');
 
@@ -18,7 +18,7 @@ interface IRouteContainer
      * Register default Controller
      * @param string $controller
      * @param string $method
-     * @throws InvalidOperationException If $controller doesn't implement IController
+     * @throws InvalidOperationException If $controller doesn't extend Controller
      */
     public function registerDefault($controller, $method = 'index');
 
@@ -26,12 +26,12 @@ interface IRouteContainer
      * Register Exception Controller
      * @param string $controller
      * @param string $method
-     * @throws InvalidOperationException If $controller doesn't implement IController
+     * @throws InvalidOperationException If $controller doesn't extend Controller
      */
     public function registerException($controller, $method = 'index');
 
     /**
-     * Resolve request and follow rute
+     * Resolve request and follow route
      * @param WebRequest $request
      * @return ActionResult
      */
