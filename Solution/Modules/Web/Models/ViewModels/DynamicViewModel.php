@@ -3,6 +3,6 @@
 /**
  * Dynamic ViewModel
  */
-class DynamicViewModel extends stdClass implements IViewModel
+class DynamicViewModel extends stdClass implements IModel
 {
 }

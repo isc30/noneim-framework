@@ -3,7 +3,7 @@
 /**
  * Top Menu ViewModel
  */
-class TopMenuViewModel implements IViewModel
+class TopMenuViewModel implements IModel
 {
     /**
      * Menu links (text => href)

@@ -3,7 +3,7 @@
 /**
  * BaseLayout Controller
  */
-class BaseLayoutController implements IController
+class BaseLayoutController extends Controller
 {
     /** @var string */
     private $title = 'IFramework';

@@ -3,13 +3,13 @@
 /**
  * Exception ViewModel
  */
-class ExceptionViewModel implements IViewModel
+class ExceptionViewModel implements IModel
 {
     /**
      * Requested section
      * @var string
      */
-    public $request;
+    public $section;
 
     /** @var Exception */
     public $exception;

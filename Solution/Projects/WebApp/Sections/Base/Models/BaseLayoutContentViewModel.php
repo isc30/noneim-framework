@@ -3,7 +3,7 @@
 /**
  * BaseLayout Content ViewModel
  */
-class BaseLayoutContentViewModel implements IViewModel
+class BaseLayoutContentViewModel implements IModel
 {
     /** @var string */
     public $title;
