@@ -6,19 +6,14 @@
 class SessionDemoController extends BaseLayoutController
 {
     private $_sessionService;
-    private $_navigationService;
 
     /**
      * SessionDemoController Constructor
      * @param ISessionService $sessionService
-     * @param INavigationService $navigationService
      */
-    public function __construct(
-        ISessionService $sessionService,
-        INavigationService $navigationService)
+    public function __construct(ISessionService $sessionService)
     {
         $this->_sessionService = $sessionService;
-        $this->_navigationService = $navigationService;
     }
 
     /**
@@ -43,10 +38,10 @@ class SessionDemoController extends BaseLayoutController
     }
 
     /**
-     * @param IFrameworkRequest $request
+     * @param WebRequest $request
      * @return null|ActionResult
      */
-    public function changeName(IFrameworkRequest &$request)
+    public function changeName(WebRequest $request)
     {
         $name = $request->parameters->post('txtName');
 
@@ -56,19 +51,17 @@ class SessionDemoController extends BaseLayoutController
             $this->_sessionService->set('name', $name);
         }
 
-        $this->_navigationService->redirectBack();
-
-        return null;
+        return new RedirectActionResult($request->headers->get(HeaderType::Referer));
     }
 
     /**
+     * @param WebRequest $request
      * @return null|ActionResult
      */
-    public function deleteName()
+    public function deleteName(WebRequest $request)
     {
         $this->_sessionService->delete('name');
-        $this->_navigationService->redirectBack();
 
-        return null;
+        return new RedirectActionResult($request->headers->get(HeaderType::Referer));
     }
 }

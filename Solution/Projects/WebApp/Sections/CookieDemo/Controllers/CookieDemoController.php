@@ -6,19 +6,14 @@
 class CookieDemoController extends BaseLayoutController
 {
     private $_cookieService;
-    private $_navigationService;
 
     /**
      * IndexController Constructor
      * @param ICookieService $cookieService
-     * @param INavigationService $navigationService
      */
-    public function __construct(
-        ICookieService $cookieService,
-        INavigationService $navigationService)
+    public function __construct(ICookieService $cookieService)
     {
         $this->_cookieService = $cookieService;
-        $this->_navigationService = $navigationService;
     }
 
     /**
@@ -43,26 +38,25 @@ class CookieDemoController extends BaseLayoutController
     }
 
     /**
-     * @param IFrameworkRequest &$request
+     * @param WebRequest $request
      * @return null|ActionResult
      */
-    public function changeName(IFrameworkRequest &$request)
+    public function changeName(WebRequest $request)
     {
         $name = $request->parameters->post('txtName');
         $this->_cookieService->set('name', $name);
-        $this->_navigationService->redirectBack();
 
-        return null;
+        return new RedirectActionResult($request->headers->get(HeaderType::Referer));
     }
 
     /**
+     * @param WebRequest $request
      * @return null|ActionResult
      */
-    public function deleteName()
+    public function deleteName(WebRequest $request)
     {
         $this->_cookieService->delete('name');
-        $this->_navigationService->redirectBack();
 
-        return null;
+        return new RedirectActionResult($request->headers->get(HeaderType::Referer));
     }
 }
