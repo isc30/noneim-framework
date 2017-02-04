@@ -3,7 +3,7 @@
 /**
  * WebApp Configuration
  */
-class WebAppConfiguration implements IProjectLazyConfiguration
+class WebAppConfiguration extends LazyConfiguration
 {
     /**
      * Apply Configuration
