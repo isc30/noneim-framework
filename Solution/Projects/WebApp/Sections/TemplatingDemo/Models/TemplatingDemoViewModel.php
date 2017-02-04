@@ -3,7 +3,7 @@
 /**
  * Templating Demo ViewModel
  */
-class TemplatingDemoViewModel implements IViewModel
+class TemplatingDemoViewModel implements IModel
 {
     public $contents;
 }

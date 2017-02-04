@@ -3,7 +3,7 @@
 /**
  * Exception Demo Controller
  */
-class ExceptionDemoController implements IController
+class ExceptionDemoController extends Controller
 {
     public function index()
     {

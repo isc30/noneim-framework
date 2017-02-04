@@ -3,7 +3,7 @@
 /**
  * CookieDemo ViewModel
  */
-class CookieDemoViewModel implements IViewModel
+class CookieDemoViewModel implements IModel
 {
     public $name;
 }

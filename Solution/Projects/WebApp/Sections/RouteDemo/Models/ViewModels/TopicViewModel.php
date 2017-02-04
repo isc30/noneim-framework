@@ -3,7 +3,7 @@
 /**
  * Topic ViewModel
  */
-class TopicViewModel implements IViewModel
+class TopicViewModel implements IModel
 {
     public $title;
     public $description;

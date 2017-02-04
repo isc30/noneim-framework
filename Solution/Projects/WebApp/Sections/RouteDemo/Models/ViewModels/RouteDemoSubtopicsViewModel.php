@@ -3,7 +3,7 @@
 /**
  * Route Demo Subtopics ViewModel
  */
-class RouteDemoSubtopicsViewModel implements IViewModel
+class RouteDemoSubtopicsViewModel implements IModel
 {
     public $topicId;
     public $topicTitle;
