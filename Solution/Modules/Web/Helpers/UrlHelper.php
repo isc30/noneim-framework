@@ -3,28 +3,23 @@
 /**
  * Url Helper
  */
-class UrlHelper implements IHelper {
-
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
-
+class UrlHelper extends StaticClass
+{
     /**
      * Return full link of section
      * @param string[] $sections
      * @return string
      */
-    public static function getLink(array $sections) {
-
-        if (WebConfiguration::$prettyUrl) {
+    public static function getLink(array $sections)
+    {
+        if (WebConfiguration::$prettyUrl)
+        {
             return WebConfiguration::$webUrl . self::getSectionName($sections);
-        } else {
+        }
+        else
+        {
             return WebConfiguration::$webUrl . '?' . WebConfiguration::$sectionRequest . '=' . self::getSectionName($sections);
         }
-
     }
 
     /**
@@ -32,10 +27,9 @@ class UrlHelper implements IHelper {
      * @param string[] $sections
      * @return string
      */
-    public static function getSectionName(array $sections) {
-
+    public static function getSectionName(array $sections)
+    {
         return implode(WebConfiguration::$subsectionSeparator, $sections);
-
     }
 
     /**
@@ -43,10 +37,8 @@ class UrlHelper implements IHelper {
      * @param string $sectionName
      * @return string[]
      */
-    public static function getSectionArray($sectionName) {
-
+    public static function getSectionArray($sectionName)
+    {
         return explode(WebConfiguration::$subsectionSeparator, $sectionName);
-
     }
-
 }
