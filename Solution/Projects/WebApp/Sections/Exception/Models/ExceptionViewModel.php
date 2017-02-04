@@ -5,10 +5,7 @@
  */
 class ExceptionViewModel implements IModel
 {
-    /**
-     * Requested section
-     * @var string
-     */
+    /** @var string */
     public $section;
 
     /** @var Exception */
