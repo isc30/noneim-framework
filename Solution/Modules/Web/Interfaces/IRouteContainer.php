@@ -3,8 +3,8 @@
 /**
  * RouteContainer Interface
  */
-interface IRouteContainer extends IContainer {
-    
+interface IRouteContainer
+{
     /**
      * Register new Controller for Route
      * @param string[] $route
@@ -36,5 +36,4 @@ interface IRouteContainer extends IContainer {
      * @return ActionResult
      */
     public function resolve(WebRequest $request);
-    
 }

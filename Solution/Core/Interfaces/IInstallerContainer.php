@@ -3,7 +3,7 @@
 /**
  * InstallerContainer Interface
  */
-interface IInstallerContainer extends IContainer
+interface IInstallerContainer
 {
     /**
      * IInstallerContainer Constructor
