@@ -9,5 +9,5 @@ class Error404ViewModel implements IModel
      * Requested section
      * @var string
      */
-    public $request;
+    public $section;
 }
