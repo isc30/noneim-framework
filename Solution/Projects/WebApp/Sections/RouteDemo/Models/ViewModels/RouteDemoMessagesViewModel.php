@@ -3,7 +3,7 @@
 /**
  * Route Demo Messages ViewModel
  */
-class RouteDemoMessagesViewModel implements IViewModel
+class RouteDemoMessagesViewModel implements IModel
 {
     public $topicId;
     public $topicTitle;

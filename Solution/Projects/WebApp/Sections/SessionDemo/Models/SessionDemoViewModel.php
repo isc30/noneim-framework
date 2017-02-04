@@ -3,7 +3,7 @@
 /**
  * Session Demo ViewModel
  */
-class SessionDemoViewModel implements IViewModel
+class SessionDemoViewModel implements IModel
 {
     public $name;
 }

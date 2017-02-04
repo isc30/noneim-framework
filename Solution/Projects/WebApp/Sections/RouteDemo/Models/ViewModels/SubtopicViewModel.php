@@ -3,7 +3,7 @@
 /**
  * Subtopic ViewModel
  */
-class SubtopicViewModel implements IViewModel
+class SubtopicViewModel implements IModel
 {
     public $title;
     public $messagesCount;
