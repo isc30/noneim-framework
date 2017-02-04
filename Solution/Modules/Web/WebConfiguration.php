@@ -3,7 +3,7 @@
 /**
  * Web Configuration
  */
-class WebConfiguration implements IConfiguration
+class WebConfiguration extends StaticClass
 {
     /** @var bool */
     public static $prettyUrl = true;

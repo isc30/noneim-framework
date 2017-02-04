@@ -3,7 +3,7 @@
 /**
  * LazyConfiguration Interface
  */
-interface ILazyConfiguration extends IConfiguration
+interface ILazyConfiguration
 {
     /**
      * Apply Configuration

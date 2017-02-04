@@ -3,7 +3,7 @@
 /**
  * UnitTests Configuration
  */
-class UnitTestsConfiguration implements IProjectLazyConfiguration
+class UnitTestsConfiguration extends LazyConfiguration
 {
     /**
      * Apply Configuration

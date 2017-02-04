@@ -3,7 +3,7 @@
 /**
  * Core Configuration
  */
-class CoreConfiguration implements IConfiguration
+class CoreConfiguration extends StaticClass
 {
     /**
      * x.y.z
