@@ -3,7 +3,7 @@
 /**
  * WebApp Project
  */
-class WebApp implements IProject
+class WebApp extends Project
 {
     /** @var IRouteContainer */
     private $_routeContainer;

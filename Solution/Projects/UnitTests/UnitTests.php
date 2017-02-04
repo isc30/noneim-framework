@@ -3,7 +3,7 @@
 /**
  * UnitTests Project
  */
-class UnitTests implements IProject
+class UnitTests extends Project
 {
     private $_cookieService;
 
