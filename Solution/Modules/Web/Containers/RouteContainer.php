@@ -110,13 +110,15 @@ class RouteContainer implements IRouteContainer, ICacheable
 
     /**
      * Resolve request and follow rute
-     * @param IFrameworkRequest $request
+     * @param WebRequest $request
      * @return ActionResult
      */
-    public function resolve(IFrameworkRequest $request)
+    public function resolve(WebRequest $request)
     {
         $route = $this->getCurrentRoute($request->section);
         $arguments = $this->getArguments($request->section, $route);
+
+        $actionResult = null;
 
         try
         {
@@ -128,7 +130,7 @@ class RouteContainer implements IRouteContainer, ICacheable
             {
                 $actionResult = $this->_classFactory->callControllerAction($request, $this->exceptionRoute->controller, $this->exceptionRoute->method, array($ex));
             }
-            else
+            elseif (RuntimeConfiguration::$debug)
             {
                 $actionResult = new StringActionResult($ex->getMessage());
             }
@@ -160,10 +162,12 @@ class RouteContainer implements IRouteContainer, ICacheable
         {
             $repetitions = 0;
             $finalRoute = $possibleRoutes[0];
+
             for ($i = 1; $i < $possibleRoutesCount; $i++)
             {
                 $route = $possibleRoutes[$i];
                 $routeArgumentCount = count($route->arguments);
+
                 if ($routeArgumentCount > count($finalRoute->arguments))
                 {
                     $repetitions = 0;
@@ -225,7 +229,6 @@ class RouteContainer implements IRouteContainer, ICacheable
             {
                 throw new InvalidOperationException('Some section is empty');
             }
-
         }
     }
 

@@ -52,7 +52,7 @@ class IFramework
         // Load DependencyInstallers
         self::loadInstallers($installerContainer);
 
-        // Benchmarkt :D
+        // Benchmark :D
         self::$coreLoadTime = round((microtime(true) - $startTime) * 1000, 2);
 
         // Run Project
@@ -69,9 +69,11 @@ class IFramework
     {
         $coreDir = dirname(__FILE__) . '/';
 
-        require_once $coreDir . 'Interfaces/Markers/IConfiguration.php';
+        require_once $coreDir . 'Models/StaticClass.php';
+
         require_once $coreDir . 'Interfaces/ILazyConfiguration.php';
-        require_once $coreDir . 'Interfaces/Markers/IDefaultLazyConfiguration.php';
+        require_once $coreDir . 'Models/LazyConfiguration.php';
+        require_once $coreDir . 'Models/DefaultLazyConfiguration.php';
         require_once $solutionDir . 'SolutionConfiguration.php';
         require_once $solutionDir . 'RuntimeConfiguration.php';
 
@@ -88,24 +90,31 @@ class IFramework
      */
     private static function loadLazyConfigurations()
     {
-        // Load default lazy configuration
-        foreach (ReflectionHelper::getImplementations('IDefaultLazyConfiguration') as $classDefinition)
-        {
-            // Exceptional case
-            if ($classDefinition->name === 'RuntimeConfiguration' || $classDefinition->name === 'SolutionConfiguration')
-            {
-                continue; // Skip as we called `configure()` manually
-            }
+        $lazyConfigurations = ReflectionHelper::getSubclasses('LazyConfiguration');
 
-            /** @var ILazyConfiguration $className */
+        // Default Lazy Configurations
+        foreach ($lazyConfigurations as $index => $classDefinition)
+        {
+            /** @var LazyConfiguration $className */
             $className = $classDefinition->name;
-            $className::configure();
+
+            if ($className::$isDefault)
+            {
+                // Omit vital (and already loaded) Configurations
+                if ($classDefinition->name !== 'RuntimeConfiguration'
+                    && $classDefinition->name !== 'SolutionConfiguration')
+                {
+                    $className::configure();
+                }
+
+                unset($lazyConfigurations[$index]);
+            }
         }
 
-        // Load lazy configurations
-        foreach (ReflectionHelper::getImplementations('IProjectLazyConfiguration') as $classDefinition)
+        // Non-Default Lazy Configurations
+        foreach ($lazyConfigurations as $classDefinition)
         {
-            /** @var ILazyConfiguration $className */
+            /** @var LazyConfiguration $className */
             $className = $classDefinition->name;
             $className::configure();
         }
@@ -134,7 +143,7 @@ class IFramework
                 }
             }
 
-            // Remaining installers
+            // Non-Default installers
             foreach ($installers as $classDefinition)
             {
                 /** @var Installer $className */

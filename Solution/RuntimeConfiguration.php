@@ -3,7 +3,7 @@
 /**
  * Runtime Configuration
  */
-class RuntimeConfiguration implements IDefaultLazyConfiguration
+class RuntimeConfiguration extends DefaultLazyConfiguration
 {
     /** @var bool */
     public static $debug = true;

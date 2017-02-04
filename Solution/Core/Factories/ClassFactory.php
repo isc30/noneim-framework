@@ -7,15 +7,14 @@ class ClassFactory implements IClassFactory
 {
     /** @var IInstallerContainer */
     private $_installerContainer;
-        
+
     /**
      * Set InstallerContainer
      * @param IInstallerContainer $installerContainer
      */
-    public function setInstallerContainer(IInstallerContainer $installerContainer) {
-        
+    public function setInstallerContainer(IInstallerContainer $installerContainer)
+    {
         $this->_installerContainer = $installerContainer;
-        
     }
 
     /**
@@ -23,10 +22,9 @@ class ClassFactory implements IClassFactory
      * @param string $class Class name
      * @return object Class instance
      */
-    public function instantiate($class) {
-
+    public function instantiate($class)
+    {
         return $this->instantiateReflectionClass(new ReflectionClass($class));
-
     }
 
     /**
@@ -67,11 +65,11 @@ class ClassFactory implements IClassFactory
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function call($class, $method, array $arguments = array()) {
-
+    public function call($class, $method, array $arguments = array())
+    {
         $refectionClass = new ReflectionClass($class);
-        return $this->callFromReflectionClass($refectionClass, $method, $arguments);
 
+        return $this->callFromReflectionClass($refectionClass, $method, $arguments);
     }
 
     /**
@@ -82,68 +80,61 @@ class ClassFactory implements IClassFactory
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function callFromReflectionClass(ReflectionClass $refectionClass, $method, array $arguments = array()) {
-
+    public function callFromReflectionClass(ReflectionClass $refectionClass, $method, array $arguments = array())
+    {
         $reflectionMethod = $refectionClass->getMethod($method);
-
         $instance = $this->instantiateReflectionClass($refectionClass);
 
-        if (count($arguments) + 1 >= $reflectionMethod->getNumberOfRequiredParameters()) {
-
+        if (count($arguments) + 1 >= $reflectionMethod->getNumberOfRequiredParameters())
+        {
             $isAssociative = ArrayHelper::isAssociative($arguments);
 
             $index = 0;
             $parameters = $reflectionMethod->getParameters();
+
+            /** @var ReflectionParameter $param */
             foreach ($parameters as &$param)
             {
                 $name = (string)$param->getName();
-                $type = (string)$param->getClass()->getName();
+                if ($isAssociative)
+                {
+                    $argumentExists = array_key_exists($name, $arguments);
 
-                if ($type === 'IFrameworkRequest')
-                {
-                    $param = null;
-                }
-                else
-                {
-                    if ($isAssociative)
+                    if ($argumentExists || $param->isOptional())
                     {
-                        if (array_key_exists($name, $arguments) || $param->isOptional())
-                        {
-                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
-                        }
-                        else
-                        {
-                            throw new InvalidParametersException("Parameter '{$name}' not found");
-                        }
+                        $param = $argumentExists ? $arguments[$name] : $param->getDefaultValue();
                     }
                     else
                     {
-                        $param = $arguments[$index++];
+                        throw new InvalidParametersException("Parameter '{$name}' not found");
                     }
+                }
+                else
+                {
+                    $param = $arguments[$index++];
                 }
             }
 
             return $reflectionMethod->invokeArgs($instance, $parameters);
-
-        } else {
-
-            $count = count($arguments);
-            throw new InvalidParametersException("Missing parameters in call (got {$count} of {$reflectionMethod->getNumberOfRequiredParameters()})");
-
         }
+        else
+        {
+            $count = count($arguments);
 
+            throw new InvalidParametersException("Missing parameters in call (got {$count} of {$reflectionMethod->getNumberOfRequiredParameters()})");
+        }
     }
 
     /**
      * Instantiate class from name and call one method of it
-     * @param IFrameworkRequest $request
+     * @param WebRequest $request
      * @param string $controller
      * @param string $action
      * @param array $arguments
      * @return mixed Method return data
      * @throws InvalidParametersException
      */
-    public function callControllerAction(IFrameworkRequest $request, $controller, $action, array $arguments = array())
+    public function callControllerAction(WebRequest $request, $controller, $action, array $arguments = array())
     {
         $refectionClass = new ReflectionClass($controller);
         $reflectionMethod = $refectionClass->getMethod($action);
@@ -152,18 +143,22 @@ class ClassFactory implements IClassFactory
 
         $argumentCount = count($arguments);
         $requiredParameterCount = $reflectionMethod->getNumberOfRequiredParameters() - 1;
-        if ($argumentCount >= $requiredParameterCount) {
 
+
+        if ($argumentCount >= $requiredParameterCount)
+        {
             $isAssociative = ArrayHelper::isAssociative($arguments);
+            $requestType = get_class($request);
 
             $index = 0;
             $parameters = $reflectionMethod->getParameters();
+
             foreach ($parameters as &$param)
             {
                 $name = (string)$param->getName();
                 $type = (string)(($class = $param->getClass()) !== null ? $class->getName() : null);
 
-                if ($type === 'IFrameworkRequest')
+                if ($type === $requestType)
                 {
                     $param = $request;
                 }
@@ -171,9 +166,11 @@ class ClassFactory implements IClassFactory
                 {
                     if ($isAssociative)
                     {
-                        if (array_key_exists($name, $arguments) || $param->isOptional())
+                        $argumentExists = array_key_exists($name, $arguments);
+
+                        if ($argumentExists || $param->isOptional())
                         {
-                            $param = array_key_exists($name, $arguments) ? $arguments[$name] : $param->getDefaultValue();
+                            $param = $argumentExists ? $arguments[$name] : $param->getDefaultValue();
                         }
                         else
                         {
@@ -188,26 +185,10 @@ class ClassFactory implements IClassFactory
             }
 
             return $reflectionMethod->invokeArgs($instance, $parameters);
-
-        } else {
-
-            throw new InvalidParametersException("Missing parameters in call (got {$argumentCount} of {$requiredParameterCount})");
-
         }
-
-    }
-
-    /**
-     * Load Installer
-     * @param string $className
-     */
-    public function loadInstaller($className)
-    {
-        $reflectionClass = new ReflectionClass($className);
-
-        if (!RuntimeConfiguration::$debug || $reflectionClass->implementsInterface('IInstaller'))
+        else
         {
-            $this->callFromReflectionClass($reflectionClass, 'install');
+            throw new InvalidParametersException("Missing parameters in call (got {$argumentCount} of {$requiredParameterCount})");
         }
     }
 }
