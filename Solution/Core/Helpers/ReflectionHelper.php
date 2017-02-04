@@ -3,15 +3,8 @@
 /**
  * Reflection Helper
  */
-class ReflectionHelper implements IHelper
+class ReflectionHelper extends StaticClass
 {
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
-
     /** @var ClassDefinition[] */
     private static $_solutionClasses = null;
 

@@ -3,15 +3,8 @@
 /**
  * Validation Helper
  */
-class ValidationHelper implements IHelper
+class ValidationHelper extends StaticClass
 {
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
-
     /**
      * Test if $value is email
      * @param string $value

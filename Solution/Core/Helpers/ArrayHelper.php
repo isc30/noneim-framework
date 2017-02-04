@@ -3,15 +3,8 @@
 /**
  * Array Helper
  */
-class ArrayHelper implements IHelper
+class ArrayHelper extends StaticClass
 {
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
-
     /**
      * Return if array is associative
      * @param array $array

@@ -3,15 +3,8 @@
 /**
  * Format Helper
  */
-class FormatHelper implements IHelper
+class FormatHelper extends StaticClass
 {
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
-
     /**
      * Return the input string with the first letter uppercased
      * @param string $string

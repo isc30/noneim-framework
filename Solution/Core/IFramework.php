@@ -77,7 +77,6 @@ class IFramework
         require_once $solutionDir . 'SolutionConfiguration.php';
         require_once $solutionDir . 'RuntimeConfiguration.php';
 
-        require_once $coreDir . 'Interfaces/Markers/IHelper.php';
         require_once $coreDir . 'Helpers/CacheHelper.php';
 
         require_once $coreDir . 'Models/ClassDefinition.php';

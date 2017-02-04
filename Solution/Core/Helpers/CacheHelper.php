@@ -3,15 +3,8 @@
 /**
  * Cache Helper
  */
-class CacheHelper implements IHelper
+class CacheHelper extends StaticClass
 {
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
-
     /**
      * Return if loading cache is success
      * If $object is ICacheable, call setCache() method. If not, leave the value in $object

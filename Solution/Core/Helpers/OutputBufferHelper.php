@@ -3,15 +3,8 @@
 /**
  * OutputBuffer Helper
  */
-class OutputBufferHelper implements IHelper
+class OutputBufferHelper extends StaticClass
 {
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
-
     /**
      * Start capturing output to buffer
      * @param null|string $callback

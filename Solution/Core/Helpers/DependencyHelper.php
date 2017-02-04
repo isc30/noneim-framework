@@ -3,17 +3,10 @@
 /**
  * Dependency Helper
  */
-class DependencyHelper implements IHelper
+class DependencyHelper extends StaticClass
 {
     /** @var ClassDefinition[] */
     private static $autoloaderFiles = null;
-
-    /**
-     * No instantiable
-     */
-    private function __construct()
-    {
-    }
 
     /**
      * Init Autoloader
