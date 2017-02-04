@@ -3,7 +3,7 @@
 /**
  * ClassFactory Interface
  */
-interface IClassFactory extends IFactory
+interface IClassFactory
 {
     /**
      * Instantiate class from name
