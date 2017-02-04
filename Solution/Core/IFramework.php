@@ -56,7 +56,7 @@ class IFramework
         self::$coreLoadTime = round((microtime(true) - $startTime) * 1000, 2);
 
         // Run Project
-        /** @var IProject $project */
+        /** @var Project $project */
         $project = $classFactory->instantiate($projectName);
         return $project->main();
     }
