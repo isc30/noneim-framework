@@ -3,33 +3,23 @@
 /**
  * Web Installer
  */
-class WebInstaller implements IDefaultInstaller
+class WebInstaller extends DefaultInstaller
 {
-    /** @var IInstallerContainer */
-    private $_installerContainer;
-
-    /**
-     * DatabaseModuleInstaller Constructor
-     * @param IInstallerContainer $installerContainer
-     */
-    public function __construct(IInstallerContainer $installerContainer)
-    {
-        $this->_installerContainer = $installerContainer;
-    }
-
     /**
      * Install
+     * @param IInstallerContainer $container
+     * @return void
      */
-    public function install()
+    public static function install(IInstallerContainer $container)
     {
         $this->_installerContainer->registerDefinition('IWebRequestService', 'WebRequestService');
-        $this->_installerContainer->registerDefinition('ILogService', 'LogService');
-        $this->_installerContainer->registerDefinition('IRouteContainer', 'RouteContainer');
-        $this->_installerContainer->registerDefinition('INavigationService', 'NavigationService');
-        $this->_installerContainer->registerDefinition('ISessionService', 'SessionService');
-        $this->_installerContainer->registerDefinition('ICookieService', 'CookieService');
-        $this->_installerContainer->registerDefinition('IHeaderService', 'HeaderService');
-        $this->_installerContainer->registerDefinition('IRequestService', 'RequestService');
-        $this->_installerContainer->registerDefinition('IActionResultService', 'ActionResultService');
+        $container->registerDefinition('ILogService', 'LogService');
+        $container->registerDefinition('IRouteContainer', 'RouteContainer');
+        $container->registerDefinition('INavigationService', 'NavigationService');
+        $container->registerDefinition('ISessionService', 'SessionService');
+        $container->registerDefinition('ICookieService', 'CookieService');
+        $container->registerDefinition('IHeaderService', 'HeaderService');
+        $container->registerDefinition('IRequestService', 'RequestService');
+        $container->registerDefinition('IActionResultService', 'ActionResultService');
     }
 }

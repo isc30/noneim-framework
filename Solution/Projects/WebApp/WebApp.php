@@ -33,26 +33,11 @@ class WebApp implements IProject
      */
     public function main()
     {
-        $this->registerRoutes();
+        RouteRegistration::register($this->_routeContainer);
 
         $request = $this->_webRequestService->getCurrent();
         $actionResult = $this->_routeContainer->resolve($request);
 
         $this->_actionResultService->render($actionResult);
-    }
-
-    /**
-     * Register web routes
-     */
-    private function registerRoutes()
-    {
-        if (!CacheHelper::load('WebApp', 'RouteContainer', $this->_routeContainer))
-        {
-            $this->_routeContainer->registerDefault('Error404Controller');
-            $this->_routeContainer->registerException('ExceptionController');
-            $this->_routeContainer->register(array('Index'), 'IndexController');
-
-            CacheHelper::save('WebApp', 'RouteContainer', $this->_routeContainer);
-        }
     }
 }

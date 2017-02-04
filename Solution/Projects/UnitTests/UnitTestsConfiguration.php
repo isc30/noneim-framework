@@ -11,7 +11,7 @@ class UnitTestsConfiguration implements IProjectLazyConfiguration
      */
     public static function configure()
     {
-        if (SolutionConfiguration::$project === 'UnitTests')
+        if (RuntimeConfiguration::$project === 'UnitTests')
         {
             // ...
         }

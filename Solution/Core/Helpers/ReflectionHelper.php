@@ -5,6 +5,13 @@
  */
 class ReflectionHelper implements IHelper
 {
+    /**
+     * No instantiable
+     */
+    private function __construct()
+    {
+    }
+
     /** @var ClassDefinition[] */
     private static $_solutionClasses = null;
 
@@ -35,6 +42,7 @@ class ReflectionHelper implements IHelper
     private static $_getImplementations = array();
 
     /**
+     * Find Implementations of given Interface
      * @param string $interfaceName
      * @return ClassDefinition[]
      */
@@ -69,6 +77,56 @@ class ReflectionHelper implements IHelper
             $rc = new ReflectionClass($definition->name);
 
             if (!$rc->isInterface() && $rc->implementsInterface($interfaceName))
+            {
+                $classNames[] = $definition;
+            }
+        }
+
+        return $classNames;
+    }
+
+    /**
+     * GetSubclasses Cache
+     * @var ClassDefinition[][]
+     */
+    private static $_getSubclasses = array();
+
+    /**
+     * Find Subclasses of given Class
+     * @param string $className
+     * @return ClassDefinition[]
+     */
+    public static function getSubclasses($className)
+    {
+        if (isset(self::$_getSubclasses[$className]))
+        {
+            return self::$_getSubclasses[$className];
+        }
+
+        if (!CacheHelper::load('Core', "ReflectionHelper.GetSubclasses.{$className}", self::$_getSubclasses[$className]))
+        {
+            self::$_getSubclasses[$className] = self::_getSubclasses($className);
+
+            CacheHelper::save('Core', "ReflectionHelper.GetSubclasses.{$className}", self::$_getSubclasses[$className]);
+        }
+
+        return self::$_getSubclasses[$className];
+    }
+
+    /**
+     * Find Subclasses of given Class
+     * @param string $className
+     * @return string[]
+     */
+    private static function _getSubclasses($className)
+    {
+        $classNames = array();
+
+        foreach (self::getSolutionClasses() as $class => $definition)
+        {
+            $rc = new ReflectionClass($definition->name);
+
+            if (!$rc->isAbstract() && $rc->isSubclassOf($className))
             {
                 $classNames[] = $definition;
             }

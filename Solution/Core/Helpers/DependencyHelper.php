@@ -8,6 +8,16 @@ class DependencyHelper implements IHelper
     /** @var ClassDefinition[] */
     private static $autoloaderFiles = null;
 
+    /**
+     * No instantiable
+     */
+    private function __construct()
+    {
+    }
+
+    /**
+     * Init Autoloader
+     */
     public static function initAutoloader()
     {
         self::$autoloaderFiles = ReflectionHelper::getSolutionClasses();
