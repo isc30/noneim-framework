@@ -40,12 +40,6 @@ interface IClassFactory extends IFactory
     public function callFromReflectionClass(ReflectionClass $refectionClass, $method, array $arguments = array());
 
     /**
-     * Load Installer
-     * @param string $className
-     */
-    public function loadInstaller($className);
-
-    /**
      * Instantiate class from name and call one method of it
      * @param IFrameworkRequest $request
      * @param string $controller
