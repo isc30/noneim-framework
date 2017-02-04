@@ -7,10 +7,10 @@ class Error404Controller extends BaseLayoutController
 {
     /**
      * Main Action
-     * @param IFrameworkRequest $request
+     * @param WebRequest $request
      * @return ActionResult
      */
-    public function index(IFrameworkRequest $request)
+    public function index(WebRequest $request)
     {
         $viewModel = new Error404ViewModel();
         $viewModel->request = FormatHelper::cleanOutput($request->section);

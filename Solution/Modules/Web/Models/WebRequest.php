@@ -3,11 +3,11 @@
 /**
  * IFramework Request
  */
-class IFrameworkRequest
+class WebRequest
 {
     /** @var string */
     public $section;
-    /** @var IFrameworkRequestParameters */
+    /** @var WebRequestParameters */
     public $parameters;
     /** @var string */
     public $type;

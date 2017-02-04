@@ -7,11 +7,11 @@ class ExceptionController extends BaseLayoutController
 {
     /**
      * Main Action
-     * @param IFrameworkRequest $request
+     * @param WebRequest $request
      * @param Exception $ex
      * @return ActionResult
      */
-    public function index(IFrameworkRequest $request, Exception $ex)
+    public function index(WebRequest $request, Exception $ex)
     {
         $viewModel = new ExceptionViewModel();
         $viewModel->request = FormatHelper::cleanOutput($request->section);

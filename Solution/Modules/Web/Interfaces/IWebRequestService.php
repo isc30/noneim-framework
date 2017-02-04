@@ -6,7 +6,7 @@
 interface IWebRequestService
 {
     /**
-     * @return IFrameworkRequest
+     * @return WebRequest
      */
     public function getCurrent();
 }

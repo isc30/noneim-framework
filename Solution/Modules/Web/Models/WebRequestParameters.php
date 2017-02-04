@@ -1,9 +1,9 @@
 <?php
 
 /**
- * IFrameworkRequest Parameters
+ * WebRequest Parameters
  */
-class IFrameworkRequestParameters
+class WebRequestParameters
 {
     /** @var string[] */
     private $_get;
@@ -11,7 +11,7 @@ class IFrameworkRequestParameters
     private $post;
 
     /**
-     * IFrameworkRequestParameters Constructor
+     * WebRequestParameters Constructor
      * @param string[] $get
      * @param string[] $post
      */

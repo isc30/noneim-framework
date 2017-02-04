@@ -18,12 +18,12 @@ class WebRequestService implements IWebRequestService
     }
 
     /**
-     * @return IFrameworkRequest
+     * @return WebRequest
      */
     public function getCurrent()
     {
-        $request = new IFrameworkRequest();
-        $request->parameters = new IFrameworkRequestParameters($_GET, $_POST);
+        $request = new WebRequest();
+        $request->parameters = new WebRequestParameters($_GET, $_POST);
         $request->section = $this->getSection($request->parameters);
         $request->type = $this->getType();
         $request->headers = new WebRequestHeaders($this->_headerService->getAll());
@@ -32,10 +32,10 @@ class WebRequestService implements IWebRequestService
     }
 
     /**
-     * @param IFrameworkRequestParameters $parameters
+     * @param WebRequestParameters $parameters
      * @return string
      */
-    private function getSection(IFrameworkRequestParameters $parameters)
+    private function getSection(WebRequestParameters $parameters)
     {
         $section = $parameters->get(WebConfiguration::$sectionRequest);
 
