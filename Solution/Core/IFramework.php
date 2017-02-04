@@ -100,7 +100,13 @@ class IFramework
 
             if ($className::$isDefault)
             {
-                $className::configure();
+                // Omit vital (and already loaded) Configurations
+                if ($classDefinition->name !== 'RuntimeConfiguration'
+                    && $classDefinition->name !== 'SolutionConfiguration')
+                {
+                    $className::configure();
+                }
+
                 unset($lazyConfigurations[$index]);
             }
         }
