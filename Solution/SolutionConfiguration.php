@@ -3,7 +3,7 @@
 /**
  * Solution Configuration
  */
-class SolutionConfiguration implements IDefaultLazyConfiguration
+class SolutionConfiguration extends DefaultLazyConfiguration
 {
     /** @var string */
     public static $locale = 'es_ES';
