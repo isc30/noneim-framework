@@ -15,8 +15,12 @@ class BaseLayoutController extends Controller
      */
     protected function baseLayout(BaseLayoutContentViewModel $contentViewModel)
     {
+        $pageTitle = !StringHelper::isNullOrEmpty($contentViewModel->title)
+                        ? "{$contentViewModel->title} - {$this->title}"
+                        : $this->title;
+
         $viewModel = new BaseLayoutViewModel();
-        $viewModel->title = !ValidationHelper::isNullOrEmpty($contentViewModel->title) ? "{$contentViewModel->title} - {$this->title}" : $this->title;
+        $viewModel->title = HtmlHelper::escape($pageTitle);
         $viewModel->head = new View('Head', null, __FILE__);
         $viewModel->topMenu = $this->topMenu();
         $viewModel->content = $contentViewModel->content;
