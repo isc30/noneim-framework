@@ -17,5 +17,5 @@ class CoreConfiguration extends StaticClass
      *
      * @var string
      **/
-    public static $version = '0.9.1 alpha';
+    public static $version = '0.9.2 beta';
 }
