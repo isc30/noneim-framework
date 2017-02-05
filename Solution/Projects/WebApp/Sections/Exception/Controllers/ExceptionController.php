@@ -14,7 +14,7 @@ class ExceptionController extends BaseLayoutController
     public function index(WebRequest $request, Exception $ex)
     {
         $viewModel = new ExceptionViewModel();
-        $viewModel->section = FormatHelper::cleanOutput($request->section);
+        $viewModel->section = HtmlHelper::escape($request->section);
         $viewModel->exception = $ex;
 
         $layoutViewModel = new BaseLayoutContentViewModel();
