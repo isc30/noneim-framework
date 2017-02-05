@@ -5,12 +5,12 @@
  */
 class Enum
 {
-    /** @var mixed */
+    /** @var int|string */
     public $value;
 
     /**
      * Enum Constructor
-     * @param mixed $value
+     * @param int|string $value
      */
     public function __construct($value)
     {
