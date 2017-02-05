@@ -1,6 +1,6 @@
 <?php /** @var CookieDemoViewModel $model */ ?>
 <h1>Cookie Demo</h1>
-<p>Hi <strong><?= FormatHelper::cleanOutput($model->name) ?></strong>!</p>
+<p>Hi <strong><?= $model->name ?></strong>!</p>
 
 <form method="post" action="<?= UrlHelper::getLink(array('CookieDemo', 'ChangeName')) ?>">
     <input name="frmChangeName" type="hidden" value="1"/>

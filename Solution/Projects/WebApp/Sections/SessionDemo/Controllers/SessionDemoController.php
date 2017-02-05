@@ -5,6 +5,7 @@
  */
 class SessionDemoController extends BaseLayoutController
 {
+    /** @var ISessionService */
     private $_sessionService;
 
     /**
@@ -28,7 +29,7 @@ class SessionDemoController extends BaseLayoutController
         }
 
         $viewModel = new SessionDemoViewModel();
-        $viewModel->name = $this->_sessionService->get('name');
+        $viewModel->name = HtmlHelper::escape($this->_sessionService->get('name'));
 
         $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Session Demo";
@@ -46,7 +47,7 @@ class SessionDemoController extends BaseLayoutController
         $name = $request->parameters->post('txtName');
 
         // Don't allow empty names
-        if (!ValidationHelper::isNullOrEmpty($name))
+        if (!StringHelper::isNullOrEmpty($name))
         {
             $this->_sessionService->set('name', $name);
         }
