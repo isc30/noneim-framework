@@ -55,6 +55,11 @@ class FormatHelper extends StaticClass
         return $values;
     }
 
+    /**
+     * Minimize HTML
+     * @param string $buffer
+     * @return string
+     */
     public static function minimizeHtml($buffer)
     {
         if (!ValidationHelper::isHtml($buffer))
@@ -76,11 +81,13 @@ class FormatHelper extends StaticClass
 
         // Remove extra whitespaces
         $skip = array('pre', 'code', 'script', 'textarea');
+
         foreach ($xpath->query('//text()') as $node)
         {
             if (!in_array($node->parentNode->nodeName, $skip))
             {
                 $node->nodeValue = preg_replace('/[\n\s\r]{2,}/', ' ', $node->nodeValue);
+
                 if ($node->nodeValue === ' ')
                 {
                     $node->nodeValue = null;
