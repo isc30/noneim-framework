@@ -3,7 +3,7 @@
 /**
  * Mime Type
  */
-class MimeType
+class MimeType extends Enum
 {
     const Aac = 'audio/aac';
     const Archive = 'application/octet-stream';

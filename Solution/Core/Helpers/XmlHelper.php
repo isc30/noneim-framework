@@ -3,39 +3,33 @@
 /**
  * Xml Helper
  */
-class XmlHelper {
-
-    /**
-     * No instantiable
-     */
-    private function __construct() {}
-
+class XmlHelper
+{
     /**
      * Convert SimpleXMLElement to Array
      * @param SimpleXMLElement $xml
      * @return array
      */
-    public static function toArray(SimpleXMLElement $xml) {
-
+    public static function toArray(SimpleXMLElement $xml)
+    {
         $array = array();
 
-        foreach ($xml as $element) {
-
+        foreach ($xml as $element)
+        {
             /** @var SimpleXMLElement $element */
-
             $key = $element->getName();
             $value = get_object_vars($element);
 
-            if (!empty($value)) {
+            if (!empty($value))
+            {
                 $array[$key] = $element instanceof SimpleXMLElement ? self::toArray($element) : (string)$value;
-            } else {
+            }
+            else
+            {
                 $array[$key] = trim($element);
             }
-
         }
 
         return $array;
-
     }
-
 }

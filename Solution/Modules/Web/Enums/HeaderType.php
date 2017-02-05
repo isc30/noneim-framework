@@ -3,7 +3,7 @@
 /**
  * Header Type
  */
-class HeaderType
+class HeaderType extends Enum
 {
     const ContentType = 'Content-Type';
     const Refresh = 'Refresh';
