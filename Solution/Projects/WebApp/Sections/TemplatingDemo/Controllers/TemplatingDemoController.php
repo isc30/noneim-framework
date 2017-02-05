@@ -23,7 +23,7 @@ class TemplatingDemoController extends BaseLayoutController
         );
 
         $viewModel = new TemplatingDemoViewModel();
-        $viewModel->contents = $contents;
+        $viewModel->contents = HtmlHelper::escapeArray($contents);
 
         $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Output Buffer Demo";

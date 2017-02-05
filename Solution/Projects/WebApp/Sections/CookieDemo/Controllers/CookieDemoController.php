@@ -5,6 +5,7 @@
  */
 class CookieDemoController extends BaseLayoutController
 {
+    /** @var ICookieService */
     private $_cookieService;
 
     /**
@@ -28,7 +29,7 @@ class CookieDemoController extends BaseLayoutController
         }
 
         $viewModel = new CookieDemoViewModel();
-        $viewModel->name = $this->_cookieService->get('name');
+        $viewModel->name = HtmlHelper::escape($this->_cookieService->get('name'));
 
         $actionResult = new BaseLayoutContentViewModel();
         $actionResult->title = "Cookie Demo";
