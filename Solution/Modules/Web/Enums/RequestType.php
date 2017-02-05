@@ -3,7 +3,7 @@
 /**
  * Request Type
  */
-class RequestType
+class RequestType extends Enum
 {
     const Get = 'GET';
     const Head = 'HEAD';

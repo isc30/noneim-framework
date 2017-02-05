@@ -3,7 +3,7 @@
 /**
  * Route Registration
  */
-class RouteRegistration
+class RouteRegistration extends StaticClass
 {
     /**
      * @param IRouteContainer $routeContainer
