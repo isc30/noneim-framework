@@ -39,7 +39,7 @@ class WebRequestService implements IWebRequestService
     {
         $section = $parameters->get(WebConfiguration::$sectionRequest);
 
-        if (!ValidationHelper::isNullOrEmpty($section))
+        if (!StringHelper::isNullOrEmpty($section))
         {
             return $section;
         }
