@@ -6,10 +6,10 @@
 class View implements IModel
 {
     /** @var string */
-    private $view;
+    private $_view;
 
     /** @var null|IModel */
-    private $model;
+    private $_model;
 
     /**
      * View Constructor
@@ -36,8 +36,8 @@ class View implements IModel
             throw new ViewNotFoundException($view);
         }
 
-        $this->view = $view;
-        $this->model = $model;
+        $this->_view = $view;
+        $this->_model = $model;
     }
 
     /**
@@ -46,10 +46,10 @@ class View implements IModel
     public function render()
     {
         /** @noinspection PhpUnusedLocalVariableInspection */
-        $model = $this->model; // Make model accessible from the template
+        $model = $this->_model; // Make model accessible from the template
 
         /** @noinspection PhpIncludeInspection */
-        require $this->view;
+        require $this->_view;
     }
 
     /**

@@ -13,7 +13,7 @@ class Error404Controller extends BaseLayoutController
     public function index(WebRequest $request)
     {
         $viewModel = new Error404ViewModel();
-        $viewModel->section = FormatHelper::cleanOutput($request->section);
+        $viewModel->section = HtmlHelper::escape($request->section);
 
         $layoutViewModel = new BaseLayoutContentViewModel();
         $layoutViewModel->title = 'Error 404';

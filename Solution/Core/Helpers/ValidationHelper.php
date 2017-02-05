@@ -16,16 +16,6 @@ class ValidationHelper extends StaticClass
     }
 
     /**
-     * Test if $buffer is HTML
-     * @param string $buffer
-     * @return bool
-     */
-    public static function isHtml($buffer)
-    {
-        return substr(trim($buffer), 0, 2) === '<!';
-    }
-
-    /**
      * Test if $buffer is JSON
      * @param string $buffer
      * @return bool
@@ -46,34 +36,12 @@ class ValidationHelper extends StaticClass
     {
         if (is_string($input))
         {
-            return $input === null || strlen($input) === 0;
+            return StringHelper::isNullOrEmpty($input);
         }
         else
         {
             return $input === null || count($input) === 0;
         }
-    }
-
-    /**
-     * Test if $string ends with $end
-     * @param string $string
-     * @param string $end
-     * @return bool
-     */
-    public static function endsWith($string, $end)
-    {
-        return substr($string, -strlen($end)) === $end;
-    }
-
-    /**
-     * Test if $string starts with $start
-     * @param string $string
-     * @param string $start
-     * @return bool
-     */
-    public static function startsWith($string, $start)
-    {
-        return substr($string, 0, strlen($start)) === $start;
     }
 
     /**
