@@ -36,11 +36,11 @@ class LanguageService implements ILanguageService
     {
         $language = null;
 
-        if (!CacheHelper::load('Modules/Language', "LanguageService.{$languageName}", $language))
+        if (!CacheHelper::load('Modules/Language', 'LanguageService', $language, $languageName))
         {
             $language = XmlHelper::toArray(simplexml_load_file(SolutionConfiguration::$projectDir . LanguageConfiguration::$languagesDirectory . "/{$languageName}.xml"));
 
-            CacheHelper::save('Modules/Language', "LanguageService.{$languageName}", $language);
+            CacheHelper::save('Modules/Language', 'LanguageService', $language, $languageName);
         }
 
         return $language;
