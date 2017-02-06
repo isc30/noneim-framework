@@ -46,11 +46,11 @@ class ReflectionHelper extends StaticClass
             return self::$_getImplementations[$interfaceName];
         }
 
-        if (!CacheHelper::load('Core', "ReflectionHelper.GetImplementations.{$interfaceName}", self::$_getImplementations[$interfaceName]))
+        if (!CacheHelper::load('Core', 'ReflectionHelper.GetImplementations', self::$_getImplementations[$interfaceName], $interfaceName))
         {
             self::$_getImplementations[$interfaceName] = self::_getImplementations($interfaceName);
 
-            CacheHelper::save('Core', "ReflectionHelper.GetImplementations.{$interfaceName}", self::$_getImplementations[$interfaceName]);
+            CacheHelper::save('Core', 'ReflectionHelper.GetImplementations', self::$_getImplementations[$interfaceName], $interfaceName);
         }
 
         return self::$_getImplementations[$interfaceName];
@@ -96,11 +96,11 @@ class ReflectionHelper extends StaticClass
             return self::$_getSubclasses[$className];
         }
 
-        if (!CacheHelper::load('Core', "ReflectionHelper.GetSubclasses.{$className}", self::$_getSubclasses[$className]))
+        if (!CacheHelper::load('Core', 'ReflectionHelper.GetSubclasses', self::$_getSubclasses[$className], $className))
         {
             self::$_getSubclasses[$className] = self::_getSubclasses($className);
 
-            CacheHelper::save('Core', "ReflectionHelper.GetSubclasses.{$className}", self::$_getSubclasses[$className]);
+            CacheHelper::save('Core', 'ReflectionHelper.GetSubclasses', self::$_getSubclasses[$className], $className);
         }
 
         return self::$_getSubclasses[$className];

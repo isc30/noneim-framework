@@ -11,9 +11,10 @@ class CacheHelper extends StaticClass
      * @param string $area
      * @param string $name
      * @param object|array &$value
+     * @param null|mixed $context
      * @return bool
      */
-    public static function load($area, $name, &$value)
+    public static function load($area, $name, &$value, $context = null)
     {
         if (!RuntimeConfiguration::$cache)
         {
@@ -23,7 +24,7 @@ class CacheHelper extends StaticClass
         try
         {
             $cacheDir = self::getCacheDir($area);
-            $cacheFileName = self::getCacheFileName($name);
+            $cacheFileName = self::getCacheFileName($name, $context);
             $cachePath = $cacheDir . $cacheFileName;
 
             if (!file_exists($cachePath))
@@ -56,9 +57,10 @@ class CacheHelper extends StaticClass
      * @param string $area
      * @param string $name
      * @param object|array $value
+     * @param null|mixed $context
      * @return bool
      */
-    public static function save($area, $name, $value)
+    public static function save($area, $name, $value, $context = null)
     {
         if (!RuntimeConfiguration::$cache)
         {
@@ -68,7 +70,7 @@ class CacheHelper extends StaticClass
         try
         {
             $cacheDir = self::getCacheDir($area);
-            $cacheFileName = self::getCacheFileName($name);
+            $cacheFileName = self::getCacheFileName($name, $context);
             $cachePath = $cacheDir . $cacheFileName;
 
             if ($value instanceof ICacheable)
@@ -118,10 +120,18 @@ class CacheHelper extends StaticClass
     /**
      * Get cache file name
      * @param string $name
+     * @param null|mixed $context
      * @return string
      */
-    private static function getCacheFileName($name)
+    private static function getCacheFileName($name, $context)
     {
-        return "{$name}." . RuntimeConfiguration::$project . '.tmp';
+        if ($context === null)
+        {
+            return RuntimeConfiguration::$project . ".{$name}.tmp";
+        }
+        else
+        {
+            return RuntimeConfiguration::$project . ".{$name}." . md5(serialize($context)) . '.tmp';
+        }
     }
 }
