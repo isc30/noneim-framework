@@ -10,7 +10,7 @@ class JsonActionResult extends ActionResult
 
     /**
      * JsonActionResult Constructor
-     * @param null|array|IModel $item
+     * @param null|int|string|array|IModel $item
      */
     public function __construct($item)
     {

@@ -42,4 +42,5 @@ class MimeType extends Enum
     const Xhtml = 'application/xhtml+xml';
     const Xml = 'application/xml';
     const Zip = 'application/zip';
+    const TextOctetStream = 'text/octet-stream';
 }
