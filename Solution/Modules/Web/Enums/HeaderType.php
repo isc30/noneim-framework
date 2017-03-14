@@ -9,4 +9,5 @@ class HeaderType extends Enum
     const Refresh = 'Refresh';
     const Location = 'Location';
     const Referer = 'Referer';
+    const CacheControl = 'Cache-Control';
 }
