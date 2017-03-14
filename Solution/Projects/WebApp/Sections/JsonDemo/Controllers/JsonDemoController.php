@@ -35,7 +35,7 @@ class JsonDemoController extends BaseLayoutController
     }
 
     /**
-     * @return Person
+     * @return PersonViewModel
      */
     private function generateRandomPerson()
     {
@@ -44,7 +44,7 @@ class JsonDemoController extends BaseLayoutController
         $citys = array('London', 'Madrid', 'Pasai Antxo', 'Berlin', 'Rome', 'Lisboa', 'Barcelona');
         $hobbies = array('Walking', 'Running', 'Football', 'Painting', 'Programming', 'Singing', 'Murdering', 'Dancing');
 
-        $person = new Person();
+        $person = new PersonViewModel();
         $person->name = ArrayHelper::getRandomValue($names);
         $person->surname = ArrayHelper::getRandomValue($surnames);
         $person->city = ArrayHelper::getRandomValue($citys);

@@ -37,6 +37,10 @@ class RouteRegistration extends StaticClass
             $routeContainer->register(array('RouteDemo', '{topicId}-{subtopicId}'), 'RouteDemoController', 'subTopicMessages');
             $routeContainer->register(array('RouteDemo', '{topicId}-{subtopicId}-{messageId}'), 'RouteDemoController', 'subTopicMessages');
 
+            $routeContainer->register(array('StreamDemo'), 'StreamDemoController');
+            $routeContainer->register(array('StreamDemo', 'FancyTask'), 'StreamDemoController', 'fancyTask');
+            $routeContainer->register(array('StreamDemo', 'SendEmails'), 'StreamDemoController', 'sendEmails');
+
             CacheHelper::save('WebApp', 'RouteContainer', $routeContainer);
         }
     }

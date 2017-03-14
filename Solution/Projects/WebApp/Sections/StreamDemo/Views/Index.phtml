@@ -1,0 +1,108 @@
+<?php /** @var null $model */ ?>
+
+<h1>Stream Demo</h1>
+<button id="btFancyTask">Simulate fancy task</button>
+<progress id="pbProgressBar" value="0" max="100"></progress>
+
+<hr />
+
+<button id="btSendEmails">Simulate send emails</button>
+<pre id="taSendEmailsResult"></pre>
+
+<script src="<?= WebConfiguration::$webUrl ?>js/jquery-2.1.4.min.js"></script>
+<script>
+
+    window.addEventListener('DOMContentLoaded', function()
+    {
+        document.getElementById('btFancyTask').addEventListener('click', doFancyTask);
+        document.getElementById('btSendEmails').addEventListener('click', sendEmails);
+    });
+
+    function doFancyTask()
+    {
+        var btFancyTask = document.getElementById('btFancyTask');
+        var pbProgressBar = document.getElementById('pbProgressBar');
+
+        btFancyTask.disabled = true;
+
+        var lastResponseLength = 0;
+        $.ajax('StreamDemo/FancyTask', {
+            xhrFields: {
+                onprogress: function(e)
+                {
+                    var response = e.currentTarget.response.substring(lastResponseLength);
+                    lastResponseLength = e.currentTarget.response.length;
+
+                    var chunks = response.trim().split('\n');
+
+                    for (var i = 0; i < chunks.length; i++)
+                    {
+                        console.log("chunk: " + chunks[i]);
+                        pbProgressBar.value = chunks[i];
+                    }
+                }
+            }
+        })
+        .done(function(data)
+        {
+            console.log('Complete response!');
+
+            pbProgressBar.value = 0;
+            btFancyTask.disabled = false;
+        })
+        .fail(function(data)
+        {
+            console.log('Error: ', data);
+
+            pbProgressBar.value = 0;
+            btFancyTask.disabled = false;
+        });
+
+        console.log('Request Sent');
+    }
+
+    function sendEmails()
+    {
+        var btSendEmails = document.getElementById('btSendEmails');
+        var taSendEmailsResult = document.getElementById('taSendEmailsResult');
+
+        btSendEmails.disabled = true;
+        taSendEmailsResult.innerHTML = "";
+
+        var lastResponseLength = 0;
+        $.ajax('StreamDemo/SendEmails', {
+            xhrFields: {
+                onprogress: function(e)
+                {
+                    var response = e.currentTarget.response.substring(lastResponseLength);
+                    lastResponseLength = e.currentTarget.response.length;
+
+                    var chunks = response.trim().split('\n');
+
+                    for (var i = 0; i < chunks.length; i++)
+                    {
+                        console.log("chunk: " + chunks[i]);
+                        taSendEmailsResult.innerHTML += chunks[i] + "\n";
+                    }
+                }
+            }
+        })
+        .done(function(data)
+        {
+            console.log('Complete response!');
+
+            taSendEmailsResult.innerHTML += "Done";
+            btSendEmails.disabled = false;
+        })
+        .fail(function(data)
+        {
+            console.log('Error: ', data);
+
+            taSendEmailsResult.innerHTML = "Error!";
+            btSendEmails.disabled = false;
+        });
+
+        console.log('Request Sent');
+    }
+
+</script>
