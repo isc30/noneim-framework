@@ -5,6 +5,7 @@
  */
 class StreamActionResult extends ActionResult
 {
+    /** @var Generator */
     private $_generator;
 
     /**
@@ -15,7 +16,7 @@ class StreamActionResult extends ActionResult
     {
         if ($generatorOrClosure instanceof Closure)
         {
-            $this->_generator = $generatorOrClosure();
+            $this->_generator = ($generatorOrClosure());
         }
         else
         {
