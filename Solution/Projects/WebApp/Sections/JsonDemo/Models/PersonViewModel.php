@@ -3,7 +3,7 @@
 /**
  * Person
  */
-class Person implements IModel
+class PersonViewModel implements IModel
 {
     public $name;
     public $surname;
