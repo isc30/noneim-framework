@@ -51,8 +51,7 @@ class ActionResultService implements IActionResultService
         {
             $this->_headerService->set(HeaderType::ContentType, MimeType::Json);
         }
-
-        if ($actionResult instanceof RedirectActionResult)
+        elseif ($actionResult instanceof RedirectActionResult)
         {
             if ($actionResult->isSection())
             {
@@ -62,6 +61,12 @@ class ActionResultService implements IActionResultService
             {
                 $this->_navigationService->redirect($actionResult->urlOrSection, $actionResult->waitSeconds);
             }
+        }
+        elseif ($actionResult instanceof StreamActionResult)
+        {
+            $this->_headerService->set(HeaderType::ContentType, MimeType::TextOctetStream);
+            $this->_headerService->set(HeaderType::CacheControl, 'no-cache');
+            $this->_headerService->set('X-Accel-Buffering', 'no');
         }
     }
 }
