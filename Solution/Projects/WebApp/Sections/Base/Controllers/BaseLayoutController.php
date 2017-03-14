@@ -45,6 +45,7 @@ class BaseLayoutController extends Controller
             'Session Demo' => UrlHelper::getLink(array('SessionDemo')),
             'JSON Demo' => UrlHelper::getLink(array('JsonDemo')),
             'Templating Demo' => UrlHelper::getLink(array('TemplatingDemo')),
+            'Stream Demo' => UrlHelper::getLink(array('StreamDemo')),
         );
 
         return new View('TopMenu', $viewModel, __FILE__);
