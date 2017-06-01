@@ -38,6 +38,14 @@ class BaseLayoutController extends Controller
         $viewModel->links = array
         (
             'Index' => UrlHelper::getLink(array('')),
+            'Error 404 Demo' => UrlHelper::getLink(array('TROLOLOLOL')),
+            'Internal Exception Demo' => UrlHelper::getLink(array('ExceptionDemo')),
+            'Route Demo' => UrlHelper::getLink(array('RouteDemo')),
+            'Cookie Demo' => UrlHelper::getLink(array('CookieDemo')),
+            'Session Demo' => UrlHelper::getLink(array('SessionDemo')),
+            'JSON Demo' => UrlHelper::getLink(array('JsonDemo')),
+            'Templating Demo' => UrlHelper::getLink(array('TemplatingDemo')),
+            'Stream Demo' => UrlHelper::getLink(array('StreamDemo')),
         );
 
         return new View('TopMenu', $viewModel, __FILE__);
