@@ -142,20 +142,19 @@ class ReflectionHelper extends StaticClass
             if ($file->isFile())
             {
                 $path = $file->getPathname();
-                $filename = $file->getFilename();
                 $extension = $file->getExtension();
 
                 if ($extension === 'php')
                 {
-                    $className = substr($filename, 0, -4); // Remove '.php'
+                    $declarations = self::getFileDeclarations($path);
 
-                    if (self::containsDefinition($path, $className))
+                    foreach ($declarations as $declaration)
                     {
                         $classDefinition = new ClassDefinition();
-                        $classDefinition->name = $className;
+                        $classDefinition->name = $declaration;
                         $classDefinition->path = $path;
 
-                        self::$_solutionClasses[$className] = $classDefinition;
+                        self::$_solutionClasses[$declaration] = $classDefinition;
                     }
                 }
             }
@@ -163,15 +162,19 @@ class ReflectionHelper extends StaticClass
     }
 
     /**
-     * Scan source code looking for the declaration
+     * Scan source code looking for declarations
      * @param string $file
-     * @param string $className
-     * @return bool
+     * @return string[]
      */
-    private static function containsDefinition($file, $className)
+    private static function getFileDeclarations($file)
     {
+        $declarations = [];
+
         $tokens = token_get_all(file_get_contents($file));
-        $waitingClassName = false;
+
+        $currentNamespace = "";
+        $waitingDeclarationName = false;
+        $waitingNamespace = false;
 
         foreach ($tokens as $token)
         {
@@ -181,22 +184,43 @@ class ReflectionHelper extends StaticClass
 
                 if ($tokenName === 'T_CLASS' || $tokenName === 'T_INTERFACE' || $tokenName === 'T_TRAIT')
                 {
-                    $waitingClassName = true;
-                }
-                elseif ($waitingClassName && $tokenName === 'T_STRING')
-                {
-                    if ($token[1] === $className)
+                    $waitingDeclarationName = true;
+
+                    if ($waitingNamespace)
                     {
-                        return true;
+                        $currentNamespace = "";
+                        $waitingNamespace = false;
                     }
-                    else
+                }
+                elseif ($tokenName === 'T_NAMESPACE')
+                {
+                    $waitingNamespace = true;
+                    $waitingDeclarationName = false;
+                }
+                elseif ($tokenName === 'T_STRING')
+                {
+                    if ($waitingDeclarationName)
                     {
-                        $waitingClassName = false;
+                        $declarations[] = $currentNamespace !== "" ? "{$currentNamespace}\\{$token[1]}" : $token[1];
+                        $waitingDeclarationName = false;
+                    }
+                    elseif ($waitingNamespace)
+                    {
+                        $currentNamespace = $token[1];
+                        $waitingNamespace = false;
+                    }
+                }
+                elseif ($tokenName !== 'T_WHITESPACE')
+                {
+                    if ($waitingNamespace)
+                    {
+                        $currentNamespace = "";
+                        $waitingNamespace = false;
                     }
                 }
             }
         }
 
-        return false;
+        return $declarations;
     }
 }

@@ -26,6 +26,9 @@ class DependencyHelper extends StaticClass
      */
     private static function autoload($className)
     {
+        // Remove double slash namespaces
+        $className = str_replace("\\\\", "\\", $className);
+
         if (!isset(self::$autoloaderFiles[$className]))
         {
             throw new DependencyNotFoundException($className);
