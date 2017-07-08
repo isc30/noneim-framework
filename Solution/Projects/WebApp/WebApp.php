@@ -38,6 +38,9 @@ class WebApp extends Project
         $request = $this->_webRequestService->getCurrent();
         $actionResult = $this->_routeContainer->resolve($request);
 
-        $this->_actionResultService->render($actionResult);
+        if ($actionResult !== null)
+        {
+            $this->_actionResultService->render($actionResult);
+        }
     }
 }
