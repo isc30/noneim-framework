@@ -136,6 +136,11 @@ class RouteContainer implements IRouteContainer, ICacheable
             }
         }
 
+        if (!isset($actionResult))
+        {
+            return null;
+        }
+
         return $actionResult;
     }
 
