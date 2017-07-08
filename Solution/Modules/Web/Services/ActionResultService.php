@@ -24,15 +24,10 @@ class ActionResultService implements IActionResultService
     }
 
     /**
-     * @param null|ActionResult $actionResult
+     * @param ActionResult $actionResult
      */
     public function render(ActionResult $actionResult)
     {
-        if ($actionResult === null)
-        {
-            return;
-        }
-
         $this->process($actionResult);
         $actionResult->render();
     }
