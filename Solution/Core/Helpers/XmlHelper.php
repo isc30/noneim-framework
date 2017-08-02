@@ -3,7 +3,7 @@
 /**
  * Xml Helper
  */
-class XmlHelper
+class XmlHelper extends StaticClass
 {
     /**
      * Convert SimpleXMLElement to Array
