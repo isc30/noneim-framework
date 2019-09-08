@@ -1,6 +1,0 @@
-syntax: glob
-.c9/*
-.idea/*
-doc/*
-php.ini
-*.tmp

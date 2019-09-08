@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+
+  nginx:
+    image: "nginx:latest"
+    restart: "unless-stopped"
+    volumes:
+      - "./www:/var/www"
+      - "./nginx/conf.d/:/etc/nginx/conf.d/"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:YOUR_HOSTNAME_HERE"
+      - "traefik.port=80"
+    networks:
+      - traefik
+      - app
+      
+  php-fpm:
+    image: "php:7-fpm"
+    restart: "unless-stopped"
+    volumes:
+      - "./www:/var/www"
+      - "./php/local.ini:/usr/local/etc/php/conf.d/local.ini"
+    networks:
+      - app
+
+networks:
+  app:
+  traefik:
+    external: true
